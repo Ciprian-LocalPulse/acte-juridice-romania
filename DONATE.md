@@ -4,7 +4,11 @@ Acest repository este gratuit. Daca te-a ajutat, poti sustine cercetarea si ment
 
 ## Cum poti ajuta
 
-- Doneaza prin GitHub Sponsors: https://github.com/sponsors/Ciprian-LocalPulse
+- Doneaza pentru a sustine cercetarile : Nume: Ciprian Stefan Plesca
+  
+IBAN: RO94 BREL 0005 6026 8420 0100
+---
+
 - Deschide un issue cu un model de document de care ai nevoie.
 - Trimite un pull request cu surse oficiale si corecturi.
 - Distribuie repository-ul catre oameni care cauta documente curate, fara reclame agresive.
