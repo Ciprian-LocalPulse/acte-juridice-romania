@@ -127,18 +127,7 @@ Vezi [CONTRIBUTING.md](./CONTRIBUTING.md). Sunt binevenite corecturi, modele noi
 
 ## 💡 Support This Research
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=soft&height=120&color=0:0f2027,50:1a1a2e,100:16213e&text=Entropic%20Threat%20Continuum&fontColor=ffffff&fontSize=28&fontAlignY=45&desc=Independent%20Research%20Support&descAlignY=68&descSize=14">
-</p>
 
-This work represents years of independent research in **information security theory**, **privacy engineering**, **anonymity networks**, and **post-quantum cryptographic transitions**. Donations help sustain future publications, simulation infrastructure, open-access dissemination, and academic conference or peer-review costs.
-
-> 100% of donations received through this repository are allocated to **research continuation**, **open-access dissemination**, **simulation infrastructure**, and **academic review or conference activity**.
-> See [DONATE.md](./DONATE.md) for the full donation policy, institutional support options, and acknowledgement preferences.
-
-<br>
-
-<div align="center">
 
 ### 🇪🇺 European Payment — SEPA / EUR
 
