@@ -1,0 +1,26 @@
+name: Cerere document nou
+description: Propune un model de document care lipseste.
+title: "[Document nou]: "
+labels: ["document-nou"]
+body:
+  - type: textarea
+    id: situatie
+    attributes:
+      label: Situatia
+      description: Pentru ce situatie este necesar documentul?
+      placeholder: Ex. proprietar care vrea un contract de inchiriere simplu.
+    validations:
+      required: true
+  - type: textarea
+    id: continut
+    attributes:
+      label: Ce ar trebui sa contina
+      description: Listeaza clauze, campuri sau anexe importante.
+    validations:
+      required: true
+  - type: input
+    id: sursa
+    attributes:
+      label: Sursa oficiala, daca exista
+      placeholder: https://...
+

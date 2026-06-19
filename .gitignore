@@ -1,0 +1,16 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Generated exports
+dist/
+build/
+exports/
+*.docx
+*.pdf
+
