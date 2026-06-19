@@ -14,6 +14,8 @@ Foloseste aceste surse pentru verificari inainte de completarea sau semnarea unu
 - Formulare ANAF: https://www.anaf.ro/anaf/internet/ANAF/asistenta_contribuabili/formulare_fiscale/
 - SPV ANAF: https://www.anaf.ro/InregPersFizicePublic/
 - Ghiseul.ro: https://www.ghiseul.ro/
+- Portal e-guvernare: https://www.e-guvernare.ro/
+- Oficiul National al Registrului Comertului: https://www.onrc.ro/
 
 ## Munca
 
@@ -26,6 +28,12 @@ Foloseste aceste surse pentru verificari inainte de completarea sau semnarea unu
 - Portalul instantelor: https://portal.just.ro/
 - Uniunea Nationala a Notarilor Publici din Romania: https://www.uniuneanotarilor.ro/
 - Uniunea Nationala a Barourilor din Romania: https://www.unbr.ro/
+- Avocatul Poporului: https://avp.ro/
+
+## Consumatori
+
+- ANPC: https://anpc.ro/
+- Reclamatii ANPC: https://sesizari.anpc.ro/
 
 ## Recomandare de mentenanta
 
@@ -35,4 +43,3 @@ Cand actualizezi un model, noteaza in pull request:
 - data verificarii;
 - ce s-a schimbat;
 - de ce schimbarea afecteaza modelul.
-

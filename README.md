@@ -11,7 +11,7 @@
   <a href="./DONATE.md"><img alt="Sustine proiectul" src="https://img.shields.io/badge/sustine-cercetarea-7c3aed?style=for-the-badge"></a>
 </p>
 
-> Biblioteca gratuita de modele pentru documente juridice si acte uzuale din Romania: locuinta, munca, afaceri, familie, administrativ si vanzare-cumparare.
+> Biblioteca gratuita de modele pentru documente juridice si acte uzuale din Romania: locuinta, munca, afaceri, familie, administrativ, consumatori si vanzare-cumparare.
 
 ## Important
 
@@ -23,14 +23,17 @@ Internetul romanesc este plin de formulare vechi, pagini cu reclame agresive si 
 
 ## Categorii
 
-| Categorie | Documente incluse | Status |
+| Categorie | Documente incluse | Modele |
 | --- | --- | --- |
-| Locuinta | Contract inchiriere, comodat, proces-verbal predare | Draft util |
-| Munca | Cerere concediu, adeverinta salariat, cerere incetare CIM | Draft util |
-| Afaceri | Prestari servicii, NDA simplu, proces-verbal receptie | Draft util |
-| Familie | Procura simpla, declaratie pe proprie raspundere | Draft util |
-| Administrativ | Cerere generica ANAF, petitie institutie publica | Draft util |
-| Vanzare-cumparare | Bun mobil, predare-primire, chitanta | Draft util |
+| Locuinta | Inchiriere, comodat, notificari, garantie, inventar, utilitati | 10 |
+| Munca | Concedii, demisie, telemunca, adeverinte, sesizari, pontaj | 11 |
+| Afaceri | Servicii, NDA, colaborare, mentenanta, cesiune, oferte, notificari | 12 |
+| Familie | Procuri, declaratii, gazduire, acord parental, imputerniciri | 7 |
+| Administrativ | ANAF, petitii, Legea 544, ONRC, certificate, contestatii | 11 |
+| Consumatori | Reclamatii, retur, garantie, comanda online, servicii | 6 |
+| Vanzare-cumparare | Bun mobil, predare, chitanta, avans, rezolutiune | 7 |
+
+Total: **64 de modele de documente**, plus ghiduri, surse oficiale, checklist-uri si fisiere de comunitate.
 
 ## Start rapid
 
@@ -48,6 +51,7 @@ Internetul romanesc este plin de formulare vechi, pagini cu reclame agresive si 
 ├─ templates/
 │  ├─ administrativ/
 │  ├─ afaceri/
+│  ├─ consumatori/
 │  ├─ familie/
 │  ├─ locuinta/
 │  ├─ munca/
