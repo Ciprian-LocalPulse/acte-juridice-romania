@@ -95,8 +95,9 @@ Total: **89 de modele de documente**, plus ghiduri, surse oficiale, checklist-ur
 
 Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și organizarea documentelor:
 
-[![Doneaza](https://img.shields.io/badge/Doneaza%20pentru%20cercetare-111827?style=for-the-badge&logo=githubsponsors&logoColor=white)](./DONATE.md)
-[![PayPal](https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/agentflowenterprise)
+| | |
+|---|---|
+| [![Doneaza](https://img.shields.io/badge/Doneaza%20pentru%20cercetare-111827?style=for-the-badge&logo=githubsponsors&logoColor=white)](./DONATE.md) | [![PayPal](https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/agentflowenterprise) |
 
 ---
 
