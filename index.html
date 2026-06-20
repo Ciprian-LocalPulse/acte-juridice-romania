@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acte Juridice Romania — Registrul public de modele gratuite</title>
+<meta name="description" content="89 de modele gratuite de documente juridice romanesti, organizate in 14 categorii, cu temei legal si checklist pentru fiecare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1A2942;
+    --paper:#F2EEE2;
+    --paper-deep:#EAE4D2;
+    --card:#FBF9F2;
+    --seal:#9C6B2E;
+    --seal-deep:#7A521F;
+    --stamp:#8B3A2B;
+    --slate:#5B6472;
+    --line:#D8D0BC;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'IBM Plex Sans', Arial, sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background-image:radial-gradient(circle, rgba(26,41,66,0.05) 1px, transparent 1px);
+    background-size:22px 22px;
+    opacity:0.5;
+  }
+  a{color:var(--seal-deep);}
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--stamp);
+    outline-offset:2px;
+  }
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--seal-deep);
+  }
+  header.top{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header.top .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:0.04em;
+  }
+  .brand b{font-weight:500;}
+  nav.top a{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--ink);
+    text-decoration:none;
+    margin-left:22px;
+    border-bottom:1px solid transparent;
+  }
+  nav.top a:hover{border-bottom-color:var(--seal);}
+
+  section.hero{
+    padding:70px 0 50px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(34px, 4.4vw, 54px);
+    line-height:1.08;
+    margin:14px 0 18px;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--stamp);
+  }
+  .lede{
+    font-size:17.5px;
+    line-height:1.6;
+    color:var(--slate);
+    max-width:520px;
+    margin:0 0 28px;
+  }
+  .cta-row{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13.5px;
+    letter-spacing:0.02em;
+    padding:13px 20px;
+    border-radius:3px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid var(--ink);
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{transform:translateY(-1px);}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{background:rgba(26,41,66,0.06);}
+
+  .seal-wrap{
+    display:flex;
+    justify-content:center;
+  }
+  .seal{
+    width:min(280px, 100%);
+    transform:rotate(-7deg);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .seal-wrap:hover .seal{
+    transform:rotate(-7deg) scale(0.96);
+  }
+  .seal text{
+    font-family:var(--mono);
+  }
+
+  .registry-line{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--slate);
+    margin-top:18px;
+  }
+
+  section.stats{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--paper-deep);
+  }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+  }
+  .stat{
+    padding:28px 22px;
+    border-left:1px solid var(--line);
+  }
+  .stat:first-child{border-left:none;}
+  .stat .n{
+    font-family:var(--mono);
+    font-size:28px;
+    font-weight:500;
+    color:var(--stamp);
+  }
+  .stat .l{
+    font-size:13px;
+    color:var(--slate);
+    margin-top:4px;
+    line-height:1.4;
+  }
+
+  section.section{
+    padding:64px 0;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:34px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:16px;
+  }
+  .section-head h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:28px;
+    margin:0;
+  }
+  .section-head .count{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--slate);
+  }
+
+  .search-box{
+    position:relative;
+    margin-bottom:34px;
+  }
+  .search-box input{
+    width:100%;
+    font-family:var(--mono);
+    font-size:15px;
+    padding:14px 16px;
+    border:1px solid var(--ink);
+    background:var(--card);
+    color:var(--ink);
+    border-radius:3px;
+  }
+  .search-box input::placeholder{color:var(--slate);}
+  #search-results{
+    margin-top:2px;
+    border:1px solid var(--line);
+    border-top:none;
+    background:var(--card);
+    max-height:340px;
+    overflow-y:auto;
+    display:none;
+  }
+  #search-results.open{display:block;}
+  #search-results a{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:11px 16px;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:14.5px;
+    border-bottom:1px solid var(--line);
+  }
+  #search-results a:last-child{border-bottom:none;}
+  #search-results a:hover{background:var(--paper-deep);}
+  #search-results .badge{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--seal-deep);
+    white-space:nowrap;
+  }
+  #search-empty{
+    padding:14px 16px;
+    font-size:14px;
+    color:var(--slate);
+  }
+
+  .dosar-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  .dosar{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:22px 20px 20px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .dosar:hover{border-color:var(--seal); transform:translateY(-2px);}
+  .dosar::before{
+    content:attr(data-num);
+    position:absolute;
+    top:-11px;
+    left:18px;
+    background:var(--seal);
+    color:var(--paper);
+    font-family:var(--mono);
+    font-size:11px;
+    padding:3px 9px;
+    border-radius:2px;
+  }
+  .dosar h3{
+    font-family:var(--serif);
+    font-size:18px;
+    font-weight:600;
+    margin:6px 0 8px;
+  }
+  .dosar p.desc{
+    font-size:13.5px;
+    color:var(--slate);
+    line-height:1.5;
+    margin:0 0 12px;
+  }
+  .dosar .meta{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--seal-deep);
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid var(--line);
+    padding-top:10px;
+  }
+
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+  }
+  .step{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:20px;
+  }
+  .step .num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--stamp);
+    margin-bottom:10px;
+  }
+  .step h3{
+    font-family:var(--serif);
+    font-size:16.5px;
+    font-weight:600;
+    margin:0 0 8px;
+  }
+  .step p{
+    font-size:13.5px;
+    color:var(--slate);
+    line-height:1.5;
+    margin:0;
+  }
+
+  .impact{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:start;
+  }
+  .impact p{
+    font-size:15.5px;
+    line-height:1.7;
+    color:var(--ink);
+  }
+  .impact .cite{
+    font-size:13px;
+    color:var(--slate);
+  }
+  .ledger{
+    background:var(--card);
+    border:1px solid var(--line);
+  }
+  .ledger-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 18px;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .ledger-row:last-child{border-bottom:none;}
+  .ledger-row .v{
+    font-family:var(--mono);
+    color:var(--stamp);
+  }
+
+  .disclaimer{
+    background:var(--paper-deep);
+    border:1px solid var(--line);
+    padding:22px 24px;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--slate);
+  }
+  .disclaimer strong{color:var(--ink);}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:34px 0 50px;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--slate);
+  }
+  footer a{color:var(--slate); text-decoration:underline;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr; gap:30px;}
+    .seal-wrap{order:-1;}
+    .seal{width:180px;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(3){border-left:none;}
+    .dosar-grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:repeat(2,1fr);}
+    .impact{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .dosar-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:1fr;}
+    .stat{border-left:none; border-top:1px solid var(--line);}
+    .stat:first-child{border-top:none;}
+    nav.top a{margin-left:14px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">ACTE&nbsp;JURIDICE&nbsp;<b>ROMANIA</b></div>
+    <nav class="top">
+      <a href="#registru">Registru</a>
+      <a href="#cum-functioneaza">Cum funcționează</a>
+      <a href="#impact">Impact</a>
+      <a href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Registru public &middot; gratuit &middot; sursă deschisă</div>
+      <h1>Documentul corect nu ar trebui să coste <em>de fiecare dată</em>.</h1>
+      <p class="lede">89 de modele de acte juridice românești, organizate în 14 categorii, fiecare cu temei legal asumat, checklist de verificare și fără reclame. Pentru chiriași, salariați, moștenitori, antreprenori și oricine altcineva.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#registru">Răsfoiește registrul</a>
+        <a class="btn btn-ghost" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/docs/raport-acces-la-justitie-2026.md">Citește raportul complet</a>
+      </div>
+      <div class="registry-line">Dosar public nr. 2026/RO &middot; ultima actualizare: iunie 2026</div>
+    </div>
+    <div class="seal-wrap" aria-hidden="true">
+      <svg class="seal" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="110" cy="110" r="104" fill="none" stroke="#8B3A2B" stroke-width="2"/>
+        <circle cx="110" cy="110" r="92" fill="none" stroke="#8B3A2B" stroke-width="1"/>
+        <path id="curve-top" d="M 30 110 A 80 80 0 0 1 190 110" fill="none"/>
+        <path id="curve-bottom" d="M 190 112 A 80 80 0 0 1 30 112" fill="none"/>
+        <text font-size="11.5" letter-spacing="2.5" fill="#8B3A2B">
+          <textPath href="#curve-top" startOffset="50%" text-anchor="middle">ACTE JURIDICE ROMANIA</textPath>
+        </text>
+        <text font-size="11.5" letter-spacing="2.5" fill="#8B3A2B">
+          <textPath href="#curve-bottom" startOffset="50%" text-anchor="middle">REGISTRU PUBLIC · 2026</textPath>
+        </text>
+        <text x="110" y="100" text-anchor="middle" font-size="46" font-weight="500" fill="#8B3A2B">89</text>
+        <text x="110" y="124" text-anchor="middle" font-size="11" letter-spacing="1.5" fill="#8B3A2B">MODELE GRATUITE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat">
+      <div class="n">89</div>
+      <div class="l">modele de documente, 14 categorii</div>
+    </div>
+    <div class="stat">
+      <div class="n">44/143</div>
+      <div class="l">locul României în WJP Rule of Law Index 2025</div>
+    </div>
+    <div class="stat">
+      <div class="n">580–1.160</div>
+      <div class="l">RON, onorariu minim UNBR pentru un singur contract redactat</div>
+    </div>
+    <div class="stat">
+      <div class="n">0 RON</div>
+      <div class="l">costul de acces la fiecare model din acest registru</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="registru">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Registrul de modele</h2>
+      <span class="count">89 documente &middot; caută live, fără AI, fără urmărire</span>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Scrie o situație: chirie, concediere, divort, masina, succesiune, GDPR…" autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+
+    <div class="dosar-grid">
+      <a class="dosar" data-num="01" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/locuinta">
+        <h3>Locuință</h3>
+        <p class="desc">Chirie, comodat, predare-primire, garanție, utilități.</p>
+        <div class="meta"><span>10 modele</span><span>Codul civil</span></div>
+      </a>
+      <a class="dosar" data-num="02" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/munca">
+        <h3>Muncă</h3>
+        <p class="desc">Concedii, demisie, telemuncă, adeverințe, ITM.</p>
+        <div class="meta"><span>11 modele</span><span>Legea 53/2003</span></div>
+      </a>
+      <a class="dosar" data-num="03" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/afaceri">
+        <h3>Afaceri</h3>
+        <p class="desc">Servicii, NDA, colaborare, mentenanță, cesiune.</p>
+        <div class="meta"><span>12 modele</span><span>Codul civil</span></div>
+      </a>
+      <a class="dosar" data-num="04" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/familie">
+        <h3>Familie</h3>
+        <p class="desc">Procuri, declarații, acord parental, găzduire.</p>
+        <div class="meta"><span>7 modele</span><span>Codul civil</span></div>
+      </a>
+      <a class="dosar" data-num="05" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/administrativ">
+        <h3>Administrativ</h3>
+        <p class="desc">ANAF, petiții, Legea 544, ONRC, contestații.</p>
+        <div class="meta"><span>11 modele</span><span>Legea 544/2001</span></div>
+      </a>
+      <a class="dosar" data-num="06" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/consumatori">
+        <h3>Consumatori</h3>
+        <p class="desc">Reclamații, retur, garanție, comandă online.</p>
+        <div class="meta"><span>6 modele</span><span>O.G. 21/1992</span></div>
+      </a>
+      <a class="dosar" data-num="07" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/vanzare-cumparare">
+        <h3>Vânzare-cumpărare</h3>
+        <p class="desc">Bun mobil, predare, chitanță, avans, reziluțiune.</p>
+        <div class="meta"><span>7 modele</span><span>Codul civil</span></div>
+      </a>
+      <a class="dosar" data-num="08" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/succesiuni">
+        <h3>Succesiuni</h3>
+        <p class="desc">Testament, acceptare/renunțare, partaj, notar.</p>
+        <div class="meta"><span>5 modele</span><span>Cod civil, cartea IV</span></div>
+      </a>
+      <a class="dosar" data-num="09" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/auto">
+        <h3>Auto</h3>
+        <p class="desc">Vânzare, comodat, împuternicire, predare vehicul.</p>
+        <div class="meta"><span>4 modele</span><span>OUG 195/2002</span></div>
+      </a>
+      <a class="dosar" data-num="10" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/imobiliare">
+        <h3>Imobiliare</h3>
+        <p class="desc">Antecontract, promisiune, arvună, notificare.</p>
+        <div class="meta"><span>4 modele</span><span>Legea 7/1996</span></div>
+      </a>
+      <a class="dosar" data-num="11" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/imprumuturi-si-garantii">
+        <h3>Împrumuturi și garanții</h3>
+        <p class="desc">Împrumut bani, recunoaștere datorie, fidejusiune.</p>
+        <div class="meta"><span>3 modele</span><span>Cod civil, art. 2158</span></div>
+      </a>
+      <a class="dosar" data-num="12" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/firme-pfa">
+        <h3>Firme și PFA</h3>
+        <p class="desc">Asociat unic, AGA, comodat sediu, suspendare PFA.</p>
+        <div class="meta"><span>4 modele</span><span>Legea 31/1990</span></div>
+      </a>
+      <a class="dosar" data-num="13" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/gdpr-protectia-datelor">
+        <h3>GDPR</h3>
+        <p class="desc">Acces, ștergere și opoziție la prelucrarea datelor.</p>
+        <div class="meta"><span>3 modele</span><span>Reg. (UE) 2016/679</span></div>
+      </a>
+      <a class="dosar" data-num="14" href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/tree/main/templates/asociatie-proprietari">
+        <h3>Asociație de proprietari</h3>
+        <p class="desc">Cereri și contestații privind cheltuielile comune.</p>
+        <div class="meta"><span>2 modele</span><span>Legea 196/2018</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cum-functioneaza">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Cum funcționează un model</h2>
+      <span class="count">patru pași, de fiecare dată</span>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Alegi modelul</h3>
+        <p>Cauți situația ta în registru sau în harta de situații din repo.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Completezi câmpurile</h3>
+        <p>Înlocuiești fiecare <code>[PARANTEZĂ]</code> cu datele tale reale.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Verifici checklist-ul</h3>
+        <p>Fiecare model are o listă finală de verificare, inclusă în document.</p>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <h3>Confirmi, dacă e nevoie</h3>
+        <p>Pentru imobile, succesiuni sau garanții, treci pe la notar sau avocat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="impact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>De ce există acest registru</h2>
+      <span class="count">date publice, nu sloganuri</span>
+    </div>
+    <div class="impact">
+      <div>
+        <p>România a căzut pe locul 44 din 143 de țări în WJP Rule of Law Index 2025, locul 27 din 31 în regiunea UE/AELS/America de Nord. În același timp, peste 1,5 milioane de firme active și aproape 100.000 de înregistrări noi doar în primele opt luni din 2025 arată câți români interacționează, la un moment dat, cu un act juridic de bază.</p>
+        <p>Conform Ghidului orientativ al onorariilor minimale al UNBR, redactarea unui singur contract uzual costă minimum 580–1.160 RON. Acest registru nu înlocuiește un avocat sau un notar pentru situațiile cu impact mare — dar elimină costul de a începe de la zero pentru documentele simple.</p>
+        <p class="cite">Surse: World Justice Project Rule of Law Index 2025 · UNBR, Hotărârea Consiliului nr. 230/2025 · ONRC, statistici de înregistrare 2025 · ANSPDCP, comunicate 2025–2026. Detalii complete în raportul din repo.</p>
+      </div>
+      <div class="ledger">
+        <div class="ledger-row"><span>Cost minim evitat / model</span><span class="v">580 RON</span></div>
+        <div class="ledger-row"><span>Cost maxim evitat / model</span><span class="v">1.160 RON</span></div>
+        <div class="ledger-row"><span>Estimare pentru 89 modele</span><span class="v">51.620–103.240 RON</span></div>
+        <div class="ledger-row"><span>Cost real pentru utilizator</span><span class="v">0 RON</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="disclaimer">
+      <strong>Important.</strong> Aceste documente sunt modele educaționale, nu consultanță juridică, fiscală sau notarială. Nu înlocuiesc verificarea cu un avocat, notar sau instituție competentă, mai ales pentru succesiuni, imobiliare și garanții. Legislația se schimbă — verifică mereu sursele oficiale înainte de folosire. Acest registru nu folosește și nu pretinde inteligență artificială pentru a oferi răspunsuri juridice automate.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>MIT License &middot; acte-juridice-romania</span>
+    <span><a href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania">Repository</a> &middot; <a href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/CONTRIBUTING.md">Contribuie</a> &middot; <a href="https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/DONATE.md">Susține proiectul</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var BASE = "https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/";
+  var docs = [
+    ["Contract de inchiriere locuinta","Locuinta","locuinta/contract-inchiriere-locuinta.md"],
+    ["Contract de comodat locuinta","Locuinta","locuinta/contract-comodat-locuinta.md"],
+    ["Proces-verbal de predare-primire","Locuinta","locuinta/proces-verbal-predare-primire.md"],
+    ["Notificare reziliere inchiriere - proprietar","Locuinta","locuinta/notificare-reziliere-inchiriere-proprietar.md"],
+    ["Notificare reziliere inchiriere - chirias","Locuinta","locuinta/notificare-reziliere-inchiriere-chirias.md"],
+    ["Cerere restituire garantie inchiriere","Locuinta","locuinta/cerere-restituire-garantie-inchiriere.md"],
+    ["Act aditional prelungire inchiriere","Locuinta","locuinta/act-aditional-prelungire-inchiriere.md"],
+    ["Notificare majorare chirie","Locuinta","locuinta/notificare-majorare-chirie.md"],
+    ["Inventar bunuri locuinta","Locuinta","locuinta/inventar-bunuri-locuinta.md"],
+    ["Acord plata utilitati","Locuinta","locuinta/acord-plata-utilitati.md"],
+    ["Cerere concediu de odihna","Munca","munca/cerere-concediu-odihna.md"],
+    ["Cerere adeverinta salariat","Munca","munca/cerere-adeverinta-salariat.md"],
+    ["Cerere incetare CIM prin acord","Munca","munca/cerere-incetare-contract-munca-acord.md"],
+    ["Demisie cu preaviz","Munca","munca/demisie-cu-preaviz.md"],
+    ["Demisie fara preaviz","Munca","munca/demisie-fara-preaviz.md"],
+    ["Cerere telemunca","Munca","munca/cerere-telemunca.md"],
+    ["Cerere concediu fara plata","Munca","munca/cerere-concediu-fara-plata.md"],
+    ["Cerere program flexibil","Munca","munca/cerere-program-flexibil.md"],
+    ["Sesizare ITM","Munca","munca/sesizare-itm.md"],
+    ["Cerere eliberare copie contract munca","Munca","munca/cerere-eliberare-copie-contract-munca.md"],
+    ["Foaie pontaj simpla","Munca","munca/foaie-pontaj-simpla.md"],
+    ["Contract de prestari servicii","Afaceri","afaceri/contract-prestari-servicii.md"],
+    ["Acord de confidentialitate simplu","Afaceri","afaceri/acord-confidentialitate-nda-simplu.md"],
+    ["Proces-verbal receptie servicii","Afaceri","afaceri/proces-verbal-receptie-servicii.md"],
+    ["Contract colaborare","Afaceri","afaceri/contract-colaborare.md"],
+    ["Contract consultanta","Afaceri","afaceri/contract-consultanta.md"],
+    ["Contract mentenanta","Afaceri","afaceri/contract-mentenanta.md"],
+    ["Contract cesiune drepturi de autor","Afaceri","afaceri/contract-cesiune-drepturi-autor.md"],
+    ["Oferta comerciala","Afaceri","afaceri/oferta-comerciala.md"],
+    ["Notificare intarziere plata","Afaceri","afaceri/notificare-intarziere-plata.md"],
+    ["Somatie plata amiabila","Afaceri","afaceri/somatie-plata-amiabila.md"],
+    ["Acord reziliere contract","Afaceri","afaceri/acord-reziliere-contract.md"],
+    ["Proces-verbal predare documente","Afaceri","afaceri/proces-verbal-predare-documente.md"],
+    ["Procura simpla","Familie","familie/procura-simpla.md"],
+    ["Declaratie pe proprie raspundere","Familie","familie/declaratie-proprie-raspundere.md"],
+    ["Acord parental calatorie minor","Familie","familie/acord-parental-calatorie.md"],
+    ["Declaratie gazduire","Familie","familie/declaratie-gazduire.md"],
+    ["Imputernicire ridicare documente","Familie","familie/imputernicire-ridicare-documente.md"],
+    ["Declaratie venituri","Familie","familie/declaratie-venituri.md"],
+    ["Acord folosire adresa corespondenta","Familie","familie/acord-folosire-adresa-corespondenta.md"],
+    ["Cerere generica ANAF","Administrativ","administrativ/cerere-generica-anaf.md"],
+    ["Petitie catre institutie publica","Administrativ","administrativ/petitie-institutie-publica.md"],
+    ["Cerere informatii publice - Legea 544","Administrativ","administrativ/cerere-informatii-publice-legea-544.md"],
+    ["Reclamatie administrativa - Legea 544","Administrativ","administrativ/reclamatie-administrativa-legea-544.md"],
+    ["Cerere certificat fiscal","Administrativ","administrativ/cerere-certificat-fiscal.md"],
+    ["Cerere schimbare date","Administrativ","administrativ/cerere-schimbare-date.md"],
+    ["Contestatie amenda","Administrativ","administrativ/contestatie-amenda.md"],
+    ["Cerere ONRC informatii","Administrativ","administrativ/cerere-onrc-informatii.md"],
+    ["Cerere radiere date","Administrativ","administrativ/cerere-radiere-date.md"],
+    ["Cerere esalonare plata","Administrativ","administrativ/cerere-esalonare-plata.md"],
+    ["Cerere audienta","Administrativ","administrativ/cerere-audienta.md"],
+    ["Reclamatie ANPC","Consumatori","consumatori/reclamatie-anpc.md"],
+    ["Cerere retur produs","Consumatori","consumatori/cerere-retur-produs.md"],
+    ["Cerere garantie produs","Consumatori","consumatori/cerere-garantie-produs.md"],
+    ["Notificare neexecutare serviciu","Consumatori","consumatori/notificare-neexecutare-serviciu.md"],
+    ["Cerere anulare comanda online","Consumatori","consumatori/cerere-anulare-comanda-online.md"],
+    ["Proces-verbal predare produs in service","Consumatori","consumatori/proces-verbal-predare-produs-service.md"],
+    ["Contract vanzare-cumparare bun mobil","Vanzare-cumparare","vanzare-cumparare/contract-vanzare-cumparare-bun-mobil.md"],
+    ["Chitanta simpla","Vanzare-cumparare","vanzare-cumparare/chitanta-simpla.md"],
+    ["Proces-verbal predare-primire bun mobil","Vanzare-cumparare","vanzare-cumparare/proces-verbal-predare-bun-mobil.md"],
+    ["Promisiune vanzare-cumparare bun mobil","Vanzare-cumparare","vanzare-cumparare/promisiune-vanzare-cumparare-bun-mobil.md"],
+    ["Acord restituire avans","Vanzare-cumparare","vanzare-cumparare/acord-restituire-avans.md"],
+    ["Notificare rezolutiune contract","Vanzare-cumparare","vanzare-cumparare/notificare-rezolutiune-contract.md"],
+    ["Declaratie predare suma de bani","Vanzare-cumparare","vanzare-cumparare/declaratie-predare-suma.md"],
+    ["Testament olograf","Succesiuni","succesiuni/testament-olograf.md"],
+    ["Declaratie de acceptare a succesiunii","Succesiuni","succesiuni/declaratie-acceptare-succesiune.md"],
+    ["Declaratie de renuntare la succesiune","Succesiuni","succesiuni/declaratie-renuntare-succesiune.md"],
+    ["Acord de iesire din indiviziune","Succesiuni","succesiuni/acord-iesire-din-indiviziune.md"],
+    ["Cerere de dezbatere a succesiunii la notar","Succesiuni","succesiuni/cerere-dezbatere-succesiune-notar.md"],
+    ["Contract de vanzare-cumparare autovehicul","Auto","auto/contract-vanzare-cumparare-auto.md"],
+    ["Contract de comodat autovehicul","Auto","auto/contract-comodat-auto.md"],
+    ["Imputernicire pentru autovehicul","Auto","auto/imputernicire-auto.md"],
+    ["Proces-verbal predare-primire autovehicul","Auto","auto/proces-verbal-predare-primire-auto.md"],
+    ["Antecontract vanzare-cumparare imobil","Imobiliare","imobiliare/antecontract-vanzare-cumparare-imobil.md"],
+    ["Promisiune unilaterala de vanzare imobil","Imobiliare","imobiliare/promisiune-unilaterala-vanzare-imobil.md"],
+    ["Acord privind arvuna la vanzarea unui imobil","Imobiliare","imobiliare/acord-arvuna-imobil.md"],
+    ["Notificare neexecutare antecontract imobil","Imobiliare","imobiliare/notificare-neexecutare-antecontract-imobil.md"],
+    ["Contract de imprumut de bani intre persoane fizice","Imprumuturi","imprumuturi-si-garantii/contract-imprumut-bani-intre-persoane-fizice.md"],
+    ["Recunoastere de datorie","Imprumuturi","imprumuturi-si-garantii/recunoastere-de-datorie.md"],
+    ["Contract de fidejusiune (garantie personala)","Imprumuturi","imprumuturi-si-garantii/contract-de-fidejusiune-garantie-personala.md"],
+    ["Decizia asociatului unic al SRL","Firme-PFA","firme-pfa/decizie-asociat-unic-srl.md"],
+    ["Hotararea AGA - SRL","Firme-PFA","firme-pfa/hotarare-aga-srl.md"],
+    ["Contract de comodat pentru spatiu (sediu firma)","Firme-PFA","firme-pfa/contract-comodat-spatiu-firma.md"],
+    ["Cerere de suspendare a activitatii PFA","Firme-PFA","firme-pfa/cerere-suspendare-activitate-pfa.md"],
+    ["Cerere de acces la datele personale (GDPR)","GDPR","gdpr-protectia-datelor/cerere-acces-date-personale.md"],
+    ["Cerere de stergere a datelor personale (GDPR)","GDPR","gdpr-protectia-datelor/cerere-stergere-date-personale.md"],
+    ["Cerere de opozitie la prelucrarea datelor (GDPR)","GDPR","gdpr-protectia-datelor/cerere-opozitie-prelucrare-date.md"],
+    ["Cerere catre asociatia de proprietari","Asociatie proprietari","asociatie-proprietari/cerere-catre-asociatia-de-proprietari.md"],
+    ["Contestatie privind cheltuielile comune","Asociatie proprietari","asociatie-proprietari/contestatie-cheltuieli-comune.md"]
+  ];
+
+  var input = document.getElementById("search-input");
+  var results = document.getElementById("search-results");
+
+  function normalize(s){
+    return s.toLowerCase()
+      .replace(/ă/g,"a").replace(/â/g,"a").replace(/î/g,"i")
+      .replace(/ș/g,"s").replace(/ş/g,"s").replace(/ț/g,"t").replace(/ţ/g,"t");
+  }
+
+  var index = docs.map(function(d){
+    return {title:d[0], cat:d[1], path:d[2], n:normalize(d[0]+" "+d[1])};
+  });
+
+  function render(query){
+    var q = normalize(query.trim());
+    if(q.length === 0){
+      results.classList.remove("open");
+      results.innerHTML = "";
+      return;
+    }
+    var matches = index.filter(function(d){ return d.n.indexOf(q) !== -1; }).slice(0,12);
+    results.innerHTML = "";
+    if(matches.length === 0){
+      var empty = document.createElement("div");
+      empty.id = "search-empty";
+      empty.textContent = "Niciun model nu corespunde. Incearca alt cuvant sau vezi registrul complet mai jos.";
+      results.appendChild(empty);
+    } else {
+      matches.forEach(function(d){
+        var a = document.createElement("a");
+        a.href = BASE + d.path;
+        var span = document.createElement("span");
+        span.textContent = d.title;
+        var badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = d.cat;
+        a.appendChild(span);
+        a.appendChild(badge);
+        results.appendChild(a);
+      });
+    }
+    results.classList.add("open");
+  }
+
+  input.addEventListener("input", function(){ render(input.value); });
+  input.addEventListener("focus", function(){ if(input.value) render(input.value); });
+  document.addEventListener("click", function(e){
+    if(!e.target.closest(".search-box")){ results.classList.remove("open"); }
+  });
+})();
+</script>
+
+</body>
+</html>

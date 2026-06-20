@@ -85,3 +85,48 @@
 - [Notificare rezolutiune contract](./vanzare-cumparare/notificare-rezolutiune-contract.md)
 - [Declaratie predare suma de bani](./vanzare-cumparare/declaratie-predare-suma.md)
 
+## Succesiuni
+
+- [Testament olograf](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/succesiuni/testament-olograf.md)
+- [Declaratie de acceptare a succesiunii](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/succesiuni/declaratie-acceptare-succesiune.md)
+- [Declaratie de renuntare la succesiune](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/succesiuni/declaratie-renuntare-succesiune.md)
+- [Acord de iesire din indiviziune intre mostenitori](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/succesiuni/acord-iesire-din-indiviziune.md)
+- [Cerere de dezbatere a succesiunii la notar](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/succesiuni/cerere-dezbatere-succesiune-notar.md)
+
+## Auto
+
+- [Contract de vanzare-cumparare autovehicul](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/auto/contract-vanzare-cumparare-auto.md)
+- [Contract de comodat autovehicul](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/auto/contract-comodat-auto.md)
+- [Imputernicire pentru autovehicul](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/auto/imputernicire-auto.md)
+- [Proces-verbal de predare-primire autovehicul](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/auto/proces-verbal-predare-primire-auto.md)
+
+## Imobiliare
+
+- [Antecontract de vanzare-cumparare imobil](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/imobiliare/antecontract-vanzare-cumparare-imobil.md)
+- [Promisiune unilaterala (optiune) de vanzare imobil](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/imobiliare/promisiune-unilaterala-vanzare-imobil.md)
+- [Acord privind arvuna la vanzarea unui imobil](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/imobiliare/acord-arvuna-imobil.md)
+- [Notificare privind neexecutarea unui antecontract imobil](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/imobiliare/notificare-neexecutare-antecontract-imobil.md)
+
+## Imprumuturi si garantii
+
+- [Contract de imprumut de bani intre persoane fizice](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/imprumuturi-si-garantii/contract-imprumut-bani-intre-persoane-fizice.md)
+- [Recunoastere de datorie](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/imprumuturi-si-garantii/recunoastere-de-datorie.md)
+- [Contract de fidejusiune (garantie personala)](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/imprumuturi-si-garantii/contract-de-fidejusiune-garantie-personala.md)
+
+## Firme si PFA
+
+- [Decizia asociatului unic al SRL](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/firme-pfa/decizie-asociat-unic-srl.md)
+- [Hotararea adunarii generale a asociatilor (AGA) - SRL](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/firme-pfa/hotarare-aga-srl.md)
+- [Contract de comodat pentru spatiu (sediu social/punct de lucru)](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/firme-pfa/contract-comodat-spatiu-firma.md)
+- [Cerere de suspendare a activitatii PFA](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/firme-pfa/cerere-suspendare-activitate-pfa.md)
+
+## GDPR si protectia datelor
+
+- [Cerere de acces la datele personale (Art. 15 GDPR)](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/gdpr-protectia-datelor/cerere-acces-date-personale.md)
+- [Cerere de stergere a datelor personale (Art. 17 GDPR)](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/gdpr-protectia-datelor/cerere-stergere-date-personale.md)
+- [Cerere de opozitie la prelucrarea datelor personale (Art. 21 GDPR)](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/gdpr-protectia-datelor/cerere-opozitie-prelucrare-date.md)
+
+## Asociatie de proprietari
+
+- [Cerere catre asociatia de proprietari](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/asociatie-proprietari/cerere-catre-asociatia-de-proprietari.md)
+- [Contestatie privind cheltuielile comune](https://github.com/Ciprian-LocalPulse/acte-juridice-romania/blob/main/templates/asociatie-proprietari/contestatie-cheltuieli-comune.md)

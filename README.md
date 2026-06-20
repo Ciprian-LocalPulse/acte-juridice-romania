@@ -1,9 +1,9 @@
 # Acte Juridice Romania
 
 <p align="center">
-  <img alt="Acte Juridice Romania" src="https://capsule-render.vercel.app/api?type=waving&height=240&color=0:0f766e,50:2563eb,100:7c3aed&text=Acte%20Juridice%20Romania&fontColor=ffffff&fontSize=46&fontAlignY=38&desc=64%20modele%20gratuite%20de%20documente%20romanesti&descAlignY=58&descSize=17">
+  <img alt="Acte Juridice Romania" src="https://capsule-render.vercel.app/api?type=waving&height=240&color=0:0f766e,50:2563eb,100:7c3aed&text=Acte%20Juridice%20Romania&fontColor=ffffff&fontSize=46&fontAlignY=38&desc=89%20modele%20gratuite%20de%20documente%20romanesti&descAlignY=58&descSize=17">
 </p>
-
+<img src="assets/ACTE-JURIDICE-ROMANIA.png" alt="Acte Juridice Romania" width="600">
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/licenta-MIT-111827?style=for-the-badge&logo=opensourceinitiative&logoColor=white"></a>
   <a href="./docs/surse-oficiale.md"><img alt="Surse oficiale" src="https://img.shields.io/badge/surse-oficiale-0f766e?style=for-the-badge&logo=checkmarx&logoColor=white"></a>
@@ -39,8 +39,16 @@ Internetul romanesc este plin de formulare vechi, pagini cu reclame agresive si 
 | Administrativ | ANAF, petitii, Legea 544, ONRC, certificate, contestatii | 11 |
 | Consumatori | Reclamatii, retur, garantie, comanda online, servicii | 6 |
 | Vanzare-cumparare | Bun mobil, predare, chitanta, avans, rezolutiune | 7 |
+| ----------------------- | ------------------------------------------------------------------------ | ------ |
+| Succesiuni              | Testament, acceptare/renuntare succesiune, partaj, dezbatere notar       | 5      |
+| Auto                    | Vanzare-cumparare, comodat, imputernicire, predare-primire vehicul       | 4      |
+| Imobiliare              | Antecontract, promisiune vanzare, arvuna, notificare neexecutare         | 4      |
+| Imprumuturi si garantii | Imprumut intre persoane fizice, recunoastere datorie, fidejusiune        | 3      |
+| Firme si PFA            | Decizie asociat unic, hotarare AGA, comodat sediu, suspendare PFA        | 4      |
+| GDPR si protectia datelor | Acces, stergere si opozitie la prelucrarea datelor personale           | 3      |
+| Asociatie de proprietari | Cereri si contestatii privind cheltuielile comune                       | 2      |
 
-Total: **64 de modele de documente**, plus ghiduri, surse oficiale, checklist-uri si fisiere de comunitate.
+Total: **89 de modele de documente**, plus ghiduri, surse oficiale, checklist-uri si fisiere de comunitate.
 
 ## Start rapid
 
@@ -63,6 +71,14 @@ Total: **64 de modele de documente**, plus ghiduri, surse oficiale, checklist-ur
 │  ├─ locuinta/
 │  ├─ munca/
 │  └─ vanzare-cumparare/
+│  ├─ asociatie-proprietari/
+│  ├─ auto/
+│  ├─ firme-pfa/
+│  ├─ gdpr-protectia-datelor/
+│  ├─ imobiliare/
+│  ├─ imprumuturi-si-garantii/
+│  ├─ succesiuni/
+```
 ├─ docs/
 │  ├─ avertisment-juridic.md
 │  ├─ categorii-si-riscuri.md
@@ -89,9 +105,106 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 
 <p align="center">
   <a href="./DONATE.md"><img alt="Doneaza" src="https://img.shields.io/badge/Doneaza%20pentru%20cercetare-111827?style=for-the-badge&logo=githubsponsors&logoColor=white"></a>
-  <a href="https://github.com/sponsors/Ciprian-LocalPulse"><img alt="GitHub Sponsors" src="https://img.shields.io/badge/GitHub%20Sponsors-7c3aed?style=for-the-badge&logo=githubsponsors&logoColor=white"></a>
   <a href="https://paypal.me/agentflowenterprise"><img alt="PayPal" src="https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white"></a>
 </p>
+
+
+### 🇪🇺 European Payment — SEPA / EUR
+
+![CEA](https://img.shields.io/badge/CEA-AES--256%20Secured-0f766e?style=for-the-badge&logo=shield&logoColor=white)
+![Allocation](https://img.shields.io/badge/100%25-toward%20research-111827?style=for-the-badge)
+![Dissemination](https://img.shields.io/badge/open--access-dissemination-2563eb?style=for-the-badge)
+
+| Field | Details |
+|-------|---------|
+| **Recipient** | Ciprian Stefan Plesca |
+| **IBAN** | `BE83 9679 1975 8915` |
+| **SWIFT / BIC** | `TRWIBEB1XXX` |
+| **Bank** | Wise, Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium |
+
+</div>
+
+---
+
+<div align="center">
+
+### 🇬🇧 United Kingdom Payment — Faster Payments / GBP
+
+![AIA](https://img.shields.io/badge/AIA-SHA--3%20Secured-1d4ed8?style=for-the-badge&logo=shield&logoColor=white)
+
+| Field | Details |
+|-------|---------|
+| **Recipient** | Ciprian Stefan Plesca |
+| **Account number** | `92055372` |
+| **Sort code** | `23-14-70` |
+| **IBAN** | `GB68 TRWI 2314 7092 0553 72` |
+| **SWIFT / BIC** | `TRWIGB2LXXX` |
+| **Bank** | Wise Payments Limited, 1st Floor, Worship Square, 65 Clifton Street, London, EC2A 4JE, United Kingdom |
+
+</div>
+
+---
+
+<div align="center">
+
+### 🇺🇸 United States Payment — ACH / Wire / USD
+
+![ICA](https://img.shields.io/badge/ICA-RSA--4096%20Secured-7c3aed?style=for-the-badge&logo=shield&logoColor=white)
+
+| Field | Details |
+|-------|---------|
+| **Recipient** | Ciprian Stefan Plesca |
+| **Account type** | Checking |
+| **Routing number** | `026073150` |
+| **Account number** | `8314225367` |
+| **SWIFT / BIC** | `CMFGUS33` |
+| **Bank** | Community Federal Savings Bank, 89-16 Jamaica Ave, Woodhaven, NY 11421, United States |
+
+</div>
+
+---
+
+<div align="center">
+
+### 🇷🇴 Romanian Payment — RON / Transfer local
+
+| Field | Details |
+|-------|---------|
+| **Recipient** | Ciprian Stefan Plesca |
+| **IBAN** | `RO94 BREL 0005 6026 8420 0100` |
+| **Bank** | Wise (transfer local din România) |
+
+</div>
+
+---
+
+<div align="center">
+
+### ₿ Bitcoin
+
+![BTC](https://img.shields.io/badge/Bitcoin-BTC-f7931a?style=for-the-badge&logo=bitcoin&logoColor=white)
+
+```
+bc1qf3yy0w8z37rwavxpu38wem3yffpanw7wzj32qj
+```
+
+### Ξ Ethereum
+
+![ETH](https://img.shields.io/badge/Ethereum-ETH-627eea?style=for-the-badge&logo=ethereum&logoColor=white)
+
+```
+0x27d9a6a5b8507e6031bb044319410da96222d402
+```
+
+### 🅿 PayPal
+
+![PayPal](https://img.shields.io/badge/PayPal-paypal.me%2Fagentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)
+
+[paypal.me/agentflowenterprise](https://paypal.me/agentflowenterprise)
+
+</div>
+
+---
 
 Donatiile nu cumpara consultanta juridica si nu creeaza o relatie avocat-client. Ele sustin doar proiectul public.
 
