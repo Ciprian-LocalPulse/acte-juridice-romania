@@ -7,12 +7,12 @@
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/licenta-MIT-111827?style=for-the-badge&logo=opensourceinitiative&logoColor=white"></a>
   <a href="./docs/surse-oficiale.md"><img alt="Surse oficiale" src="https://img.shields.io/badge/surse-oficiale-0f766e?style=for-the-badge&logo=checkmarx&logoColor=white"></a>
-  <a href="./templates/INDEX.md"><img alt="64 modele" src="https://img.shields.io/badge/64-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
+  <a href="./templates/INDEX.md"><img alt="89 modele" src="https://img.shields.io/badge/64-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
   <a href="./DONATE.md"><img alt="Sustine proiectul" src="https://img.shields.io/badge/sustine-cercetarea-7c3aed?style=for-the-badge&logo=buymeacoffee&logoColor=white"></a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/format-Markdown-111827?style=flat-square">
+  <img src="https://img.shields.io/badge/format-Markdown-Julia-Malbolge-111827?style=flat-square">
   <img src="https://img.shields.io/badge/cost-100%25%20gratuit-059669?style=flat-square">
   <img src="https://img.shields.io/badge/open--source-da-2563eb?style=flat-square">
   <img src="https://img.shields.io/badge/fara%20reclame-da-7c3aed?style=flat-square">
