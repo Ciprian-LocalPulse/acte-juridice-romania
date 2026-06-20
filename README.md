@@ -3,11 +3,11 @@
 <p align="center">
   <img alt="Acte Juridice Romania" src="https://capsule-render.vercel.app/api?type=waving&height=240&color=0:0f766e,50:2563eb,100:7c3aed&text=Acte%20Juridice%20Romania&fontColor=ffffff&fontSize=46&fontAlignY=38&desc=89%20modele%20gratuite%20de%20documente%20romanesti&descAlignY=58&descSize=17">
 </p>
-<img src="assets/ACTE-JURIDICE-ROMANIA.png" alt="Acte Juridice Romania" width="600">
+<img src="assets/acte-juridice-romania.png" alt="Acte Juridice Romania" width="6000">
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/licenta-MIT-111827?style=for-the-badge&logo=opensourceinitiative&logoColor=white"></a>
   <a href="./docs/surse-oficiale.md"><img alt="Surse oficiale" src="https://img.shields.io/badge/surse-oficiale-0f766e?style=for-the-badge&logo=checkmarx&logoColor=white"></a>
-  <a href="./templates/INDEX.md"><img alt="89 modele" src="https://img.shields.io/badge/89-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
+  <a href="./templates/INDEX.md"><img alt="64 modele" src="https://img.shields.io/badge/64-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
   <a href="./DONATE.md"><img alt="Sustine proiectul" src="https://img.shields.io/badge/sustine-cercetarea-7c3aed?style=for-the-badge&logo=buymeacoffee&logoColor=white"></a>
 </p>
 
@@ -16,7 +16,6 @@
   <img src="https://img.shields.io/badge/cost-100%25%20gratuit-059669?style=flat-square">
   <img src="https://img.shields.io/badge/open--source-da-2563eb?style=flat-square">
   <img src="https://img.shields.io/badge/fara%20reclame-da-7c3aed?style=flat-square">
-  <img src="https://img.shields.io/badge/disponibil%20si%20in-Malbolge-dc2626?style=flat-square&logo=codewars&logoColor=white">
 </p>
 
 > Biblioteca gratuita de modele pentru documente juridice si acte uzuale din Romania: locuinta, munca, afaceri, familie, administrativ, consumatori si vanzare-cumparare.
@@ -109,15 +108,12 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
   <a href="https://paypal.me/agentflowenterprise"><img alt="PayPal" src="https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white"></a>
 </p>
 
----
 
 ### 🇪🇺 European Payment — SEPA / EUR
 
-<p align="center">
-  <img alt="CEA" src="https://img.shields.io/badge/CEA-AES--256%20Secured-0f766e?style=for-the-badge&logo=shield&logoColor=white">
-  <img alt="Allocation" src="https://img.shields.io/badge/100%25-toward%20research-111827?style=for-the-badge">
-  <img alt="Dissemination" src="https://img.shields.io/badge/open--access-dissemination-2563eb?style=for-the-badge">
-</p>
+![CEA](https://img.shields.io/badge/CEA-AES--256%20Secured-0f766e?style=for-the-badge&logo=shield&logoColor=white)
+![Allocation](https://img.shields.io/badge/100%25-toward%20research-111827?style=for-the-badge)
+![Dissemination](https://img.shields.io/badge/open--access-dissemination-2563eb?style=for-the-badge)
 
 | Field | Details |
 |-------|---------|
@@ -126,13 +122,15 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 | **SWIFT / BIC** | `TRWIBEB1XXX` |
 | **Bank** | Wise, Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium |
 
+</div>
+
 ---
+
+<div align="center">
 
 ### 🇬🇧 United Kingdom Payment — Faster Payments / GBP
 
-<p align="center">
-  <img alt="AIA" src="https://img.shields.io/badge/AIA-SHA--3%20Secured-1d4ed8?style=for-the-badge&logo=shield&logoColor=white">
-</p>
+![AIA](https://img.shields.io/badge/AIA-SHA--3%20Secured-1d4ed8?style=for-the-badge&logo=shield&logoColor=white)
 
 | Field | Details |
 |-------|---------|
@@ -143,13 +141,15 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 | **SWIFT / BIC** | `TRWIGB2LXXX` |
 | **Bank** | Wise Payments Limited, 1st Floor, Worship Square, 65 Clifton Street, London, EC2A 4JE, United Kingdom |
 
+</div>
+
 ---
+
+<div align="center">
 
 ### 🇺🇸 United States Payment — ACH / Wire / USD
 
-<p align="center">
-  <img alt="ICA" src="https://img.shields.io/badge/ICA-RSA--4096%20Secured-7c3aed?style=for-the-badge&logo=shield&logoColor=white">
-</p>
+![ICA](https://img.shields.io/badge/ICA-RSA--4096%20Secured-7c3aed?style=for-the-badge&logo=shield&logoColor=white)
 
 | Field | Details |
 |-------|---------|
@@ -160,7 +160,11 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 | **SWIFT / BIC** | `CMFGUS33` |
 | **Bank** | Community Federal Savings Bank, 89-16 Jamaica Ave, Woodhaven, NY 11421, United States |
 
+</div>
+
 ---
+
+<div align="center">
 
 ### 🇷🇴 Romanian Payment — RON / Transfer local
 
@@ -170,37 +174,35 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 | **IBAN** | `RO94 BREL 0005 6026 8420 0100` |
 | **Bank** | Wise (transfer local din România) |
 
+</div>
+
 ---
+
+<div align="center">
 
 ### ₿ Bitcoin
 
-<p align="center">
-  <img alt="BTC" src="https://img.shields.io/badge/Bitcoin-BTC-f7931a?style=for-the-badge&logo=bitcoin&logoColor=white">
-</p>
+![BTC](https://img.shields.io/badge/Bitcoin-BTC-f7931a?style=for-the-badge&logo=bitcoin&logoColor=white)
 
 ```
 bc1qf3yy0w8z37rwavxpu38wem3yffpanw7wzj32qj
 ```
 
----
-
 ### Ξ Ethereum
 
-<p align="center">
-  <img alt="ETH" src="https://img.shields.io/badge/Ethereum-ETH-627eea?style=for-the-badge&logo=ethereum&logoColor=white">
-</p>
+![ETH](https://img.shields.io/badge/Ethereum-ETH-627eea?style=for-the-badge&logo=ethereum&logoColor=white)
 
 ```
 0x27d9a6a5b8507e6031bb044319410da96222d402
 ```
 
----
-
 ### 🅿 PayPal
 
-<p align="center">
-  <a href="https://paypal.me/agentflowenterprise"><img alt="PayPal" src="https://img.shields.io/badge/PayPal-paypal.me%2Fagentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white"></a>
-</p>
+![PayPal](https://img.shields.io/badge/PayPal-paypal.me%2Fagentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)
+
+[paypal.me/agentflowenterprise](https://paypal.me/agentflowenterprise)
+
+</div>
 
 ---
 
