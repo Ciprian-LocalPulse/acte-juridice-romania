@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/format-Markdown-Julia-Malbolge-111827?style=flat-square">
+  <img src="https://img.shields.io/badge/format-Markdown-111827?style=flat-square">
   <img src="https://img.shields.io/badge/cost-100%25%20gratuit-059669?style=flat-square">
   <img src="https://img.shields.io/badge/open--source-da-2563eb?style=flat-square">
   <img src="https://img.shields.io/badge/fara%20reclame-da-7c3aed?style=flat-square">
