@@ -3,7 +3,7 @@
 <p align="center">
   <img alt="Acte Juridice Romania" src="https://capsule-render.vercel.app/api?type=waving&height=240&color=0:0f766e,50:2563eb,100:7c3aed&text=Acte%20Juridice%20Romania&fontColor=ffffff&fontSize=46&fontAlignY=38&desc=89%20modele%20gratuite%20de%20documente%20romanesti&descAlignY=58&descSize=17">
 </p>
-<img src="assets/acte-juridice-romania.png" alt="Acte Juridice Romania" width="1600">
+<img src="assets/ACTE-JURIDICE-ROMANIA.png" alt="Acte Juridice Romania" width="600">
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/licenta-MIT-111827?style=for-the-badge&logo=opensourceinitiative&logoColor=white"></a>
   <a href="./docs/surse-oficiale.md"><img alt="Surse oficiale" src="https://img.shields.io/badge/surse-oficiale-0f766e?style=for-the-badge&logo=checkmarx&logoColor=white"></a>
@@ -109,12 +109,15 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
   <a href="https://paypal.me/agentflowenterprise"><img alt="PayPal" src="https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white"></a>
 </p>
 
+---
 
 ### 🇪🇺 European Payment — SEPA / EUR
 
-![CEA](https://img.shields.io/badge/CEA-AES--256%20Secured-0f766e?style=for-the-badge&logo=shield&logoColor=white)
-![Allocation](https://img.shields.io/badge/100%25-toward%20research-111827?style=for-the-badge)
-![Dissemination](https://img.shields.io/badge/open--access-dissemination-2563eb?style=for-the-badge)
+<p align="center">
+  <img alt="CEA" src="https://img.shields.io/badge/CEA-AES--256%20Secured-0f766e?style=for-the-badge&logo=shield&logoColor=white">
+  <img alt="Allocation" src="https://img.shields.io/badge/100%25-toward%20research-111827?style=for-the-badge">
+  <img alt="Dissemination" src="https://img.shields.io/badge/open--access-dissemination-2563eb?style=for-the-badge">
+</p>
 
 | Field | Details |
 |-------|---------|
@@ -127,7 +130,9 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 
 ### 🇬🇧 United Kingdom Payment — Faster Payments / GBP
 
-![AIA](https://img.shields.io/badge/AIA-SHA--3%20Secured-1d4ed8?style=for-the-badge&logo=shield&logoColor=white)
+<p align="center">
+  <img alt="AIA" src="https://img.shields.io/badge/AIA-SHA--3%20Secured-1d4ed8?style=for-the-badge&logo=shield&logoColor=white">
+</p>
 
 | Field | Details |
 |-------|---------|
@@ -142,7 +147,9 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 
 ### 🇺🇸 United States Payment — ACH / Wire / USD
 
-![ICA](https://img.shields.io/badge/ICA-RSA--4096%20Secured-7c3aed?style=for-the-badge&logo=shield&logoColor=white)
+<p align="center">
+  <img alt="ICA" src="https://img.shields.io/badge/ICA-RSA--4096%20Secured-7c3aed?style=for-the-badge&logo=shield&logoColor=white">
+</p>
 
 | Field | Details |
 |-------|---------|
@@ -167,25 +174,33 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 
 ### ₿ Bitcoin
 
-![BTC](https://img.shields.io/badge/Bitcoin-BTC-f7931a?style=for-the-badge&logo=bitcoin&logoColor=white)
+<p align="center">
+  <img alt="BTC" src="https://img.shields.io/badge/Bitcoin-BTC-f7931a?style=for-the-badge&logo=bitcoin&logoColor=white">
+</p>
 
 ```
 bc1qf3yy0w8z37rwavxpu38wem3yffpanw7wzj32qj
 ```
 
+---
+
 ### Ξ Ethereum
 
-![ETH](https://img.shields.io/badge/Ethereum-ETH-627eea?style=for-the-badge&logo=ethereum&logoColor=white)
+<p align="center">
+  <img alt="ETH" src="https://img.shields.io/badge/Ethereum-ETH-627eea?style=for-the-badge&logo=ethereum&logoColor=white">
+</p>
 
 ```
 0x27d9a6a5b8507e6031bb044319410da96222d402
 ```
 
+---
+
 ### 🅿 PayPal
 
-![PayPal](https://img.shields.io/badge/PayPal-paypal.me%2Fagentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)
-
-[paypal.me/agentflowenterprise](https://paypal.me/agentflowenterprise)
+<p align="center">
+  <a href="https://paypal.me/agentflowenterprise"><img alt="PayPal" src="https://img.shields.io/badge/PayPal-paypal.me%2Fagentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white"></a>
+</p>
 
 ---
 
