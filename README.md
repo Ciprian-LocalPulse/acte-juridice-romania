@@ -7,7 +7,7 @@
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/licenta-MIT-111827?style=for-the-badge&logo=opensourceinitiative&logoColor=white"></a>
   <a href="./docs/surse-oficiale.md"><img alt="Surse oficiale" src="https://img.shields.io/badge/surse-oficiale-0f766e?style=for-the-badge&logo=checkmarx&logoColor=white"></a>
-  <a href="./templates/INDEX.md"><img alt="64 modele" src="https://img.shields.io/badge/64-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
+  <a href="./templates/INDEX.md"><img alt="89 modele" src="https://img.shields.io/badge/64-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
   <a href="./DONATE.md"><img alt="Sustine proiectul" src="https://img.shields.io/badge/sustine-cercetarea-7c3aed?style=for-the-badge&logo=buymeacoffee&logoColor=white"></a>
 </p>
 
