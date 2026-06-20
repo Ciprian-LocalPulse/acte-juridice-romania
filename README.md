@@ -90,21 +90,28 @@ Total: **89 de modele de documente**, plus ghiduri, surse oficiale, checklist-ur
 │  └─ FUNDING.yml
 └─ CONTRIBUTING.md
 ```
-
 ## 💖 Susține proiectul
 
-Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și organizarea documentelor:
+**Ai găsit util acest repository?**
 
-| | |
-|---|---|
-| [![Doneaza](https://img.shields.io/badge/Doneaza%20pentru%20cercetare-111827?style=for-the-badge&logo=githubsponsors&logoColor=white)](./DONATE.md) | [![PayPal](https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/agentflowenterprise) |
+Acest proiect a fost creat din dorința de a elimina barierele birocratice și de a oferi acces gratuit la documente juridice corecte, actualizate și ușor de utilizat. Într-o lume plină de formulare complexe și site-uri cu reclame agresive, **Acte Juridice Romania** rămâne o resursă independentă, curată și 100% gratuită.
+
+Dacă munca mea te-a ajutat să economisești timp sau să eviți erori costisitoare, te invit să susții continuitatea acestui efort. Donația ta, indiferent de mărime, contribuie direct la:
+*   **Actualizarea constantă** a modelelor conform noilor modificări legislative.
+*   **Cercetarea și organizarea** de noi categorii de documente necesare în viața de zi cu zi.
+*   **Mentenanța infrastructurii** care menține acest proiect accesibil și fără reclame pentru toată lumea.
+
+Doneaza pentru cercetare: https://paypal.me/agentflowenterprise
+
+> *Notă: Donațiile reprezintă un gest de apreciere pentru resursele publicate și nu creează o relație avocat-client. Mulțumesc pentru încredere!*
+
 
 ---
 
 ## 🇪🇺 SEPA / EUR
 
 | Câmp | Detalii |
-|------|--------|
+| :--- | :--- |
 | Recipient | Ciprian Stefan Plesca |
 | IBAN | BE83 9679 1975 8915 |
 | SWIFT / BIC | TRWIBEB1XXX |
@@ -115,7 +122,7 @@ Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și org
 ## 🇬🇧 UK / GBP
 
 | Câmp | Detalii |
-|------|--------|
+| :--- | :--- |
 | Account number | 92055372 |
 | Sort code | 23-14-70 |
 | IBAN | GB68 TRWI 2314 7092 0553 72 |
@@ -127,7 +134,7 @@ Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și org
 ## 🇺🇸 USA / USD
 
 | Câmp | Detalii |
-|------|--------|
+| :--- | :--- |
 | Routing number | 026073150 |
 | Account number | 8314225367 |
 | SWIFT / BIC | CMFGUS33 |
@@ -138,7 +145,7 @@ Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și org
 ## 🇷🇴 România / RON
 
 | Câmp | Detalii |
-|------|--------|
+| :--- | :--- |
 | IBAN | RO94 BREL 0005 6026 8420 0100 |
 | Bank | Wise |
 
@@ -153,7 +160,7 @@ Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și org
 `0x27d9a6a5b8507e6031bb044319410da96222d402`
 
 **PayPal**
-[https://paypal.me/agentflowenterprise](https://paypal.me/agentflowenterprise)
+https://paypal.me/agentflowenterprise
 
 ---
 
