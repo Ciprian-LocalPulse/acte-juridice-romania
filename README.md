@@ -91,138 +91,95 @@ Total: **89 de modele de documente**, plus ghiduri, surse oficiale, checklist-ur
 └─ CONTRIBUTING.md
 ```
 
-## Reguli de calitate
+## 💖 Susține proiectul
 
-- Fiecare model trebuie sa aiba scop clar, campuri editabile si checklist.
-- Nu copiem formulare proprietare sau continut platit.
-- Nu promitem ca un model este potrivit pentru toate situatiile.
-- Pastram linkuri catre surse oficiale acolo unde exista.
-- Marcam documentele care necesita notar, avocat, ANAF, ITM sau alta institutie.
-
-## Sustine proiectul
-
-Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organizarea documentelor:
+Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și organizarea documentelor:
 
 <p align="center">
-  <a href="./DONATE.md"><img alt="Doneaza" src="https://img.shields.io/badge/Doneaza%20pentru%20cercetare-111827?style=for-the-badge&logo=githubsponsors&logoColor=white"></a>
-  <a href="https://paypal.me/agentflowenterprise"><img alt="PayPal" src="https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white"></a>
+  <a href="./DONATE.md">
+    <img src="https://img.shields.io/badge/Doneaza%20pentru%20cercetare-111827?style=for-the-badge&logo=githubsponsors&logoColor=white">
+  </a>
+
+  <a href="https://paypal.me/agentflowenterprise">
+    <img src="https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white">
+  </a>
 </p>
 
+---
 
-### 🇪🇺 European Payment — SEPA / EUR
+## 🇪🇺 SEPA / EUR
 
-![CEA](https://img.shields.io/badge/CEA-AES--256%20Secured-0f766e?style=for-the-badge&logo=shield&logoColor=white)
-![Allocation](https://img.shields.io/badge/100%25-toward%20research-111827?style=for-the-badge)
-![Dissemination](https://img.shields.io/badge/open--access-dissemination-2563eb?style=for-the-badge)
-
-| Field | Details |
-|-------|---------|
-| **Recipient** | Ciprian Stefan Plesca |
-| **IBAN** | `BE83 9679 1975 8915` |
-| **SWIFT / BIC** | `TRWIBEB1XXX` |
-| **Bank** | Wise, Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium |
-
-</div>
+| Câmp | Detalii |
+|------|--------|
+| Recipient | Ciprian Stefan Plesca |
+| IBAN | BE83 9679 1975 8915 |
+| SWIFT / BIC | TRWIBEB1XXX |
+| Bank | Wise, Brussels, Belgium |
 
 ---
 
-<div align="center">
+## 🇬🇧 UK / GBP
 
-### 🇬🇧 United Kingdom Payment — Faster Payments / GBP
-
-![AIA](https://img.shields.io/badge/AIA-SHA--3%20Secured-1d4ed8?style=for-the-badge&logo=shield&logoColor=white)
-
-| Field | Details |
-|-------|---------|
-| **Recipient** | Ciprian Stefan Plesca |
-| **Account number** | `92055372` |
-| **Sort code** | `23-14-70` |
-| **IBAN** | `GB68 TRWI 2314 7092 0553 72` |
-| **SWIFT / BIC** | `TRWIGB2LXXX` |
-| **Bank** | Wise Payments Limited, 1st Floor, Worship Square, 65 Clifton Street, London, EC2A 4JE, United Kingdom |
-
-</div>
+| Câmp | Detalii |
+|------|--------|
+| Account number | 92055372 |
+| Sort code | 23-14-70 |
+| IBAN | GB68 TRWI 2314 7092 0553 72 |
+| SWIFT / BIC | TRWIGB2LXXX |
+| Bank | Wise Payments Limited |
 
 ---
 
-<div align="center">
+## 🇺🇸 USA / USD
 
-### 🇺🇸 United States Payment — ACH / Wire / USD
-
-![ICA](https://img.shields.io/badge/ICA-RSA--4096%20Secured-7c3aed?style=for-the-badge&logo=shield&logoColor=white)
-
-| Field | Details |
-|-------|---------|
-| **Recipient** | Ciprian Stefan Plesca |
-| **Account type** | Checking |
-| **Routing number** | `026073150` |
-| **Account number** | `8314225367` |
-| **SWIFT / BIC** | `CMFGUS33` |
-| **Bank** | Community Federal Savings Bank, 89-16 Jamaica Ave, Woodhaven, NY 11421, United States |
-
-</div>
+| Câmp | Detalii |
+|------|--------|
+| Routing number | 026073150 |
+| Account number | 8314225367 |
+| SWIFT / BIC | CMFGUS33 |
+| Bank | Community Federal Savings Bank |
 
 ---
 
-<div align="center">
+## 🇷🇴 România / RON
 
-### 🇷🇴 Romanian Payment — RON / Transfer local
-
-| Field | Details |
-|-------|---------|
-| **Recipient** | Ciprian Stefan Plesca |
-| **IBAN** | `RO94 BREL 0005 6026 8420 0100` |
-| **Bank** | Wise (transfer local din România) |
-
-</div>
+| Câmp | Detalii |
+|------|--------|
+| IBAN | RO94 BREL 0005 6026 8420 0100 |
+| Bank | Wise |
 
 ---
 
-<div align="center">
+## ₿ Crypto
 
-### ₿ Bitcoin
-
-![BTC](https://img.shields.io/badge/Bitcoin-BTC-f7931a?style=for-the-badge&logo=bitcoin&logoColor=white)
-
-```
+**Bitcoin**
 bc1qf3yy0w8z37rwavxpu38wem3yffpanw7wzj32qj
-```
 
-### Ξ Ethereum
 
-![ETH](https://img.shields.io/badge/Ethereum-ETH-627eea?style=for-the-badge&logo=ethereum&logoColor=white)
-
-```
+**Ethereum**
 0x27d9a6a5b8507e6031bb044319410da96222d402
-```
 
-### 🅿 PayPal
 
-![PayPal](https://img.shields.io/badge/PayPal-paypal.me%2Fagentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)
-
-[paypal.me/agentflowenterprise](https://paypal.me/agentflowenterprise)
-
-</div>
+**PayPal**
+https://paypal.me/agentflowenterprise
 
 ---
 
-Donatiile nu cumpara consultanta juridica si nu creeaza o relatie avocat-client. Ele sustin doar proiectul public.
+> Donațiile nu creează relație avocat-client. Susțin doar proiectul public.
 
-## Roadmap
+---
 
-- [ ] Versiuni `.docx` pentru cele mai folosite documente.
-- [ ] Generator simplu de documente cu intrebari si campuri.
-- [ ] Exemple completate fictiv pentru fiecare categorie.
-- [ ] Index pe situatii reale extins: chirias, proprietar, PFA, SRL, salariat, consumator.
-- [ ] Verificare periodica a linkurilor oficiale.
-- [ ] Workflow GitHub Actions pentru verificari automate, dupa activarea scope-ului `workflow` in GitHub CLI.
-- [ ] Traduceri partiale RO/EN pentru documente business.
+## 🛣️ Roadmap
 
-## Contribuie
+- [ ] Versiuni `.docx`
+- [ ] Generator documente
+- [ ] Exemple completate
+- [ ] Index situații reale
+- [ ] GitHub Actions validare
+- [ ] Traduceri RO/EN
 
-Vezi [CONTRIBUTING.md](./CONTRIBUTING.md). Sunt binevenite corecturi, modele noi, actualizari legislative documentate si linkuri catre surse oficiale.
+---
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=120&color=0:7c3aed,50:2563eb,100:0f766e&section=footer&fontColor=ffffff&fontSize=14&text=Acte%20Juridice%20Romania%20-%20gratuit%20si%20deschis%20pentru%20toti&fontAlignY=65">
-</p>
+## 🤝 Contribuie
 
+Vezi [CONTRIBUTING.md](./CONTRIBUTING.md)
