@@ -3,11 +3,11 @@
 <p align="center">
   <img alt="Acte Juridice Romania" src="https://capsule-render.vercel.app/api?type=waving&height=240&color=0:0f766e,50:2563eb,100:7c3aed&text=Acte%20Juridice%20Romania&fontColor=ffffff&fontSize=46&fontAlignY=38&desc=89%20modele%20gratuite%20de%20documente%20romanesti&descAlignY=58&descSize=17">
 </p>
-<img src="assets/acte-juridice-romania.png" alt="Acte Juridice Romania" width="600">
+<img src="assets/acte-juridice-romania.png" alt="Acte Juridice Romania" width="1600">
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/licenta-MIT-111827?style=for-the-badge&logo=opensourceinitiative&logoColor=white"></a>
   <a href="./docs/surse-oficiale.md"><img alt="Surse oficiale" src="https://img.shields.io/badge/surse-oficiale-0f766e?style=for-the-badge&logo=checkmarx&logoColor=white"></a>
-  <a href="./templates/INDEX.md"><img alt="89 modele" src="https://img.shields.io/badge/64-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
+  <a href="./templates/INDEX.md"><img alt="89 modele" src="https://img.shields.io/badge/89-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
   <a href="./DONATE.md"><img alt="Sustine proiectul" src="https://img.shields.io/badge/sustine-cercetarea-7c3aed?style=for-the-badge&logo=buymeacoffee&logoColor=white"></a>
 </p>
 
@@ -123,11 +123,7 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 | **SWIFT / BIC** | `TRWIBEB1XXX` |
 | **Bank** | Wise, Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium |
 
-</div>
-
 ---
-
-<div align="center">
 
 ### 🇬🇧 United Kingdom Payment — Faster Payments / GBP
 
@@ -142,11 +138,7 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 | **SWIFT / BIC** | `TRWIGB2LXXX` |
 | **Bank** | Wise Payments Limited, 1st Floor, Worship Square, 65 Clifton Street, London, EC2A 4JE, United Kingdom |
 
-</div>
-
 ---
-
-<div align="center">
 
 ### 🇺🇸 United States Payment — ACH / Wire / USD
 
@@ -161,11 +153,7 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 | **SWIFT / BIC** | `CMFGUS33` |
 | **Bank** | Community Federal Savings Bank, 89-16 Jamaica Ave, Woodhaven, NY 11421, United States |
 
-</div>
-
 ---
-
-<div align="center">
 
 ### 🇷🇴 Romanian Payment — RON / Transfer local
 
@@ -175,11 +163,7 @@ Daca repository-ul te-a ajutat, poti sustine cercetarea, actualizarea si organiz
 | **IBAN** | `RO94 BREL 0005 6026 8420 0100` |
 | **Bank** | Wise (transfer local din România) |
 
-</div>
-
 ---
-
-<div align="center">
 
 ### ₿ Bitcoin
 
@@ -202,8 +186,6 @@ bc1qf3yy0w8z37rwavxpu38wem3yffpanw7wzj32qj
 ![PayPal](https://img.shields.io/badge/PayPal-paypal.me%2Fagentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)
 
 [paypal.me/agentflowenterprise](https://paypal.me/agentflowenterprise)
-
-</div>
 
 ---
 
