@@ -3,7 +3,7 @@
 <p align="center">
   <img alt="Acte Juridice Romania" src="https://capsule-render.vercel.app/api?type=waving&height=240&color=0:0f766e,50:2563eb,100:7c3aed&text=Acte%20Juridice%20Romania&fontColor=ffffff&fontSize=46&fontAlignY=38&desc=89%20modele%20gratuite%20de%20documente%20romanesti&descAlignY=58&descSize=17">
 </p>
-<img src="assets/ACTE-JURIDICE-ROMANIA.png" alt="Acte Juridice Romania" width="600">
+<img src="assets/acte-juridice-romania.png" alt="Acte Juridice Romania" width="600">
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/licenta-MIT-111827?style=for-the-badge&logo=opensourceinitiative&logoColor=white"></a>
   <a href="./docs/surse-oficiale.md"><img alt="Surse oficiale" src="https://img.shields.io/badge/surse-oficiale-0f766e?style=for-the-badge&logo=checkmarx&logoColor=white"></a>
