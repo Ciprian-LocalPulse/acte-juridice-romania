@@ -1,0 +1,3484 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acte Juridice România — Generator Documente</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+  :root {
+    --ink:       #0f1923;
+    --ink-soft:  #4a5568;
+    --ink-mute:  #8896a8;
+    --paper:     #f8f7f4;
+    --white:     #ffffff;
+    --accent:    #1a4a8a;
+    --accent-lt: #e8eff9;
+    --gold:      #c8973a;
+    --gold-lt:   #fdf6e8;
+    --border:    #dde3ec;
+    --success:   #1a7a4a;
+    --warn:      #8a4a1a;
+    --shadow-sm: 0 1px 3px rgba(15,25,35,.08);
+    --shadow-md: 0 4px 16px rgba(15,25,35,.10);
+    --shadow-lg: 0 12px 40px rgba(15,25,35,.14);
+    --r:         8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 0;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 24px 24px;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .header-inner h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+  }
+  .header-inner p {
+    margin-top: 8px;
+    font-size: 15px;
+    opacity: .82;
+    max-width: 560px;
+  }
+  .header-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .stat strong {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat span {
+    font-size: 12px;
+    opacity: .7;
+    margin-top: 2px;
+  }
+
+  /* ── SEARCH BAR ── */
+  .search-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+  .search-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    max-width: 480px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-mute);
+    pointer-events: none;
+  }
+  #search {
+    width: 100%;
+    padding: 9px 12px 9px 38px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--r);
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--paper);
+    color: var(--ink);
+    transition: border-color .15s;
+    outline: none;
+  }
+  #search:focus { border-color: var(--accent); background: var(--white); }
+  #search::placeholder { color: var(--ink-mute); }
+
+  .search-count {
+    font-size: 13px;
+    color: var(--ink-mute);
+    white-space: nowrap;
+  }
+
+  /* ── LAYOUT ── */
+  .app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 24px 60px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: sticky;
+    top: 65px;
+  }
+  .sidebar-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 10px;
+    padding: 0 4px;
+  }
+  .cat-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .cat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: var(--r);
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: all .13s;
+    border: 1.5px solid transparent;
+  }
+  .cat-item:hover { background: var(--accent-lt); color: var(--accent); }
+  .cat-item.active {
+    background: var(--accent-lt);
+    color: var(--accent);
+    border-color: rgba(26,74,138,.18);
+    font-weight: 600;
+  }
+  .cat-item .icon { font-size: 16px; flex-shrink: 0; }
+  .cat-item .count {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--border);
+    color: var(--ink-soft);
+    border-radius: 10px;
+    padding: 1px 7px;
+  }
+  .cat-item.active .count {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── MAIN PANEL ── */
+  .main { min-width: 0; }
+
+  /* Doc grid */
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .doc-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r);
+    padding: 16px;
+    cursor: pointer;
+    transition: all .15s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .doc-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+  .doc-card.selected {
+    border-color: var(--accent);
+    background: var(--accent-lt);
+    box-shadow: var(--shadow-md);
+  }
+  .doc-card-cat {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .doc-card-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .doc-card-fields {
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: auto;
+  }
+  .doc-card-tag {
+    display: inline-block;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin: 1px 2px 1px 0;
+  }
+
+  /* Section headings */
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    margin-top: 8px;
+  }
+  .section-heading h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .section-heading .line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── GENERATOR PANEL ── */
+  #generator {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    margin-top: 32px;
+  }
+  .gen-header {
+    background: linear-gradient(135deg, var(--accent) 0%, #0f2f6a 100%);
+    color: #fff;
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .gen-header-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .gen-header-text p {
+    font-size: 13px;
+    opacity: .75;
+    margin-top: 4px;
+  }
+  .btn-close {
+    background: rgba(255,255,255,.18);
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .13s;
+  }
+  .btn-close:hover { background: rgba(255,255,255,.3); }
+
+  .gen-body { padding: 24px; }
+
+  .warn-box {
+    background: var(--gold-lt);
+    border: 1px solid var(--gold);
+    border-radius: var(--r);
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: var(--warn);
+    line-height: 1.5;
+    margin-bottom: 22px;
+    display: flex;
+    gap: 10px;
+  }
+  .warn-box svg { flex-shrink: 0; margin-top: 1px; }
+
+  .fields-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .field-group label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 5px;
+    letter-spacing: .03em;
+  }
+  .field-group input {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--ink);
+    background: var(--paper);
+    transition: border-color .13s, background .13s;
+    outline: none;
+  }
+  .field-group input:focus {
+    border-color: var(--accent);
+    background: var(--white);
+  }
+  .field-group input::placeholder { color: var(--ink-mute); font-style: italic; font-size: 12px; }
+
+  .gen-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 4px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 18px;
+    border-radius: var(--r);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all .13s;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #0f2f6a; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,74,138,.3); }
+  .btn-secondary {
+    background: var(--paper);
+    color: var(--ink-soft);
+    border: 1.5px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-lt); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink-mute);
+    border: 1.5px solid var(--border);
+  }
+  .btn-ghost:hover { color: var(--ink-soft); border-color: var(--ink-mute); }
+
+  /* ── PREVIEW ── */
+  #preview-section {
+    margin-top: 24px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .preview-header {
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .preview-header h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .preview-actions { display: flex; gap: 8px; }
+  #preview-content {
+    background: var(--white);
+    padding: 28px 32px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink);
+    white-space: pre-wrap;
+    font-family: 'Georgia', serif;
+    min-height: 200px;
+    max-height: 520px;
+    overflow-y: auto;
+  }
+  /* Highlight unfilled fields */
+  #preview-content .unfilled {
+    background: #fff0c0;
+    border-radius: 3px;
+    padding: 0 3px;
+    color: #7a5200;
+    font-style: italic;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--ink-mute);
+  }
+  .empty-state .icon { font-size: 48px; margin-bottom: 14px; }
+  .empty-state h3 { font-size: 17px; color: var(--ink-soft); margin-bottom: 6px; }
+  .empty-state p { font-size: 14px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,.55);
+    text-align: center;
+    padding: 20px 24px;
+    font-size: 12.5px;
+  }
+  footer a { color: rgba(255,255,255,.75); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .app { grid-template-columns: 1fr; gap: 20px; }
+    .sidebar { position: static; }
+    .cat-list { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+    .cat-item .count { display: none; }
+    .fields-grid { grid-template-columns: 1fr; }
+    #preview-content { padding: 18px; }
+  }
+
+  /* Animations */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-in { animation: fadeIn .2s ease forwards; }
+
+  .highlight { background: #fff176; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-badge">⚖️ Open-source · Gratuit · MIT</div>
+    <h1>Acte Juridice România</h1>
+    <p>Generator gratuit de documente juridice. Completează câmpurile, descarcă documentul.</p>
+    <div class="header-stats">
+      <div class="stat"><strong>89</strong><span>modele disponibile</span></div>
+      <div class="stat"><strong>14</strong><span>categorii</span></div>
+      <div class="stat"><strong>100%</strong><span>gratuit</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="search-bar">
+  <div class="search-inner">
+    <div class="search-wrap">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="search" placeholder="Caută document... (ex: demisie, chirie, procură)" autocomplete="off" spellcheck="false">
+    </div>
+    <span class="search-count" id="search-count">89 documente</span>
+  </div>
+</div>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Categorii</div>
+    <ul class="cat-list" id="cat-list"></ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="main">
+    <div id="doc-list"></div>
+    <div id="generator" style="display:none"></div>
+  </main>
+</div>
+
+<footer>
+  <p>Documentele sunt modele educaționale — nu constituie consultanță juridică. Verifică întotdeauna cu un specialist.
+  <br><a href="https://github.com/ciprian-stefan-plesca/acte-juridice-romania" target="_blank">GitHub</a> · Licență MIT</p>
+</footer>
+
+<script>
+const TEMPLATES = {
+  "administrativ": {
+    label: "Administrativ",
+    icon: "🏛️",
+    docs: [
+      { id: "cerere-audienta", title: "Cerere audienta", fields: ["DENUMIRE INSTITUTIE", "NUME", "ADRESA", "EMAIL", "TELEFON", "DESCRIERE PROBLEMA", "ZI/ORA", "DATA"], content: `# Cerere audienta
+
+Catre: [DENUMIRE INSTITUTIE]
+
+Subsemnatul/Subsemnata [NUME], domiciliat(a) in [ADRESA], e-mail [EMAIL], telefon [TELEFON], solicit acordarea unei audiente privind:
+
+[DESCRIERE PROBLEMA]
+
+Preferinta interval: [ZI/ORA], daca este posibil.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-certificat-fiscal", title: "Cerere eliberare certificat fiscal", fields: ["INSTITUTIE/ORGAN FISCAL", "NUME", "DENUMIRE", "CNP/CUI", "ADRESA", "SCOP", "FIZIC/ELECTRONIC", "DOCUMENT 1", "DOCUMENT 2", "DATA"], content: `# Cerere eliberare certificat fiscal
+
+Catre: [INSTITUTIE/ORGAN FISCAL]
+
+Subsemnatul/Subsemnata [NUME] / Societatea [DENUMIRE], CNP/CUI [CNP/CUI], cu domiciliul/sediul in [ADRESA], solicit eliberarea certificatului fiscal necesar pentru [SCOP].
+
+Solicit eliberarea documentului in format [FIZIC/ELECTRONIC].
+
+Anexez:
+
+- [DOCUMENT 1]
+- [DOCUMENT 2]
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Atentie
+
+Verifica daca institutia are formular propriu sau depunere online.
+
+` },
+      { id: "cerere-esalonare-plata", title: "Cerere esalonare plata", fields: ["CREDITOR/INSTITUTIE", "NUME", "DENUMIRE", "CNP/CUI", "SUMA", "MONEDA", "TIP DATORIE", "DATA", "MOTIV"], content: `# Cerere esalonare plata
+
+Catre: [CREDITOR/INSTITUTIE]
+
+Subsemnatul/Subsemnata [NUME] / Societatea [DENUMIRE], CNP/CUI [CNP/CUI], solicit esalonarea platii sumei de [SUMA] [MONEDA], reprezentand [TIP DATORIE].
+
+Propun urmatorul grafic de plata:
+
+| Rata | Data plata | Suma |
+| --- | --- | --- |
+| 1 | [DATA] | [SUMA] |
+
+Motivul solicitarii: [MOTIV].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-generica-anaf", title: "Cerere generica ANAF", fields: ["UNITATE ANAF", "NUME", "DENUMIRE", "CNP/CUI", "ADRESA", "REPREZENTANT", "DESCRIERE SOLICITARE", "DOCUMENT 1", "DOCUMENT 2", "ADRESA/EMAIL/SPV", "DATA"], content: `# Cerere generica ANAF
+
+## Atentie
+
+Pentru multe situatii ANAF exista formulare standard sau depunere prin SPV. Verifica formularul oficial inainte sa folosesti aceasta cerere.
+
+Catre: [UNITATE ANAF]
+
+Subsemnatul/Subsemnata [NUME] / Societatea [DENUMIRE], CNP/CUI [CNP/CUI], cu domiciliul/sediul in [ADRESA], reprezentat(a) de [REPREZENTANT], solicit:
+
+[DESCRIERE SOLICITARE]
+
+Anexez:
+
+- [DOCUMENT 1]
+- [DOCUMENT 2]
+
+Va rog sa imi comunicati raspunsul la [ADRESA/EMAIL/SPV], in conditiile legii.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-informatii-publice-legea-544", title: "Cerere informatii publice - Legea 544/2001", fields: ["DENUMIRE INSTITUTIE", "NUME", "ADRESA", "EMAIL", "LISTA INFORMATII SOLICITATE", "ELECTRONIC/FIZIC", "EMAIL/ADRESA", "DATA"], content: `# Cerere informatii publice - Legea 544/2001
+
+Catre: [DENUMIRE INSTITUTIE]
+
+Subsemnatul/Subsemnata [NUME], cu domiciliul in [ADRESA], e-mail [EMAIL], solicit comunicarea urmatoarelor informatii de interes public:
+
+[LISTA INFORMATII SOLICITATE]
+
+Solicit transmiterea raspunsului in format [ELECTRONIC/FIZIC], la [EMAIL/ADRESA].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Solicitarea priveste informatii de interes public.
+- [ ] Cererea este trimisa catre institutia competenta.
+- [ ] Pastrezi dovada trimiterii.
+
+` },
+      { id: "cerere-onrc-informatii", title: "Cerere informatii ONRC", fields: ["JUDET", "NUME", "DENUMIRE", "CNP/CUI", "DENUMIRE FIRMA", "CUI", "NR", "SCOP", "DATA"], content: `# Cerere informatii ONRC
+
+Catre: Oficiul National al Registrului Comertului / Oficiul Registrului Comertului de pe langa Tribunalul [JUDET]
+
+Subsemnatul/Subsemnata [NUME] / Societatea [DENUMIRE], CNP/CUI [CNP/CUI], solicit informatii / certificat constatator / copie document privind [DENUMIRE FIRMA], CUI [CUI], numar de ordine in registrul comertului [NR].
+
+Scopul solicitarii: [SCOP].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Atentie
+
+Verifica serviciile disponibile online si taxele aplicabile pe site-ul ONRC.
+
+` },
+      { id: "cerere-radiere-date", title: "Cerere radiere sau stergere date", fields: ["INSTITUTIE/OPERATOR", "NUME", "CNP", "DATE", "SCOP", "MOTIV", "EMAIL/ADRESA", "DATA"], content: `# Cerere radiere sau stergere date
+
+Catre: [INSTITUTIE/OPERATOR]
+
+Subsemnatul/Subsemnata [NUME], CNP [CNP], solicit radierea / stergerea urmatoarelor date: [DATE], prelucrate in legatura cu [SCOP].
+
+Motivul solicitarii: [MOTIV].
+
+Solicit confirmarea solutionarii cererii la [EMAIL/ADRESA].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Identifici clar datele vizate.
+- [ ] Atasezi dovada identitatii doar daca este necesar.
+- [ ] Nu trimiti mai multe date decat trebuie.
+
+` },
+      { id: "cerere-schimbare-date", title: "Cerere modificare date personale sau societate", fields: ["INSTITUTIE", "NUME", "DENUMIRE", "CNP/CUI", "DATE VECHI", "DATE NOI", "MOTIV", "DOCUMENT", "DATA"], content: `# Cerere modificare date personale sau societate
+
+Catre: [INSTITUTIE]
+
+Subsemnatul/Subsemnata [NUME] / Societatea [DENUMIRE], CNP/CUI [CNP/CUI], solicit actualizarea urmatoarelor date:
+
+- date vechi: [DATE VECHI]
+- date noi: [DATE NOI]
+
+Motivul modificarii: [MOTIV].
+
+Anexez documentele justificative:
+
+- [DOCUMENT]
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "contestatie-amenda", title: "Contestatie amenda - model orientativ", fields: ["INSTANTA/INSTITUTIE COMPETENTA", "NUME", "CNP", "ADRESA", "SERIE", "NUMAR", "DATA", "ORGAN CONSTATATOR", "MOTIVE"], content: `# Contestatie amenda - model orientativ
+
+## Atentie
+
+Contestarea proceselor-verbale de contraventie are termene si reguli procedurale. Verifica termenul aplicabil si instanta competenta.
+
+Catre: [INSTANTA/INSTITUTIE COMPETENTA]
+
+Subsemnatul/Subsemnata [NUME], CNP [CNP], domiciliat(a) in [ADRESA], formulez contestatie impotriva procesului-verbal seria [SERIE] nr. [NUMAR], intocmit la data de [DATA] de [ORGAN CONSTATATOR].
+
+Solicit anularea / modificarea procesului-verbal pentru urmatoarele motive:
+
+[MOTIVE]
+
+Anexez:
+
+- copie proces-verbal;
+- dovezi;
+- copie act identitate;
+- alte documente.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "petitie-institutie-publica", title: "Petitie catre institutie publica", fields: ["DENUMIRE INSTITUTIE", "NUME", "ADRESA", "EMAIL", "TELEFON", "DESCRIERE PROBLEMA", "SOLICITARE CLARA", "DOCUMENT", "ADRESA/EMAIL", "DATA"], content: `# Petitie catre institutie publica
+
+Catre: [DENUMIRE INSTITUTIE]
+
+Subsemnatul/Subsemnata [NUME], domiciliat(a) in [ADRESA], e-mail [EMAIL], telefon [TELEFON], formulez prezenta petitie privind:
+
+[DESCRIERE PROBLEMA]
+
+Solicit:
+
+[SOLICITARE CLARA]
+
+Anexez urmatoarele documente:
+
+- [DOCUMENT]
+
+Va rog sa imi comunicati raspunsul la adresa [ADRESA/EMAIL].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "reclamatie-administrativa-legea-544", title: "Reclamatie administrativa - Legea 544/2001", fields: ["CONDUCATORUL INSTITUTIEI", "NUME", "NUMAR", "DATA", "DESCRIERE", "INCOMPLET/REFUZ/NU A FOST COMUNICAT"], content: `# Reclamatie administrativa - Legea 544/2001
+
+Catre: [CONDUCATORUL INSTITUTIEI]
+
+Subsemnatul/Subsemnata [NUME], am solicitat prin cererea nr. [NUMAR] din [DATA] urmatoarele informatii de interes public: [DESCRIERE].
+
+Pana la data prezentei, raspunsul primit este [INCOMPLET/REFUZ/NU A FOST COMUNICAT].
+
+Solicit reanalizarea cererii si comunicarea informatiilor solicitate, in conditiile legii.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+    ]
+  },
+  "afaceri": {
+    label: "Afaceri",
+    icon: "💼",
+    docs: [
+      { id: "acord-confidentialitate-nda-simplu", title: "Acord de confidentialitate simplu", fields: ["NUME/DENUMIRE", "CNP/CUI", "ADRESA", "SCOP", "PERIOADA"], content: `# Acord de confidentialitate simplu
+
+## Cand se foloseste
+
+Pentru discutii de afaceri, colaborari, oferte sau proiecte in care se dezvaluie informatii sensibile.
+
+## Model
+
+Partile:
+
+Dezvaluitor: [NUME/DENUMIRE], CNP/CUI [CNP/CUI], [ADRESA].
+
+Primitor: [NUME/DENUMIRE], CNP/CUI [CNP/CUI], [ADRESA].
+
+Primitorul se obliga sa pastreze confidentiale informatiile primite in legatura cu [SCOP], inclusiv documente, date comerciale, tehnice, financiare, parole, liste de clienti si planuri de proiect.
+
+Obligatia nu se aplica informatiilor care:
+
+- erau publice fara culpa primitorului;
+- erau deja cunoscute legal;
+- sunt cerute de o autoritate competenta;
+- sunt aprobate in scris pentru divulgare.
+
+Durata obligatiei de confidentialitate este [PERIOADA].
+
+In caz de incalcare, partea prejudiciata poate solicita repararea prejudiciului conform legii.
+
+Semnaturi:
+
+Dezvaluitor: ____________________
+
+Primitor: ____________________
+
+## Checklist
+
+- [ ] Scopul discutiei este clar.
+- [ ] Durata confidentialitatii este rezonabila.
+- [ ] Sunt definite exceptiile.
+- [ ] Exista semnaturi si data.
+
+` },
+      { id: "acord-reziliere-contract", title: "Acord de reziliere contract", fields: ["DATA", "PARTEA 1", "PARTEA 2", "NUMAR", "DATA INCETARE", "OBLIGATIE 1", "OBLIGATIE 2", "EXCEPTII"], content: `# Acord de reziliere contract
+
+Incheiat astazi, [DATA], intre [PARTEA 1] si [PARTEA 2], parti ale contractului nr. [NUMAR] din [DATA].
+
+Partile convin incetarea contractului incepand cu data de [DATA INCETARE].
+
+Pana la data incetarii, partile confirma urmatoarele obligatii ramase:
+
+- [OBLIGATIE 1]
+- [OBLIGATIE 2]
+
+Dupa indeplinirea obligatiilor mentionate, partile declara ca nu mai au pretentii reciproce, cu exceptia celor indicate expres aici: [EXCEPTII].
+
+Partea 1: ____________________
+
+Partea 2: ____________________
+
+` },
+      { id: "contract-cesiune-drepturi-autor", title: "Contract de cesiune drepturi de autor", fields: ["NUME", "CNP/CUI", "NUME/DENUMIRE", "DESCRIERE OPERA", "UTILIZARI", "TERITORIU", "DURATA", "SUMA", "MONEDA", "MODALITATE"], content: `# Contract de cesiune drepturi de autor
+
+## Atentie
+
+Drepturile de autor pot avea reguli speciale. Pentru proiecte importante, cere verificare juridica.
+
+Autor/Cedent: [NUME], CNP/CUI [CNP/CUI].
+
+Beneficiar/Cesionar: [NUME/DENUMIRE], CNP/CUI [CNP/CUI].
+
+Autorul cesioneaza catre beneficiar drepturile patrimoniale asupra operei [DESCRIERE OPERA], pentru urmatoarele utilizari: [UTILIZARI].
+
+Teritoriul: [TERITORIU].
+
+Durata: [DURATA].
+
+Remuneratia: [SUMA] [MONEDA], platibila [MODALITATE].
+
+Drepturile morale raman ale autorului, conform legii.
+
+Semnaturi:
+
+Autor: ____________________
+
+Beneficiar: ____________________
+
+` },
+      { id: "contract-colaborare", title: "Contract de colaborare", fields: ["DATA", "PARTENER 1", "PARTENER 2", "DESCRIERE PROIECT/ACTIVITATE", "RESPONSABILITATI", "PERIOADA", "DETALII", "NUMAR"], content: `# Contract de colaborare
+
+Incheiat astazi, [DATA], intre [PARTENER 1] si [PARTENER 2].
+
+## Obiect
+
+Partile colaboreaza pentru [DESCRIERE PROIECT/ACTIVITATE], fiecare avand urmatoarele responsabilitati:
+
+- [PARTENER 1]: [RESPONSABILITATI]
+- [PARTENER 2]: [RESPONSABILITATI]
+
+## Durata
+
+Colaborarea se desfasoara in perioada [PERIOADA].
+
+## Remuneratie
+
+Plata / impartirea veniturilor se face astfel: [DETALII].
+
+## Confidentialitate si imagine
+
+Partile nu vor divulga informatii confidentiale si nu vor folosi numele sau imaginea celeilalte parti fara acord scris.
+
+## Incetare
+
+Contractul poate inceta prin acordul partilor sau notificare cu [NUMAR] zile inainte.
+
+Semnaturi:
+
+[PARTENER 1]: ____________________
+
+[PARTENER 2]: ____________________
+
+` },
+      { id: "contract-consultanta", title: "Contract de consultanta", fields: ["NUME/DENUMIRE", "CNP/CUI", "DOMENIU", "DESCRIERE", "SUMA", "MONEDA", "MODALITATE", "PERIOADA"], content: `# Contract de consultanta
+
+Prestator/Consultant: [NUME/DENUMIRE], CNP/CUI [CNP/CUI].
+
+Beneficiar: [NUME/DENUMIRE], CNP/CUI [CNP/CUI].
+
+Consultantul va presta servicii de consultanta in domeniul [DOMENIU], constand in [DESCRIERE].
+
+Onorariul este [SUMA] [MONEDA], platibil [MODALITATE].
+
+Consultanta se bazeaza pe informatiile furnizate de beneficiar. Consultantul nu garanteaza un rezultat comercial, fiscal sau juridic daca acest lucru nu este prevazut expres.
+
+Durata contractului: [PERIOADA].
+
+Semnaturi:
+
+Consultant: ____________________
+
+Beneficiar: ____________________
+
+## Checklist
+
+- [ ] Domeniul consultantei este clar.
+- [ ] Sunt stabilite livrabilele.
+- [ ] Este exclusa confuzia dintre consultanta si rezultat garantat.
+
+` },
+      { id: "contract-mentenanta", title: "Contract de mentenanta", fields: ["PRESTATOR", "BENEFICIAR", "SISTEM/ECHIPAMENT/SERVICIU", "SERVICIU 1", "SERVICIU 2", "SERVICIU 3", "TERMEN", "INTERVAL", "SUMA", "MONEDA", "ZI", "EXCLUDERI"], content: `# Contract de mentenanta
+
+Incheiat intre [PRESTATOR] si [BENEFICIAR].
+
+## Obiect
+
+Prestatorul asigura mentenanta pentru [SISTEM/ECHIPAMENT/SERVICIU], conform nivelului de serviciu agreat.
+
+## Servicii incluse
+
+- [SERVICIU 1]
+- [SERVICIU 2]
+- [SERVICIU 3]
+
+## Timp de raspuns
+
+Prestatorul raspunde solicitarilor in termen de [TERMEN], in zile lucratoare, intre orele [INTERVAL].
+
+## Pret
+
+Abonamentul lunar este [SUMA] [MONEDA], platibil pana la data de [ZI].
+
+## Excluderi
+
+Nu sunt incluse: [EXCLUDERI].
+
+Semnaturi:
+
+Prestator: ____________________
+
+Beneficiar: ____________________
+
+` },
+      { id: "contract-prestari-servicii", title: "Contract de prestari servicii", fields: ["DATA", "NUME/DENUMIRE", "CNP/CUI", "ADRESA", "REPREZENTANT", "DESCRIERE SERVICII", "PERIOADA", "LIVRABILE", "SUMA", "MONEDA", "NUMAR", "FACTURA/RECEPTIE", "CONDITII"], content: `# Contract de prestari servicii
+
+## Cand se foloseste
+
+Pentru servicii intre profesionisti sau intre profesionist si client. Pentru servicii reglementate, fiscalitate speciala sau sume mari, cere verificare profesionala.
+
+## Model
+
+Incheiat astazi, [DATA], intre:
+
+Prestator: [NUME/DENUMIRE], CNP/CUI [CNP/CUI], cu sediul/domiciliul in [ADRESA], reprezentat de [REPREZENTANT].
+
+Beneficiar: [NUME/DENUMIRE], CNP/CUI [CNP/CUI], cu sediul/domiciliul in [ADRESA], reprezentat de [REPREZENTANT].
+
+### 1. Obiect
+
+Prestatorul va furniza urmatoarele servicii: [DESCRIERE SERVICII].
+
+### 2. Termene si livrabile
+
+Serviciile se presteaza in perioada [PERIOADA]. Livrabilele sunt: [LIVRABILE].
+
+### 3. Pret si plata
+
+Pretul este [SUMA] [MONEDA], la care se adauga TVA daca este cazul. Plata se face in termen de [NUMAR] zile de la [FACTURA/RECEPTIE].
+
+### 4. Receptie
+
+Beneficiarul verifica livrabilele in termen de [NUMAR] zile. Lipsa unei obiectii scrise in termen poate fi considerata acceptare, daca partile convin astfel.
+
+### 5. Confidentialitate
+
+Partile pastreaza confidentiale informatiile marcate sau rezonabil considerate confidentiale, pe durata contractului si [PERIOADA] dupa incetare.
+
+### 6. Proprietate intelectuala
+
+Drepturile asupra livrabilelor se transfera conform [CONDITII], dupa plata integrala, cu exceptia instrumentelor, sabloanelor si cunostintelor preexistente ale prestatorului.
+
+### 7. Incetare
+
+Contractul poate inceta prin acord, la termen sau prin notificare cu [NUMAR] zile inainte.
+
+Semnaturi:
+
+Prestator: ____________________
+
+Beneficiar: ____________________
+
+## Checklist
+
+- [ ] Serviciile sunt descrise concret.
+- [ ] Exista livrabile si criterii de receptie.
+- [ ] Plata si TVA sunt clarificate.
+- [ ] Drepturile de proprietate intelectuala sunt explicite.
+- [ ] Exista clauza de confidentialitate, daca este necesar.
+
+` },
+      { id: "notificare-intarziere-plata", title: "Notificare intarziere plata", fields: ["DEBITOR", "CREDITOR", "SUMA", "MONEDA", "REFERINTA", "DATA SCADENTA", "DATA LIMITA", "IBAN", "DATA"], content: `# Notificare intarziere plata
+
+Catre: [DEBITOR]
+
+Subscrisa/Subsemnatul [CREDITOR], va notific faptul ca suma de [SUMA] [MONEDA], aferenta facturii/contractului [REFERINTA], este scadenta din data de [DATA SCADENTA] si nu a fost achitata pana la data prezentei.
+
+Va solicitam achitarea sumei pana la data de [DATA LIMITA], in contul [IBAN].
+
+In lipsa platii, ne rezervam dreptul de a folosi caile legale disponibile.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "oferta-comerciala", title: "Oferta comerciala", fields: ["CLIENT", "FURNIZOR/PRESTATOR", "DATA", "DESCRIERE", "ITEM", "CANTITATE", "PRET", "TOTAL", "NUMAR", "CONDITII", "TERMEN"], content: `# Oferta comerciala
+
+Catre: [CLIENT]
+
+Emitent: [FURNIZOR/PRESTATOR]
+
+Data: [DATA]
+
+## Obiectul ofertei
+
+Va propunem furnizarea urmatoarelor produse/servicii: [DESCRIERE].
+
+## Pret
+
+| Produs/Serviciu | Cantitate | Pret unitar | Total |
+| --- | --- | --- | --- |
+| [ITEM] | [CANTITATE] | [PRET] | [TOTAL] |
+
+Valabilitatea ofertei: [NUMAR] zile.
+
+Conditii de plata: [CONDITII].
+
+Termen de livrare/prestare: [TERMEN].
+
+Semnatura/Stampila, daca este cazul: ____________________
+
+` },
+      { id: "proces-verbal-predare-documente", title: "Proces-verbal predare documente", fields: ["DATA", "PREDATOR", "PRIMITOR", "DOCUMENT", "ORIGINAL/COPIE", "OBSERVATII"], content: `# Proces-verbal predare documente
+
+Incheiat astazi, [DATA], intre [PREDATOR] si [PRIMITOR].
+
+## Documente predate
+
+| Nr. | Document | Original/Copie | Observatii |
+| --- | --- | --- | --- |
+| 1 | [DOCUMENT] | [ORIGINAL/COPIE] | [OBSERVATII] |
+
+Primitorul confirma primirea documentelor mentionate.
+
+Predator: ____________________
+
+Primitor: ____________________
+
+` },
+      { id: "proces-verbal-receptie-servicii", title: "Proces-verbal de receptie servicii", fields: ["DATA", "PRESTATOR", "BENEFICIAR", "NUMAR", "LIVRABIL", "ACCEPTAT/RESPINS", "OBSERVATII"], content: `# Proces-verbal de receptie servicii
+
+Incheiat astazi, [DATA], intre [PRESTATOR] si [BENEFICIAR], in baza contractului nr. [NUMAR] din [DATA].
+
+## Servicii receptionate
+
+| Serviciu/Livrabil | Status | Observatii |
+| --- | --- | --- |
+| [LIVRABIL] | [ACCEPTAT/RESPINS] | [OBSERVATII] |
+
+Beneficiarul confirma receptia serviciilor mentionate mai sus, cu urmatoarele observatii: [OBSERVATII].
+
+Prestator: ____________________
+
+Beneficiar: ____________________
+
+` },
+      { id: "somatie-plata-amiabila", title: "Somatie de plata amiabila", fields: ["DEBITOR", "CREDITOR", "ADRESA", "SUMA", "MONEDA", "DESCRIERE CREANTA", "CONTRACT/FACTURA/ALT DOCUMENT", "DATA", "IBAN/ALT MOD"], content: `# Somatie de plata amiabila
+
+Catre: [DEBITOR]
+
+Subscrisa/Subsemnatul [CREDITOR], cu sediul/domiciliul in [ADRESA], va solicitam plata sumei de [SUMA] [MONEDA], reprezentand [DESCRIERE CREANTA], conform [CONTRACT/FACTURA/ALT DOCUMENT].
+
+Termen de plata: [DATA].
+
+Modalitate plata: [IBAN/ALT MOD].
+
+In cazul neplatii, putem transmite cauza catre recuperare amiabila, mediere, avocat sau instanta competenta, dupa caz.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Creanta este certa si documentata.
+- [ ] Exista factura/contract/dovada.
+- [ ] Termenul este rezonabil.
+
+` },
+    ]
+  },
+  "asociatie-proprietari": {
+    label: "Asociație Proprietari",
+    icon: "🏢",
+    docs: [
+      { id: "cerere-catre-asociatia-de-proprietari", title: "Cerere catre asociatia de proprietari", fields: ["DENUMIRE/NUMAR ASOCIATIE", "ADRESA IMOBILULUI", "NUME COMPLET", "NUMAR APARTAMENT", "CI/PASAPORT SERIE NUMAR", "NUMAR", "ADRESA/EMAIL", "DATA"], content: `# Cerere catre asociatia de proprietari
+
+## Cand se foloseste
+
+Pentru a adresa o solicitare administratorului sau presedintelui asociatiei de proprietari (de exemplu cerere de informatii privind cheltuielile comune, solicitare de reparatie a unei parti comune, cerere de eliberare a unei adeverinte). Adapteaza obiectul cererii in functie de situatia concreta.
+
+## Model
+
+Catre: Asociatia de Proprietari [DENUMIRE/NUMAR ASOCIATIE], [ADRESA IMOBILULUI]
+
+Subsemnatul/Subsemnata [NUME COMPLET], proprietar/chirias al apartamentului numarul [NUMAR APARTAMENT], situat in imobilul mentionat mai sus, identificat cu [CI/PASAPORT SERIE NUMAR],
+
+solicit prin prezenta:
+
+[DESCRIE SOLICITAREA - DE EXEMPLU: COMUNICAREA SITUATIEI DETALIATE A COTELOR DE INTRETINERE PENTRU LUNILE...; REMEDIEREA URMATOAREI PROBLEME LA PARTILE COMUNE...; ELIBERAREA UNEI ADEVERINTE PRIVIND PLATA COTELOR DE INTRETINERE].
+
+[DACA ESTE CAZUL, ADAUGA DETALII SUPLIMENTARE - DESCRIEREA PROBLEMEI, PERIOADA VIZATA, DOCUMENTE ANEXATE].
+
+Va rog sa imi comunicati raspunsul/solutia in termen de [NUMAR] zile, la adresa [ADRESA/EMAIL].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Ai identificat corect asociatia de proprietari si numarul apartamentului/spatiului vizat.
+- [ ] Solicitarea este descrisa clar si concret, cu detalii suficiente pentru a fi solutionata.
+- [ ] Ai mentionat un termen rezonabil pentru raspuns.
+- [ ] Pastrezi o copie a cererii si dovada depunerii (numar de inregistrare, email trimis).
+` },
+      { id: "contestatie-cheltuieli-comune", title: "Contestatie privind cheltuielile comune (cota de intretinere)", fields: ["DENUMIRE/NUMAR ASOCIATIE", "ADRESA IMOBILULUI", "NUME COMPLET", "NUMAR APARTAMENT", "PERIOADA", "SUMA", "MONEDA", "NUMAR", "ADRESA/EMAIL", "DATA"], content: `# Contestatie privind cheltuielile comune (cota de intretinere)
+
+## Cand se foloseste
+
+Pentru a contesta, in scris, modul de calcul sau valoarea cotei de intretinere/cheltuielilor comune stabilite de asociatia de proprietari pentru apartamentul/spatiul detinut, atunci cand exista suspiciuni de eroare de calcul, facturare gresita sau aplicare incorecta a criteriilor de repartizare (suprafata, numar de persoane, cote indivize).
+
+## Model
+
+Catre: Asociatia de Proprietari [DENUMIRE/NUMAR ASOCIATIE], [ADRESA IMOBILULUI]
+
+Subsemnatul/Subsemnada [NUME COMPLET], proprietar al apartamentului numarul [NUMAR APARTAMENT], situat in imobilul mentionat mai sus,
+
+formulez prin prezenta o contestatie privind cota de intretinere/cheltuielile comune stabilite pentru luna/lunile [PERIOADA], in suma de [SUMA] [MONEDA], pentru urmatoarele motive:
+
+[DESCRIE MOTIVELE - DE EXEMPLU: CRITERIUL DE REPARTIZARE NU CORESPUNDE NUMARULUI REAL DE PERSOANE/SUPRAFETEI; A FOST FACTURATA O CHELTUIALA CARE NU IMI ESTE APLICABILA; EXISTA O EROARE DE CALCUL CONSTATATA PRIN COMPARATIE CU LISTELE ANTERIOARE].
+
+Solicit:
+
+- Reverificarea calculului cotei de intretinere pentru perioada mentionata;
+- Comunicarea modului de calcul si a documentelor justificative (facturi, citiri contoare, liste de plata);
+- Corectarea sumei, daca se confirma eroarea semnalata.
+
+Anexez prezentei: [LISTA DOCUMENTE - COPII LISTE DE PLATA, FACTURI, ALTE DOVEZI].
+
+Va rog sa imi comunicati raspunsul in termen de [NUMAR] zile, la adresa [ADRESA/EMAIL].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Sunt mentionate perioada si suma exacta contestata.
+- [ ] Motivele contestatiei sunt descrise concret, cu referire la criteriile de repartizare aplicabile.
+- [ ] Ai anexat dovezi relevante (liste de plata anterioare, facturi, citiri de contoare).
+- [ ] Ai cerut explicit documentele justificative pentru calculul cotei.
+- [ ] Daca raspunsul asociatiei nu este satisfacator, retine ca poti continua demersul la institutiile/instantele competente, conform legislatiei privind asociatiile de proprietari.
+` },
+    ]
+  },
+  "auto": {
+    label: "Auto",
+    icon: "🚗",
+    docs: [
+      { id: "contract-comodat-auto", title: "Contract de comodat (imprumut de folosinta) autovehicul", fields: ["DATA", "LOCALITATE", "NUME", "CNP", "ADRESA", "CI/PASAPORT", "MARCA/MODEL", "NUMAR INMATRICULARE", "SERIE SASIU", "SCOPUL FOLOSIRII", "DATA INCEPUT", "DATA SFARSIT", "NUMAR"], content: `# Contract de comodat (imprumut de folosinta) autovehicul
+
+## Cand se foloseste
+
+Pentru a imprumuta temporar si gratuit un autovehicul unei alte persoane (de exemplu unui membru de familie sau prieten), fara a transfera proprietatea. Util si pentru a clarifica responsabilitatile in caz de accident, amenzi sau daune in perioada folosirii vehiculului de catre comodatar.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Comodant (proprietar): [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+Comodatar (imprumutat): [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+### 2. Obiectul contractului
+
+Comodantul imprumuta comodatarului, cu titlu gratuit, autovehiculul marca [MARCA/MODEL], numar de inmatriculare [NUMAR INMATRICULARE], serie sasiu [SERIE SASIU], pentru a fi folosit in scopul de [SCOPUL FOLOSIRII].
+
+### 3. Durata
+
+Comodatul se incheie pe perioada [DATA INCEPUT] - [DATA SFARSIT] / pe durata nedeterminata, cu posibilitatea de a fi incetat oricand de comodant, cu un preaviz de [NUMAR] zile.
+
+### 4. Obligatiile comodatarului
+
+Comodatarul se obliga sa:
+
+- Foloseasca vehiculul cu prudenta si diligenta unui bun proprietar;
+- Suporte costurile de combustibil si intretinere curenta pe durata folosirii;
+- Restituie vehiculul la termenul stabilit, in starea in care l-a primit, in afara de uzura normala;
+- Anunte imediat comodantul in caz de accident, defectiune majora sau implicare in evenimente rutiere.
+
+### 5. Asigurare si raspundere
+
+Comodatarul raspunde pentru amenzile de circulatie primite in perioada folosirii vehiculului si pentru eventualele daune cauzate prin culpa sa. Partile verifica impreuna valabilitatea asigurarii RCA si, daca este cazul, extind sau adapteaza polita pentru a include conducerea de catre comodatar.
+
+### 6. Incetarea contractului
+
+Contractul inceteaza la termen, prin restituirea vehiculului, prin acordul partilor sau prin denuntare unilaterala de catre comodant cu respectarea preavizului mentionat.
+
+Semnaturi:
+
+Comodant: ____________________
+
+Comodatar: ____________________
+
+## Checklist
+
+- [ ] Datele vehiculului (marca, numar inmatriculare, serie sasiu) sunt corecte si complete.
+- [ ] Durata folosirii este clara (perioada determinata sau conditii de incetare).
+- [ ] S-a verificat valabilitatea asigurarii RCA pentru conducerea de catre comodatar.
+- [ ] Sunt clare responsabilitatile in caz de amenda, accident sau dauna.
+- [ ] Ai considerat si o imputernicire separata, daca comodatarul trebuie sa prezinte documente la control sau in caz de accident.
+` },
+      { id: "contract-vanzare-cumparare-auto", title: "Contract de vanzare-cumparare autovehicul", fields: ["DATA", "LOCALITATE", "NUME VANZATOR", "CNP/CUI", "ADRESA", "CI/PASAPORT", "NUME CUMPARATOR", "MARCA / MODEL", "NUMAR INMATRICULARE", "SERIE SASIU", "AN FABRICATIE", "CULOARE", "KM", "SERIE/NUMAR CIV", "SUMA", "MONEDA", "TRANSFER BANCAR/CASH/ALTA MODALITATE", "DESCRIERE EVENIMENTE", "LOCATIE", "NUMAR"], content: `# Contract de vanzare-cumparare autovehicul
+
+## Cand se foloseste
+
+Pentru vanzarea/cumpararea unui autovehicul intre persoane fizice sau persoane fizice si firme. Contractul trebuie sa identifice exact vehiculul (serie sasiu, numar de inmatriculare, carte de identitate a vehiculului) si sa fie folosit pentru radierea/inmatricularea la SPCRPCIV/serviciul public competent. In multe cazuri se recomanda forma scrisa cu data certa sau autentificare notariala, mai ales pentru sume mari.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Vanzator: [NUME VANZATOR], CNP/CUI [CNP/CUI], domiciliat/cu sediul in [ADRESA], identificat cu [CI/PASAPORT].
+
+Cumparator: [NUME CUMPARATOR], CNP/CUI [CNP/CUI], domiciliat/cu sediul in [ADRESA], identificat cu [CI/PASAPORT].
+
+### 2. Obiectul contractului
+
+Vanzatorul vinde, iar cumparatorul cumpara autovehiculul cu urmatoarele caracteristici:
+
+- Marca si model: [MARCA / MODEL];
+- Numar de inmatriculare: [NUMAR INMATRICULARE];
+- Serie sasiu (VIN): [SERIE SASIU];
+- An fabricatie: [AN FABRICATIE];
+- Culoare: [CULOARE];
+- Numar kilometri la predare: [KM];
+- Carte de identitate a vehiculului seria/numarul: [SERIE/NUMAR CIV].
+
+### 3. Pretul si modalitatea de plata
+
+Pretul vanzarii este de [SUMA] [MONEDA] si se plateste prin [TRANSFER BANCAR/CASH/ALTA MODALITATE], integral la data semnarii / in urmatoarele transe: [DETALII TRANSE, daca este cazul].
+
+### 4. Starea vehiculului si declaratii ale vanzatorului
+
+Vanzatorul declara ca:
+
+- Autovehiculul nu este grevat de sarcini, gajuri, sechestru sau alte interdictii de circulatie ori instrainare;
+- Nu a fost implicat in evenimente rutiere nedeclarate, in limita cunostintelor sale, sau, daca a fost: [DESCRIERE EVENIMENTE];
+- Vehiculul are inspectia tehnica periodica (ITP) valabila pana la [DATA] si asigurare RCA valabila pana la [DATA].
+
+### 5. Predarea vehiculului
+
+Predarea se face la data de [DATA], in [LOCATIE], odata cu predarea cartii de identitate a vehiculului, a cheilor (numar de seturi: [NUMAR]) si a documentelor relevante. Partile vor incheia, daca este necesar, un proces-verbal de predare-primire separat.
+
+### 6. Obligatii privind inmatricularea/radierea
+
+Cumparatorul se obliga sa solicite transcrierea dreptului de proprietate si, dupa caz, reinmatricularea vehiculului pe numele sau in termenul legal de la data prezentului contract. Vanzatorul se obliga sa coopereze pentru radierea temporara, daca este necesara.
+
+### 7. Garantii
+
+In limita prevederilor legale aplicabile vanzarii intre persoane fizice/intre persoana fizica si profesionist, vanzatorul raspunde pentru viciile ascunse ale vehiculului, in masura in care acestea existau la momentul vanzarii si nu au fost aduse la cunostinta cumparatorului.
+
+### 8. Litigii
+
+Eventualele neintelegeri se vor solutiona pe cale amiabila; in caz contrar, partile se vor adresa instantelor competente.
+
+Semnaturi:
+
+Vanzator: ____________________
+
+Cumparator: ____________________
+
+## Checklist
+
+- [ ] Seria de sasiu (VIN), numarul de inmatriculare si datele din cartea de identitate a vehiculului corespund.
+- [ ] Pretul si modalitatea de plata sunt clare; pentru sume mari, considera plata prin transfer bancar trasabil.
+- [ ] Ai verificat daca vehiculul are sarcini, amanet sau interdictii (de exemplu printr-o verificare la RNPM sau alte registre relevante).
+- [ ] Sunt mentionate ITP si RCA valabile la data vanzarii.
+- [ ] S-a stabilit clar cine se ocupa de transcrierea dreptului de proprietate si in ce termen.
+- [ ] Ai pastrat o copie semnata de ambele parti, plus copii ale actelor de identitate.
+` },
+      { id: "imputernicire-auto", title: "Imputernicire pentru autovehicul", fields: ["NUME PROPRIETAR", "CNP", "ADRESA", "CI/PASAPORT SERIE NUMAR", "MARCA/MODEL", "NUMAR INMATRICULARE", "SERIE SASIU", "NUME IMPUTERNICIT", "DATA INCEPUT", "DATA SFARSIT", "DATA"], content: `# Imputernicire pentru autovehicul
+
+## Cand se foloseste
+
+Pentru a imputernici o alta persoana sa conduca, sa prezinte la control sau, in functie de continutul concret, sa efectueze formalitati administrative legate de un autovehicul (de exemplu ITP, ridicare certificat de inmatriculare duplicat sau alte demersuri la institutiile competente). Pentru imputernicirea de a instraina (vinde) vehiculul in numele proprietarului, este recomandata forma notariala (procura speciala).
+
+## Model
+
+Subsemnatul/Subsemnata [NUME PROPRIETAR], CNP [CNP], domiciliat(a) in [ADRESA], identificat(a) cu [CI/PASAPORT SERIE NUMAR], in calitate de proprietar al autovehiculului marca [MARCA/MODEL], numar de inmatriculare [NUMAR INMATRICULARE], serie sasiu [SERIE SASIU],
+
+imputernicesc prin prezenta pe [NUME IMPUTERNICIT], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT SERIE NUMAR],
+
+sa conduca autovehiculul mentionat mai sus si sa efectueze, in numele meu, urmatoarele:
+
+- [DESCRIERE ATRIBUTII - DE EXEMPLU: PREZENTARE LA ITP, RIDICARE DOCUMENTE, ALTE DEMERSURI ADMINISTRATIVE].
+
+Prezenta imputernicire este valabila pe perioada [DATA INCEPUT] - [DATA SFARSIT] / pana la revocare.
+
+Data: [DATA]
+
+Semnatura proprietar: ____________________
+
+## Checklist
+
+- [ ] Datele vehiculului corespund cu documentele oficiale (carte de identitate a vehiculului, certificat de inmatriculare).
+- [ ] Atributiile imputernicitului sunt descrise clar si limitat la ce este necesar.
+- [ ] Pentru instrainarea (vanzarea) vehiculului in numele proprietarului, ai luat in calcul o procura notariala speciala, nu acest document simplu.
+- [ ] Este mentionata perioada de valabilitate a imputernicirii.
+- [ ] Ai verificat daca institutia/organul de control accepta forma simpla sau solicita autentificare notariala.
+` },
+      { id: "proces-verbal-predare-primire-auto", title: "Proces-verbal de predare-primire autovehicul", fields: ["DATA", "LOCALITATE", "NUME", "CNP", "CI/PASAPORT", "MARCA/MODEL", "NUMAR INMATRICULARE", "SERIE SASIU", "KM", "DESCRIERE", "SERIE/NUMAR", "NUMAR", "NIVEL/FRACTIE REZERVOR"], content: `# Proces-verbal de predare-primire autovehicul
+
+## Cand se foloseste
+
+Pentru a consemna starea unui autovehicul, kilometrajul si documentele/accesoriile predate, la momentul vanzarii, comodatului sau oricarei alte situatii in care vehiculul trece din posesia unei persoane in posesia alteia. Reduce riscul disputelor ulterioare privind starea vehiculului la predare.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE], intre:
+
+### 1. Partile
+
+Predator: [NUME], CNP [CNP], identificat cu [CI/PASAPORT].
+
+Primitor: [NUME], CNP [CNP], identificat cu [CI/PASAPORT].
+
+### 2. Vehiculul predat
+
+Marca/model: [MARCA/MODEL]; numar inmatriculare: [NUMAR INMATRICULARE]; serie sasiu: [SERIE SASIU]; kilometraj la predare: [KM].
+
+### 3. Starea vehiculului la predare
+
+Stare generala (caroserie, interior, anvelope): [DESCRIERE].
+
+Defecte/avarii constatate la predare: [DESCRIERE DEFECTE, DACA EXISTA, ALTFEL "NU SE CONSTATA DEFECTE VIZIBILE"].
+
+### 4. Documente si accesorii predate
+
+- Carte de identitate a vehiculului - seria/numarul [SERIE/NUMAR];
+- Certificat de inmatriculare;
+- Numar chei predate: [NUMAR];
+- Alte accesorii: [DE EXEMPLU SET ROTI DE IARNA, TRUSA AUTO, ALTELE].
+
+### 5. Combustibil (daca este relevant)
+
+Nivel combustibil la predare: [NIVEL/FRACTIE REZERVOR].
+
+### 6. Declaratie finala
+
+Partile declara ca au verificat impreuna vehiculul, ca cele de mai sus corespund realitatii la momentul predarii si nu au alte obiectii de formulat in acest moment.
+
+Semnaturi:
+
+Predator: ____________________
+
+Primitor: ____________________
+
+## Checklist
+
+- [ ] Kilometrajul si starea vehiculului sunt notate cat mai exact, ideal cu poze atasate.
+- [ ] Toate documentele si cheile predate sunt enumerate.
+- [ ] Eventualele defecte existente sunt mentionate explicit, pentru a evita confuzii ulterioare.
+- [ ] Ambele parti au semnat si au cate o copie a procesului-verbal.
+` },
+    ]
+  },
+  "consumatori": {
+    label: "Consumatori",
+    icon: "🛒",
+    docs: [
+      { id: "cerere-anulare-comanda-online", title: "Cerere anulare comanda online", fields: ["MAGAZIN ONLINE", "NUME", "NUMAR", "DATA", "PRODUS/SERVICIU", "SUMA", "MONEDA", "MOD RAMBURSARE"], content: `# Cerere anulare comanda online
+
+Catre: [MAGAZIN ONLINE]
+
+Subsemnatul/Subsemnata [NUME], solicit anularea comenzii nr. [NUMAR], plasata la data de [DATA], pentru urmatoarele produse/servicii:
+
+- [PRODUS/SERVICIU]
+
+Daca plata a fost efectuata, solicit rambursarea sumei de [SUMA] [MONEDA] prin [MOD RAMBURSARE].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-garantie-produs", title: "Cerere garantie produs", fields: ["VANZATOR/SERVICE", "NUME", "PRODUS", "SERIE", "DATA", "NUMAR", "DESCRIERE DEFECT"], content: `# Cerere garantie produs
+
+Catre: [VANZATOR/SERVICE]
+
+Subsemnatul/Subsemnata [NUME], solicit solutionarea in garantie pentru produsul [PRODUS], seria [SERIE], achizitionat la data de [DATA], conform facturii/bonului nr. [NUMAR].
+
+Defect reclamat:
+
+[DESCRIERE DEFECT]
+
+Solicit repararea, inlocuirea sau alta solutie legala aplicabila.
+
+Anexez:
+
+- dovada achizitiei;
+- certificat garantie;
+- fotografii/video, daca exista.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-retur-produs", title: "Cerere retur produs", fields: ["MAGAZIN/OPERATOR ECONOMIC", "NUME", "PRODUS", "NUMAR", "DATA", "SUMA", "MONEDA", "MOD RAMBURSARE", "MOTIV"], content: `# Cerere retur produs
+
+Catre: [MAGAZIN/OPERATOR ECONOMIC]
+
+Subsemnatul/Subsemnata [NUME], am achizitionat produsul [PRODUS], comanda/factura nr. [NUMAR], la data de [DATA].
+
+Solicit returul produsului si rambursarea sumei de [SUMA] [MONEDA], prin [MOD RAMBURSARE].
+
+Motivul returului, daca este necesar: [MOTIV].
+
+Anexez dovada achizitiei si fotografii, daca este cazul.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "notificare-neexecutare-serviciu", title: "Notificare neexecutare serviciu", fields: ["PRESTATOR", "NUME", "SERVICIU", "NUMAR", "DATA", "DESCRIERE"], content: `# Notificare neexecutare serviciu
+
+Catre: [PRESTATOR]
+
+Subsemnatul/Subsemnata [NUME], am contractat serviciul [SERVICIU], conform contractului/comenzii nr. [NUMAR] din [DATA].
+
+Pana la data prezentei, serviciul nu a fost executat / a fost executat necorespunzator, astfel:
+
+[DESCRIERE]
+
+Solicit remedierea situatiei pana la data de [DATA] sau restituirea sumei achitate, dupa caz.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "proces-verbal-predare-produs-service", title: "Proces-verbal predare produs in service", fields: ["DATA", "CLIENT", "SERVICE/VANZATOR", "PRODUS", "SERIE", "DESCRIERE", "ACCESORII"], content: `# Proces-verbal predare produs in service
+
+Incheiat astazi, [DATA], intre [CLIENT] si [SERVICE/VANZATOR].
+
+Produs predat: [PRODUS]
+
+Serie/IMEI: [SERIE]
+
+Stare la predare: [DESCRIERE]
+
+Accesorii predate: [ACCESORII]
+
+Defect reclamat: [DESCRIERE]
+
+Client: ____________________
+
+Reprezentant service: ____________________
+
+` },
+      { id: "reclamatie-anpc", title: "Reclamatie ANPC - model orientativ", fields: ["NUME", "ADRESA", "EMAIL", "TELEFON", "DENUMIRE", "CUI", "DESCRIERE", "SOLICITARE", "DATA"], content: `# Reclamatie ANPC - model orientativ
+
+## Atentie
+
+Verifica platforma oficiala ANPC si incearca, de regula, solutionarea directa cu operatorul economic inainte de reclamatie.
+
+Catre: Autoritatea Nationala pentru Protectia Consumatorilor
+
+Subsemnatul/Subsemnata [NUME], domiciliat(a) in [ADRESA], e-mail [EMAIL], telefon [TELEFON], formulez reclamatie impotriva operatorului economic [DENUMIRE], CUI [CUI], cu sediul/punctul de lucru in [ADRESA].
+
+Descrierea situatiei:
+
+[DESCRIERE]
+
+Solicit:
+
+[SOLICITARE]
+
+Anexez:
+
+- dovada achizitiei;
+- corespondenta cu operatorul;
+- fotografii;
+- alte documente.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+    ]
+  },
+  "familie": {
+    label: "Familie",
+    icon: "👨‍👩‍👧",
+    docs: [
+      { id: "acord-folosire-adresa-corespondenta", title: "Acord folosire adresa de corespondenta", fields: ["NUME TITULAR", "CNP", "ADRESA", "NUME BENEFICIAR", "CNP/CUI", "SCOP", "PERIOADA", "DATA"], content: `# Acord folosire adresa de corespondenta
+
+Subsemnatul/Subsemnata [NUME TITULAR], CNP [CNP], titular al folosintei asupra adresei [ADRESA], imi exprim acordul ca [NUME BENEFICIAR], CNP/CUI [CNP/CUI], sa foloseasca aceasta adresa ca adresa de corespondenta pentru [SCOP], in perioada [PERIOADA].
+
+Acest acord nu transfera drept de proprietate, inchiriere sau folosinta exclusiva.
+
+Data: [DATA]
+
+Semnatura titular: ____________________
+
+Semnatura beneficiar: ____________________
+
+` },
+      { id: "acord-parental-calatorie", title: "Acord parental pentru calatorie minor", fields: ["NUME PARINTE", "CNP", "NUME MINOR", "DESTINATIE", "PERIOADA", "INSOTITOR", "SCOP", "DATA"], content: `# Acord parental pentru calatorie minor
+
+## Atentie
+
+Pentru iesirea minorului din tara pot fi necesare conditii speciale si forma autentica notariala. Verifica cerintele autoritatilor inainte de folosire.
+
+Subsemnatul/Subsemnata [NUME PARINTE], CNP [CNP], parinte al minorului [NUME MINOR], CNP [CNP], imi exprim acordul ca minorul sa calatoreasca in [DESTINATIE], in perioada [PERIOADA], insotit de [INSOTITOR].
+
+Scopul calatoriei: [SCOP].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "declaratie-gazduire", title: "Declaratie de gazduire", fields: ["NUME GAZDUITOR", "CNP", "ADRESA", "NUME PERSOANA GAZDUITA", "PERIOADA", "SCOP", "DATA"], content: `# Declaratie de gazduire
+
+Subsemnatul/Subsemnata [NUME GAZDUITOR], CNP [CNP], domiciliat(a) in [ADRESA], declar ca il/o gazduiesc pe [NUME PERSOANA GAZDUITA], CNP [CNP], la adresa [ADRESA], in perioada [PERIOADA].
+
+Declaratia este data pentru [SCOP].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Adresa este completa.
+- [ ] Perioada este mentionata.
+- [ ] Este verificata forma ceruta de institutia solicitanta.
+
+` },
+      { id: "declaratie-proprie-raspundere", title: "Declaratie pe proprie raspundere", fields: ["NUME", "CNP", "ADRESA", "ACT IDENTITATE", "TEXTUL DECLARATIEI", "SCOP", "DATA"], content: `# Declaratie pe proprie raspundere
+
+Subsemnatul/Subsemnata [NUME], CNP [CNP], domiciliat(a) in [ADRESA], identificat(a) cu [ACT IDENTITATE], declar pe propria raspundere, cunoscand consecintele legale ale declaratiilor neadevarate, ca:
+
+[TEXTUL DECLARATIEI]
+
+Prezenta declaratie este data pentru a servi la [SCOP].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Declaratia este adevarata si verificabila.
+- [ ] Scopul este mentionat clar.
+- [ ] Nu sunt incluse date inutile.
+- [ ] Este verificata forma ceruta de institutia care o solicita.
+
+` },
+      { id: "declaratie-venituri", title: "Declaratie venituri", fields: ["NUME", "CNP", "ADRESA", "PERIOADA", "SURSA", "SUMA", "OBSERVATII", "SCOP", "DATA"], content: `# Declaratie venituri
+
+Subsemnatul/Subsemnata [NUME], CNP [CNP], domiciliat(a) in [ADRESA], declar pe propria raspundere ca in perioada [PERIOADA] am realizat urmatoarele venituri:
+
+| Sursa venit | Suma | Perioada | Observatii |
+| --- | --- | --- | --- |
+| [SURSA] | [SUMA] | [PERIOADA] | [OBSERVATII] |
+
+Prezenta declaratie este necesara pentru [SCOP].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "imputernicire-ridicare-documente", title: "Imputernicire ridicare documente", fields: ["NUME", "CNP", "ADRESA", "NUME IMPUTERNICIT", "DOCUMENT 1", "DOCUMENT 2", "INSTITUTIE/ENTITATE", "DATA"], content: `# Imputernicire ridicare documente
+
+Subsemnatul/Subsemnata [NUME], CNP [CNP], domiciliat(a) in [ADRESA], imputernicesc pe [NUME IMPUTERNICIT], CNP [CNP], sa ridice in numele meu urmatoarele documente:
+
+- [DOCUMENT 1]
+- [DOCUMENT 2]
+
+Documentele vor fi ridicate de la [INSTITUTIE/ENTITATE].
+
+Prezenta imputernicire este valabila pana la data de [DATA].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Atentie
+
+Unele institutii pot solicita procura notariala sau formular propriu.
+
+` },
+      { id: "procura-simpla", title: "Procura simpla", fields: ["NUME MANDANT", "CNP", "ADRESA", "ACT IDENTITATE", "NUME MANDATAR", "DESCRIERE CLARA A IMPUTERNICIRII", "DATA"], content: `# Procura simpla
+
+## Atentie
+
+Multe procuri necesita forma autentica notariala, mai ales pentru vanzari, reprezentare in fata unor institutii, operatiuni bancare sau acte importante. Acest model este doar un punct de pornire pentru situatii simple si trebuie verificat.
+
+## Model
+
+Subsemnatul/Subsemnata [NUME MANDANT], CNP [CNP], domiciliat(a) in [ADRESA], identificat(a) cu [ACT IDENTITATE], imputernicesc pe [NUME MANDATAR], CNP [CNP], domiciliat(a) in [ADRESA], identificat(a) cu [ACT IDENTITATE], sa ma reprezinte pentru urmatoarea operatiune:
+
+[DESCRIERE CLARA A IMPUTERNICIRII]
+
+Mandatarul poate semna documentele necesare exclusiv pentru scopul mentionat mai sus.
+
+Prezenta procura este valabila pana la data de [DATA] si poate fi revocata in scris.
+
+Data: [DATA]
+
+Semnatura mandant: ____________________
+
+` },
+    ]
+  },
+  "firme-pfa": {
+    label: "Firme & PFA",
+    icon: "🏭",
+    docs: [
+      { id: "cerere-suspendare-activitate-pfa", title: "Cerere de suspendare a activitatii PFA", fields: ["JUDET", "NUME TITULAR PFA", "CNP", "ADRESA", "DENUMIRE PFA", "CUI", "NUMAR ORC", "DATA INCEPUT", "DATA SFARSIT", "DATA"], content: `# Cerere de suspendare a activitatii PFA
+
+## Cand se foloseste
+
+Pentru a solicita suspendarea temporara a activitatii unei persoane fizice autorizate (PFA), de exemplu in perioade fara venituri sau fara activitate. Suspendarea se inregistreaza la Registrul Comertului si poate avea efecte si asupra obligatiilor declarative/fiscale la ANAF; verifica si obligatiile specifice la ANAF pentru perioada de suspendare.
+
+## Model
+
+Catre: Oficiul Registrului Comertului de pe langa Tribunalul [JUDET]
+
+Subsemnatul/Subsemnata [NUME TITULAR PFA], CNP [CNP], domiciliat(a) in [ADRESA], titular al PFA [DENUMIRE PFA], CUI [CUI], inregistrata la Registrul Comertului sub numarul [NUMAR ORC],
+
+solicit suspendarea temporara a activitatii PFA mentionate, pe perioada [DATA INCEPUT] - [DATA SFARSIT] / pana la data de [DATA], conform prevederilor legale aplicabile.
+
+Anexez prezentei cereri:
+
+- Copie certificat de inregistrare PFA;
+- Copie act de identitate;
+- [ALTE DOCUMENTE SOLICITATE DE REGISTRUL COMERTULUI, DACA EXISTA].
+
+Va rog sa dispuneti inregistrarea mentiunii de suspendare temporara a activitatii.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Perioada de suspendare este clar mentionata (data inceput si sfarsit, sau termen determinat).
+- [ ] Ai verificat documentele si taxele specifice solicitate de Registrul Comertului pentru aceasta mentiune.
+- [ ] Ai verificat si la ANAF ce obligatii declarative/fiscale subzista pe perioada suspendarii.
+- [ ] Pastrezi o copie a cererii depuse si a dovezii de inregistrare a mentiunii.
+` },
+      { id: "contract-comodat-spatiu-firma", title: "Contract de comodat pentru spatiu (sediu social/punct de lucru)", fields: ["DATA", "LOCALITATE", "NUME/DENUMIRE", "CNP/CUI", "ADRESA", "DENUMIRE SOCIETATE/PFA", "CUI", "NUME REPREZENTANT", "FUNCTIE", "ADRESA COMPLETA", "SEDIULUI SOCIAL/PUNCTULUI DE LUCRU", "DATA INCEPUT", "DATA SFARSIT", "NUMAR", "DESCRIERE ACTIVITATE"], content: `# Contract de comodat pentru spatiu (sediu social/punct de lucru)
+
+## Cand se foloseste
+
+Pentru a pune la dispozitia unei firme (SRL, PFA) un spatiu, cu titlu gratuit, in vederea stabilirii sediului social sau a unui punct de lucru. Folosit frecvent cand asociatul/administratorul pune la dispozitie un imobil proprietate personala pentru sediul propriei firme, sau cand o firma pune la dispozitia alteia un spatiu fara chirie. Documentul este necesar, de regula, pentru dosarul de inregistrare/modificare sediu la Registrul Comertului.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Comodant (proprietar): [NUME/DENUMIRE], CNP/CUI [CNP/CUI], domiciliat/cu sediul in [ADRESA].
+
+Comodatar (firma beneficiara): [DENUMIRE SOCIETATE/PFA], CUI [CUI], reprezentata prin [NUME REPREZENTANT], in calitate de [FUNCTIE].
+
+### 2. Obiectul contractului
+
+Comodantul pune la dispozitia comodatarului, cu titlu gratuit, spatiul situat in [ADRESA COMPLETA], compus din [DESCRIERE - SUPRAFATA, NUMAR CAMERE], in vederea stabilirii [SEDIULUI SOCIAL/PUNCTULUI DE LUCRU] al comodatarului.
+
+### 3. Durata
+
+Comodatul se incheie pe perioada [DATA INCEPUT] - [DATA SFARSIT] / pe durata nedeterminata, cu posibilitatea denuntarii de catre comodant cu un preaviz de [NUMAR] zile.
+
+### 4. Destinatia spatiului
+
+Spatiul va fi folosit exclusiv pentru activitatea de [DESCRIERE ACTIVITATE], comodatarul obligandu-se sa nu schimbe destinatia fara acordul scris al comodantului.
+
+### 5. Cheltuieli
+
+Cheltuielile de intretinere curenta (utilitati, daca este cazul) sunt suportate de [COMODANT/COMODATAR, conform celor convenite].
+
+### 6. Obligatiile comodatarului
+
+Comodatarul se obliga sa foloseasca spatiul cu buna-credinta, sa respecte normele legale aplicabile activitatii desfasurate si sa restituie spatiul la incetarea contractului, in starea in care l-a primit, in afara de uzura normala.
+
+### 7. Incetarea contractului
+
+Contractul inceteaza la termen, prin acordul partilor sau prin denuntare unilaterala cu respectarea preavizului mentionat. La incetare, comodatarul se obliga sa efectueze demersurile necesare pentru schimbarea sediului social/punctului de lucru la Registrul Comertului.
+
+Semnaturi:
+
+Comodant: ____________________
+
+Comodatar (prin reprezentant): ____________________
+
+## Checklist
+
+- [ ] Adresa spatiului este completa si corespunde cu cea care va fi inregistrata la Registrul Comertului.
+- [ ] Durata contractului este clara; pentru sediu social, verifica daca Registrul Comertului solicita o durata minima.
+- [ ] Este clar cine suporta utilitatile si cheltuielile curente.
+- [ ] Reprezentantul firmei comodatare are calitatea de a semna (administrator/imputernicit).
+- [ ] Ai verificat documentele suplimentare cerute de Registrul Comertului pentru stabilirea sediului (de exemplu acordul vecinilor/asociatiei, daca spatiul este intr-un bloc de locuinte).
+` },
+      { id: "decizie-asociat-unic-srl", title: "Decizia asociatului unic al SRL", fields: ["NUME ASOCIAT UNIC", "CNP", "ADRESA", "DENUMIRE SOCIETATE", "SEDIU SOCIAL", "NUMAR ORC", "CUI", "AN", "ADRESA NOUA", "NUME", "SUMA", "DATA"], content: `# Decizia asociatului unic al SRL
+
+## Cand se foloseste
+
+Pentru a consemna o decizie luata de asociatul unic al unui SRL, in lipsa unei adunari generale (care nu este necesara cand exista un singur asociat). Folosita frecvent pentru aprobarea bilantului anual, schimbarea sediului, numirea/revocarea administratorului, distribuirea de dividende sau alte decizii care, la SRL cu mai multi asociati, ar necesita o hotarare AGA. Verifica actul constitutiv al societatii pentru eventuale cerinte specifice de forma.
+
+## Model
+
+Subsemnatul/Subsemnata [NUME ASOCIAT UNIC], CNP [CNP], domiciliat(a) in [ADRESA], in calitate de asociat unic al societatii [DENUMIRE SOCIETATE], cu sediul in [SEDIU SOCIAL], inregistrata la Registrul Comertului sub numarul [NUMAR ORC], avand CUI [CUI],
+
+in exercitarea atributiilor conferite de actul constitutiv si de legea societatilor, decid urmatoarele:
+
+### 1. Obiectul deciziei
+
+[DESCRIE DECIZIA - DE EXEMPLU: APROBAREA SITUATIILOR FINANCIARE ANUALE PENTRU EXERCITIUL [AN]; SCHIMBAREA SEDIULUI SOCIAL IN [ADRESA NOUA]; NUMIREA/REVOCAREA ADMINISTRATORULUI [NUME]; DISTRIBUIREA DE DIVIDENDE IN SUMA DE [SUMA]].
+
+### 2. Data de la care decizia produce efecte
+
+Prezenta decizie produce efecte de la data de [DATA] / de la data inregistrarii mentiunii corespunzatoare la Registrul Comertului, daca este necesara o astfel de inregistrare.
+
+### 3. Mandatarea pentru formalitati
+
+Imputernicesc pe [NUME PERSOANA/REPREZENTANT, DACA ESTE CAZUL] sa efectueze toate formalitatile necesare pentru inregistrarea prezentei decizii la Oficiul Registrului Comertului si la orice alta institutie relevanta.
+
+Data: [DATA]
+
+Semnatura asociat unic: ____________________
+
+## Checklist
+
+- [ ] Decizia este descrisa clar si concret, fara ambiguitati.
+- [ ] Ai verificat daca decizia necesita si inregistrare/mentiune la Registrul Comertului.
+- [ ] Pentru decizii care modifica actul constitutiv (sediu, obiect de activitate, capital social), verifica daca este necesara forma autentica sau atestarea de un avocat/notar.
+- [ ] Decizia este datata si semnata de asociatul unic.
+- [ ] Documentul este arhivat alaturi de celelalte hotarari ale societatii, pentru evidenta.
+` },
+      { id: "hotarare-aga-srl", title: "Hotararea adunarii generale a asociatilor (AGA) - SRL", fields: ["DATA", "DENUMIRE SOCIETATE", "SEDIU SOCIAL", "CUI", "NUMAR ORC", "NUME ASOCIAT 1", "PROCENT", "NUME ASOCIAT 2", "ADAUGA TOTI ASOCIATII PREZENTI", "AN", "PUNCT 2 - DE EXEMPLU NUMIREA/REVOCAREA ADMINISTRATORULUI", "ADAUGA TOATE PUNCTELE DE PE ORDINEA DE ZI", "DECIZIA ADOPTATA", "PROCENT/NUMAR VOTURI", "NUME PERSOANA/ADMINISTRATOR"], content: `# Hotararea adunarii generale a asociatilor (AGA) - SRL
+
+## Cand se foloseste
+
+Pentru a consemna o decizie luata de asociatii unui SRL cu mai multi asociati, in cadrul adunarii generale, conform actului constitutiv si legii societatilor. Folosita pentru aprobarea bilantului, modificari ale actului constitutiv, numirea/revocarea administratorilor, distribuirea dividendelor si alte decizii care necesita votul asociatilor. Verifica in actul constitutiv cvorumul si majoritatea necesare pentru tipul de decizie avut in vedere.
+
+## Model
+
+Incheiata astazi, [DATA], la sediul societatii [DENUMIRE SOCIETATE] din [SEDIU SOCIAL] / la adresa [ALTA LOCATIE, daca este cazul].
+
+### 1. Participanti
+
+Asociatii societatii [DENUMIRE SOCIETATE], CUI [CUI], inregistrata la Registrul Comertului sub numarul [NUMAR ORC], prezenti la adunare:
+
+- [NUME ASOCIAT 1], detinator a [PROCENT]% din capitalul social;
+- [NUME ASOCIAT 2], detinator a [PROCENT]% din capitalul social;
+- [ADAUGA TOTI ASOCIATII PREZENTI].
+
+Se constata ca este intrunit cvorumul necesar conform actului constitutiv pentru adoptarea hotararilor de mai jos.
+
+### 2. Ordinea de zi
+
+- [PUNCT 1 - DE EXEMPLU APROBAREA SITUATIILOR FINANCIARE PENTRU EXERCITIUL [AN]];
+- [PUNCT 2 - DE EXEMPLU NUMIREA/REVOCAREA ADMINISTRATORULUI];
+- [ADAUGA TOATE PUNCTELE DE PE ORDINEA DE ZI].
+
+### 3. Hotarari adoptate
+
+Cu privire la fiecare punct de pe ordinea de zi, asociatii hotarasc:
+
+- Punctul 1: [DECIZIA ADOPTATA], cu un vot de [PROCENT/NUMAR VOTURI] pentru, [PROCENT/NUMAR VOTURI] impotriva, [PROCENT/NUMAR VOTURI] abtineri;
+- Punctul 2: [DECIZIA ADOPTATA], cu votul de mai sus.
+
+### 4. Mandatarea pentru formalitati
+
+Asociatii imputernicesc pe [NUME PERSOANA/ADMINISTRATOR] sa efectueze toate formalitatile necesare pentru inregistrarea prezentei hotarari la Oficiul Registrului Comertului si la orice alta institutie relevanta.
+
+Semnaturi:
+
+[NUME ASOCIAT 1]: ____________________
+
+[NUME ASOCIAT 2]: ____________________
+
+## Checklist
+
+- [ ] Este verificat cvorumul si majoritatea necesara conform actului constitutiv, in functie de tipul deciziei.
+- [ ] Toti asociatii prezenti sunt mentionati, cu procentul detinut din capitalul social.
+- [ ] Fiecare punct de pe ordinea de zi are o decizie clara si rezultatul votului consemnat.
+- [ ] Pentru modificari ale actului constitutiv, ai verificat daca este necesara o forma speciala (act aditional, atestare de avocat, autentificare notariala).
+- [ ] Hotararea este semnata de toti asociatii prezenti / de presedintele adunarii, conform regulilor societatii.
+` },
+    ]
+  },
+  "gdpr-protectia-datelor": {
+    label: "GDPR & Date Personale",
+    icon: "🔒",
+    docs: [
+      { id: "cerere-acces-date-personale", title: "Cerere de acces la datele personale (Art. 15 GDPR)", fields: ["DENUMIRE OPERATOR DE DATE - COMPANIE/INSTITUTIE", "NUME COMPLET", "ADRESA", "EMAIL", "DATA"], content: `# Cerere de acces la datele personale (Art. 15 GDPR)
+
+## Cand se foloseste
+
+Pentru a solicita unei companii, institutii sau persoane care iti prelucreaza datele personale (operator de date) sa confirme ce date detine despre tine si sa iti furnizeze o copie a acestora, conform dreptului de acces prevazut de Regulamentul General privind Protectia Datelor (GDPR). Operatorul are, de regula, un termen de o luna pentru a raspunde, termen care poate fi prelungit in conditii specifice.
+
+## Model
+
+Catre: [DENUMIRE OPERATOR DE DATE - COMPANIE/INSTITUTIE], [ADRESA/EMAIL RESPONSABIL PROTECTIA DATELOR, DACA ESTE CUNOSCUT]
+
+Subsemnatul/Subsemnata [NUME COMPLET], CNP [CNP, doar daca este necesar pentru identificare], domiciliat(a) in [ADRESA], avand adresa de email [EMAIL] / numarul de client [NUMAR CLIENT/CONT, daca este relevant],
+
+in temeiul art. 15 din Regulamentul (UE) 2016/679 (GDPR), solicit prin prezenta:
+
+- Confirmarea daca prelucrati date cu caracter personal care ma privesc;
+- O copie a datelor personale pe care le detineti despre mine;
+- Informatii privind scopul prelucrarii, categoriile de date prelucrate, destinatarii sau categoriile de destinatari carora le-au fost ori le vor fi divulgate datele, perioada pentru care vor fi stocate datele sau criteriile utilizate pentru a determina aceasta perioada;
+- Informatii privind sursa datelor, daca acestea nu au fost colectate direct de la mine.
+
+Va rog sa imi comunicati raspunsul in termenul legal de o luna de la primirea prezentei cereri, la adresa de email [EMAIL] / la adresa postala [ADRESA].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Ai identificat corect operatorul de date (compania/institutia) si, daca este posibil, adresa responsabilului cu protectia datelor (DPO).
+- [ ] Cererea include suficiente date pentru ca operatorul sa te poata identifica fara a solicita date excesive.
+- [ ] Ai mentionat o adresa de contact clara pentru raspuns.
+- [ ] Ai notat data trimiterii cererii, pentru a putea urmari termenul de o luna.
+- [ ] Daca nu primesti raspuns sau raspunsul este nesatisfacator, ai posibilitatea de a depune o plangere la Autoritatea Nationala de Supraveghere a Prelucrarii Datelor cu Caracter Personal (ANSPDCP).
+` },
+      { id: "cerere-opozitie-prelucrare-date", title: "Cerere de opozitie la prelucrarea datelor personale (Art. 21 GDPR)", fields: ["DENUMIRE OPERATOR DE DATE", "NUME COMPLET", "ADRESA", "EMAIL", "DESCRIE SCOPUL - DE EXEMPLU MARKETING DIRECT/PROFILARE/ALT SCOP BAZAT PE INTERES LEGITIM", "DESCRIE MOTIVELE", "DATA"], content: `# Cerere de opozitie la prelucrarea datelor personale (Art. 21 GDPR)
+
+## Cand se foloseste
+
+Pentru a te opune prelucrarii datelor tale personale de catre o companie sau institutie, in special atunci cand prelucrarea se bazeaza pe interesul legitim al operatorului sau este facuta in scop de marketing direct. In cazul marketingului direct, dreptul de opozitie este absolut: operatorul trebuie sa opreasca prelucrarea in acest scop, fara a putea cere o justificare suplimentara.
+
+## Model
+
+Catre: [DENUMIRE OPERATOR DE DATE], [ADRESA/EMAIL RESPONSABIL PROTECTIA DATELOR, DACA ESTE CUNOSCUT]
+
+Subsemnatul/Subsemnata [NUME COMPLET], domiciliat(a) in [ADRESA], avand adresa de email [EMAIL] / numarul de client [NUMAR CLIENT/CONT, daca este relevant],
+
+in temeiul art. 21 din Regulamentul (UE) 2016/679 (GDPR), ma opun prelucrarii datelor mele cu caracter personal in scopul de [DESCRIE SCOPUL - DE EXEMPLU MARKETING DIRECT/PROFILARE/ALT SCOP BAZAT PE INTERES LEGITIM].
+
+[DACA OPOZITIA SE BAZEAZA PE SITUATIA PARTICULARA, NU PE MARKETING DIRECT, ADAUGA:] Motivele pentru care ma opun acestei prelucrari, legate de situatia mea particulara, sunt: [DESCRIE MOTIVELE].
+
+Va rog sa incetati prelucrarea datelor mele in scopul mentionat si sa imi confirmati acest lucru in scris.
+
+Va rog sa raspundeti in termenul legal de o luna de la primirea prezentei cereri, la adresa de email [EMAIL] / la adresa postala [ADRESA].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Ai precizat clar scopul prelucrarii caruia te opui (marketing direct, profilare, alt scop bazat pe interes legitim).
+- [ ] Pentru opozitia la marketing direct, nu este necesara o justificare suplimentara - dreptul este absolut.
+- [ ] Pentru alte tipuri de prelucrare, ai descris motivele legate de situatia ta particulara.
+- [ ] Ai mentionat o adresa de contact clara pentru raspuns.
+- [ ] Daca operatorul nu se conformeaza, poti depune o plangere la Autoritatea Nationala de Supraveghere a Prelucrarii Datelor cu Caracter Personal (ANSPDCP).
+` },
+      { id: "cerere-stergere-date-personale", title: "Cerere de stergere a datelor personale (dreptul de a fi uitat - Art. 17 GDPR)", fields: ["DENUMIRE OPERATOR DE DATE", "NUME COMPLET", "ADRESA", "EMAIL", "DATA"], content: `# Cerere de stergere a datelor personale (dreptul de a fi uitat - Art. 17 GDPR)
+
+## Cand se foloseste
+
+Pentru a solicita unei companii sau institutii sa stearga datele tale personale, atunci cand, de exemplu, nu mai sunt necesare scopului pentru care au fost colectate, ti-ai retras consimtamantul si nu exista alt temei legal pentru prelucrare, sau te opui prelucrarii si nu exista motive legitime care sa prevaleze. Dreptul la stergere nu este absolut: operatorul poate refuza in anumite cazuri (de exemplu obligatii legale de arhivare, exercitarea unor drepturi in instanta).
+
+## Model
+
+Catre: [DENUMIRE OPERATOR DE DATE], [ADRESA/EMAIL RESPONSABIL PROTECTIA DATELOR, DACA ESTE CUNOSCUT]
+
+Subsemnatul/Subsemnata [NUME COMPLET], domiciliat(a) in [ADRESA], avand adresa de email [EMAIL] / numarul de client [NUMAR CLIENT/CONT, daca este relevant],
+
+in temeiul art. 17 din Regulamentul (UE) 2016/679 (GDPR), solicit stergerea datelor mele cu caracter personal pe care le detineti, pentru urmatorul/urmatoarele motiv(e):
+
+- [ALEGE MOTIVUL - DE EXEMPLU: DATELE NU MAI SUNT NECESARE SCOPULUI INITIAL; IMI RETRAG CONSIMTAMANTUL PENTRU PRELUCRARE; MA OPUN PRELUCRARII IN SCOP DE MARKETING DIRECT; DATELE AU FOST PRELUCRATE ILEGAL].
+
+Va rog sa confirmati stergerea datelor si sa imi comunicati, daca este cazul, motivele pentru care anumite date nu pot fi sterse imediat (de exemplu obligatii legale de arhivare).
+
+Va rog sa raspundeti in termenul legal de o luna de la primirea prezentei cereri, la adresa de email [EMAIL] / la adresa postala [ADRESA].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Ai indicat un motiv concret pentru cererea de stergere, conform unuia dintre cazurile prevazute de GDPR.
+- [ ] Esti constient(a) ca dreptul la stergere poate fi limitat de obligatii legale ale operatorului (de exemplu arhivare fiscala/contabila).
+- [ ] Ai mentionat o adresa de contact clara pentru raspuns.
+- [ ] Daca cererea este respinsa nejustificat, poti depune o plangere la Autoritatea Nationala de Supraveghere a Prelucrarii Datelor cu Caracter Personal (ANSPDCP).
+` },
+    ]
+  },
+  "imobiliare": {
+    label: "Imobiliare",
+    icon: "🏠",
+    docs: [
+      { id: "acord-arvuna-imobil", title: "Acord privind arvuna la vanzarea unui imobil", fields: ["DATA", "LOCALITATE", "NUME", "CNP", "ADRESA", "ADRESA COMPLETA", "NUMAR CF/CADASTRAL", "SUMA", "MONEDA", "SUMA ARVUNA", "CHITANTA/ORDIN DE PLATA NR.", "ARVUNA CONFIRMATORIE / ARVUNA PENALIZATOARE - ALEGE VARIANTA", "TERMEN"], content: `# Acord privind arvuna la vanzarea unui imobil
+
+## Cand se foloseste
+
+Pentru a documenta separat suma platita cu titlu de arvuna (garantie) in cadrul unei negocieri de vanzare a unui imobil, atunci cand partile vor sa clarifice expres regimul juridic al sumei (arvuna confirmatorie sau arvuna penalizatoare) inainte de a semna un antecontract complet. Arvuna are, de regula, un regim diferit de simplul avans: in caz de neexecutare din culpa uneia dintre parti, consecintele pot fi mai severe (pierderea sumei sau restituirea dublului, dupa caz), de aceea termenii trebuie sa fie expliciti.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Proprietar (viitor vanzator): [NUME], CNP [CNP], domiciliat in [ADRESA].
+
+Potential cumparator: [NUME], CNP [CNP], domiciliat in [ADRESA].
+
+### 2. Imobilul vizat
+
+Imobilul situat in [ADRESA COMPLETA], identificat prin numarul cadastral/carte funciara [NUMAR CF/CADASTRAL], pentru care partile negociaza o vanzare la pretul orientativ de [SUMA] [MONEDA].
+
+### 3. Suma de arvuna
+
+Potentialul cumparator plateste proprietarului, la data semnarii prezentului acord, suma de [SUMA ARVUNA] [MONEDA], cu titlu de arvuna, confirmata prin [CHITANTA/ORDIN DE PLATA NR.].
+
+### 4. Natura arvunei
+
+Partile convin in mod expres ca suma mentionata are natura de [ARVUNA CONFIRMATORIE / ARVUNA PENALIZATOARE - ALEGE VARIANTA]:
+
+- Daca este arvuna confirmatorie: la finalizarea vanzarii, suma se considera avans din pret; daca vanzarea nu se realizeaza din motive neimputabile partilor, arvuna se restituie integral.
+- Daca este arvuna penalizatoare: daca potentialul cumparator renunta, pierde arvuna; daca proprietarul renunta, restituie dublul arvunei primite.
+
+### 5. Termenul pentru semnarea antecontractului/contractului
+
+Partile se obliga sa formalizeze intelegerea printr-un antecontract complet sau direct prin contract de vanzare notarial, in termen de [TERMEN], dupa verificarea documentatiei imobilului.
+
+Semnaturi:
+
+Proprietar: ____________________
+
+Potential cumparator: ____________________
+
+## Checklist
+
+- [ ] Este precizat clar tipul arvunei (confirmatorie sau penalizatoare), pentru ca efectele juridice difera semnificativ.
+- [ ] Suma si modalitatea de plata sunt documentate (chitanta, ordin de plata).
+- [ ] Imobilul este suficient identificat, chiar la acest stadiu preliminar.
+- [ ] Ai stabilit un termen clar pentru pasul urmator (antecontract sau contract notarial).
+- [ ] Ai luat in calcul consultarea unui notar sau avocat inainte de a plati sume mari cu titlu de arvuna.
+` },
+      { id: "antecontract-vanzare-cumparare-imobil", title: "Antecontract (promisiune bilaterala) de vanzare-cumparare imobil", fields: ["DATA", "LOCALITATE", "NUME", "CNP", "ADRESA", "CI/PASAPORT", "ADRESA COMPLETA A IMOBILULUI", "NUMAR CF/CADASTRAL", "LOCALITATE/UAT", "SUMA", "MONEDA", "SUMA AVANS", "CHITANTA/ORDIN DE PLATA NR.", "SUMA RESTANTA", "MODALITATE - NUMERAR/TRANSFER/CREDIT BANCAR", "DATA LIMITA"], content: `# Antecontract (promisiune bilaterala) de vanzare-cumparare imobil
+
+## Cand se foloseste
+
+Pentru a stabili angajamentul ferm al partilor de a vinde, respectiv de a cumpara un imobil, inainte de semnarea actului final la notar. Util cand cumparatorul are nevoie de timp pentru credit/finantare sau cand vanzatorul are nevoie de timp pentru a elibera imobilul ori a finaliza documentatia (carte funciara, certificate, intabulare). Transferul efectiv al proprietatii imobilelor se face doar prin act autentic notarial sau hotarare judecatoreasca, conform legii; acest antecontract NU transfera proprietatea.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Promitent-vanzator: [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT], casatorit/necasatorit, [REGIM MATRIMONIAL daca este relevant].
+
+Promitent-cumparator: [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+### 2. Obiectul promisiunii
+
+Promitentul-vanzator se obliga sa vanda, iar promitentul-cumparator se obliga sa cumpere imobilul situat in [ADRESA COMPLETA A IMOBILULUI], compus din [DESCRIERE - SUPRAFATA, CAMERE, ANEXE], identificat prin numarul cadastral/carte funciara [NUMAR CF/CADASTRAL], inscris in cartea funciara a [LOCALITATE/UAT].
+
+### 3. Pretul si avansul
+
+Pretul total convenit este de [SUMA] [MONEDA]. La semnarea prezentului antecontract, promitentul-cumparator plateste un avans de [SUMA AVANS] [MONEDA], suma confirmata prin [CHITANTA/ORDIN DE PLATA NR.]. Diferenta de pret, in suma de [SUMA RESTANTA] [MONEDA], se va plati la data autentificarii contractului de vanzare la notar, prin [MODALITATE - NUMERAR/TRANSFER/CREDIT BANCAR].
+
+### 4. Termenul pentru autentificarea notariala
+
+Partile se obliga sa se prezinte la notarul public pentru autentificarea contractului de vanzare-cumparare cel mai tarziu la data de [DATA LIMITA], cu posibilitatea prelungirii prin acordul scris al ambelor parti.
+
+### 5. Starea juridica a imobilului
+
+Promitentul-vanzator declara ca imobilul este liber de sarcini, ipoteci, sechestre sau litigii, cu exceptia: [MENTIONEAZA SARCINILE EXISTENTE, DACA EXISTA, ALTFEL "NU EXISTA SARCINI"]. Promitentul-vanzator se obliga sa obtina toate certificatele si documentele necesare (certificat fiscal, extras de carte funciara actualizat, certificat energetic, daca este cazul) pentru autentificare.
+
+### 6. Predarea imobilului
+
+Predarea posesiei imobilului se va face la data de [DATA], printr-un proces-verbal separat de predare-primire.
+
+### 7. Clauza de arvuna / neexecutare
+
+Daca promitentul-cumparator refuza nejustificat sa finalizeze vanzarea, acesta pierde avansul platit. Daca promitentul-vanzator refuza nejustificat sa finalizeze vanzarea, acesta restituie promitentului-cumparator avansul, [DUBLAT/CU PENALITATI DE..., DACA SE CONVINE ACEST LUCRU].
+
+### 8. Alte clauze
+
+[ADAUGA CLAUZE SPECIFICE - DE EXEMPLU PRIVIND CREDITUL BANCAR, EXPERTIZE, CONDITII SUSPENSIVE].
+
+Semnaturi:
+
+Promitent-vanzator: ____________________
+
+Promitent-cumparator: ____________________
+
+## Checklist
+
+- [ ] Imobilul este identificat exact (adresa, numar cadastral/carte funciara).
+- [ ] Pretul, avansul si modalitatea de plata a restului sunt clare.
+- [ ] Termenul pentru autentificarea notariala este stabilit si realist.
+- [ ] Ai cerut un extras de carte funciara actualizat pentru a verifica sarcinile/ipotecile existente.
+- [ ] Consecintele neexecutarii (pierderea/restituirea avansului) sunt clar definite.
+- [ ] Daca exista credit bancar implicat, antecontractul este conditionat corespunzator de aprobarea creditului.
+- [ ] Esti constient(a) ca proprietatea se transfera doar prin act autentic notarial, nu prin acest antecontract.
+` },
+      { id: "notificare-neexecutare-antecontract-imobil", title: "Notificare privind neexecutarea unui antecontract de vanzare-cumparare imobil", fields: ["NUME DESTINATAR", "ADRESA", "NUME EXPEDITOR", "DATA ANTECONTRACT", "ADRESA IMOBIL", "DATA TERMEN", "DESCRIE OBLIGATIA NEEXECUTATA", "NUMAR", "DATA"], content: `# Notificare privind neexecutarea unui antecontract de vanzare-cumparare imobil
+
+## Cand se foloseste
+
+Pentru a notifica formal cealalta parte a unui antecontract de vanzare-cumparare imobil ca nu a respectat un termen sau o obligatie asumata (de exemplu nu s-a prezentat la notar la termenul stabilit), inainte de a lua masuri suplimentare (cerere de executare, actiune in instanta sau retragere din promisiune). O notificare scrisa, transmisa intr-un mod care poate fi dovedit (scrisoare recomandata, email cu confirmare), este de regula un pas necesar inainte de orice actiune ulterioara.
+
+## Model
+
+Catre: [NUME DESTINATAR], domiciliat in [ADRESA]
+
+De la: [NUME EXPEDITOR], domiciliat in [ADRESA]
+
+Subsemnatul/Subsemnata [NUME EXPEDITOR], parte la antecontractul de vanzare-cumparare incheiat la data de [DATA ANTECONTRACT] cu privire la imobilul situat in [ADRESA IMOBIL], va notific prin prezenta urmatoarele:
+
+Conform antecontractului mentionat, partile s-au obligat ca, cel mai tarziu la data de [DATA TERMEN], sa se prezinte la notarul public pentru autentificarea contractului de vanzare-cumparare / sa execute obligatia de [DESCRIE OBLIGATIA NEEXECUTATA].
+
+Constat ca, la data prezentei notificari, aceasta obligatie nu a fost executata.
+
+Va pun in vedere sa va conformati obligatiilor asumate in termen de [NUMAR] zile de la primirea prezentei notificari, respectiv sa [DESCRIE CE SE SOLICITA - PREZENTARE LA NOTAR, RESTITUIRE AVANS, ALTELE].
+
+In caz contrar, imi rezerv dreptul de a [DESCRIE CONSECINTA - SOLICITA REZOLUTIUNEA ANTECONTRACTULUI, EXECUTAREA IN INSTANTA, RESTITUIREA SUMELOR PLATITE, DAUNE].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Sunt mentionate exact obligatia neexecutata si termenul initial convenit.
+- [ ] Este stabilit un termen rezonabil de remediere inainte de a lua alte masuri.
+- [ ] Notificarea este trimisa intr-un mod care poate fi dovedit (recomandata cu confirmare de primire, email cu confirmare de citire).
+- [ ] Ai pastrat o copie a notificarii si a dovezii de transmitere.
+- [ ] Ai verificat clauzele antecontractului privind consecintele neexecutarii (arvuna, penalitati), pentru a le mentiona corect.
+` },
+      { id: "promisiune-unilaterala-vanzare-imobil", title: "Promisiune unilaterala (optiune) de vanzare imobil", fields: ["DATA", "LOCALITATE", "NUME", "CNP", "ADRESA", "CI/PASAPORT", "ADRESA COMPLETA", "NUMAR CF/CADASTRAL", "SUMA", "MONEDA", "PERIOADA - DE EXEMPLU 60 DE ZILE", "NUMAR"], content: `# Promisiune unilaterala (optiune) de vanzare imobil
+
+## Cand se foloseste
+
+Pentru situatia in care doar proprietarul se obliga sa vanda un imobil unei persoane determinate, la un pret stabilit, intr-un termen fixat, fara ca beneficiarul optiunii sa se oblige inca sa cumpere. Beneficiarul plateste de regula o suma pentru a "rezerva" acest drept de optiune; daca nu cumpara in termen, suma poate fi retinuta de promitent, conform celor convenite.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Promitent (proprietar): [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+Beneficiarul optiunii: [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+### 2. Obiectul promisiunii
+
+Promitentul se obliga in mod ferm sa vanda beneficiarului, daca acesta isi exercita dreptul de optiune in termenul stabilit, imobilul situat in [ADRESA COMPLETA], identificat prin numarul cadastral/carte funciara [NUMAR CF/CADASTRAL].
+
+### 3. Pretul
+
+Pretul la care se va vinde imobilul, daca optiunea este exercitata, este de [SUMA] [MONEDA], pret care ramane fix pe durata termenului de optiune.
+
+### 4. Termenul de optiune
+
+Beneficiarul poate exercita dreptul de optiune (cumparare) in termen de [PERIOADA - DE EXEMPLU 60 DE ZILE] de la data prezentului acord, transmitand promitentului o notificare scrisa in acest sens.
+
+### 5. Suma platita pentru optiune
+
+Beneficiarul plateste promitentului, la semnare, suma de [SUMA] [MONEDA] cu titlu de pret al optiunii / avans din pretul final. Daca optiunea nu este exercitata in termen, aceasta suma [SE RETINE DE PROMITENT / SE RESTITUIE, conform celor convenite].
+
+### 6. Efectele exercitarii optiunii
+
+Daca beneficiarul exercita optiunea in termen, partile se obliga sa se prezinte la notar pentru autentificarea contractului de vanzare-cumparare in termen de [NUMAR] zile de la notificarea exercitarii optiunii.
+
+### 7. Neexercitarea optiunii
+
+Daca beneficiarul nu exercita optiunea in termenul stabilit, promisiunea isi pierde efectele si promitentul este liber sa vanda imobilul oricarei alte persoane.
+
+Semnaturi:
+
+Promitent: ____________________
+
+Beneficiarul optiunii: ____________________
+
+## Checklist
+
+- [ ] Imobilul este identificat exact si pretul este fixat clar.
+- [ ] Termenul de optiune este precis (data de inceput si de sfarsit).
+- [ ] Sunt clare consecintele neexercitarii optiunii asupra sumei platite.
+- [ ] Modalitatea de notificare a exercitarii optiunii (scris, recomandata, email) este stabilita.
+- [ ] Ai verificat situatia juridica a imobilului (sarcini, ipoteci) inainte de semnare.
+` },
+    ]
+  },
+  "imprumuturi-si-garantii": {
+    label: "Împrumuturi & Garanții",
+    icon: "💰",
+    docs: [
+      { id: "contract-de-fidejusiune-garantie-personala", title: "Contract de fidejusiune (garantie personala)", fields: ["DATA", "LOCALITATE", "NUME", "CNP/CUI", "ADRESA", "CNP", "CI/PASAPORT", "SUMA", "MONEDA", "DATA/CONDITII", "SUMA MAXIMA GARANTATA", "DATA INCEPUT", "DATA SFARSIT", "NUMAR"], content: `# Contract de fidejusiune (garantie personala)
+
+## Cand se foloseste
+
+Pentru ca o a treia persoana (fidejusor/garant) sa garanteze personal plata unei datorii a debitorului principal fata de creditor, in cazul in care debitorul nu plateste. Util in contracte de imprumut, chirie sau alte obligatii de plata, atunci cand creditorul solicita o garantie suplimentara. Fidejusorul raspunde cu propriul patrimoniu, in conditiile stabilite in contract.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Creditor: [NUME], CNP/CUI [CNP/CUI], domiciliat/cu sediul in [ADRESA].
+
+Debitor principal: [NUME], CNP [CNP], domiciliat in [ADRESA].
+
+Fidejusor (garant): [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+### 2. Obligatia garantata
+
+Fidejusorul garanteaza executarea obligatiei de plata asumate de debitorul principal fata de creditor, in baza [CONTRACTULUI DE REFERINTA - DE EXEMPLU CONTRACT DE IMPRUMUT/CHIRIE DIN DATA..., NUMAR DE REFERINTA], constand in suma de [SUMA] [MONEDA], cu scadenta la [DATA/CONDITII].
+
+### 3. Intinderea garantiei
+
+Fidejusorul se obliga sa plateasca creditorului, in cazul in care debitorul principal nu isi executa obligatia la termen, suma datorata de debitor, in limita de maximum [SUMA MAXIMA GARANTATA] [MONEDA], inclusiv, daca se convine, penalitatile si dobanzile aferente.
+
+### 4. Durata garantiei
+
+Prezenta garantie este valabila pe perioada [DATA INCEPUT] - [DATA SFARSIT] / pana la stingerea integrala a obligatiei garantate.
+
+### 5. Notificarea fidejusorului
+
+Creditorul se obliga sa notifice fidejusorul in cazul neexecutarii obligatiei de catre debitorul principal, in termen de [NUMAR] zile de la scadenta neonorata, inainte de a solicita plata de la fidejusor.
+
+### 6. Regresul fidejusorului
+
+Daca fidejusorul plateste in locul debitorului principal, acesta are drept de regres impotriva debitorului pentru recuperarea integrala a sumelor platite.
+
+### 7. Alte clauze
+
+[ADAUGA CLAUZE SPECIFICE, DACA EXISTA].
+
+Semnaturi:
+
+Creditor: ____________________
+
+Debitor principal: ____________________
+
+Fidejusor: ____________________
+
+## Checklist
+
+- [ ] Obligatia garantata este identificata precis (contract, suma, scadenta).
+- [ ] Este stabilita o limita maxima a garantiei (fidejusorul nu ar trebui sa garanteze nelimitat, fara o cifra clara).
+- [ ] Durata garantiei este precizata.
+- [ ] Este clar mecanismul de notificare a fidejusorului inainte de a i se cere plata.
+- [ ] Fidejusorul intelege ca raspunde cu propriul patrimoniu si are drept de regres impotriva debitorului.
+- [ ] Pentru garantii cu sume mari, considera autentificarea notariala.
+` },
+      { id: "contract-imprumut-bani-intre-persoane-fizice", title: "Contract de imprumut de bani intre persoane fizice", fields: ["DATA", "LOCALITATE", "NUME", "CNP", "ADRESA", "CI/PASAPORT", "SUMA", "MONEDA", "TRANSFER BANCAR/NUMERAR", "PROCENT", "MODALITATE DE CALCUL", "DATA SCADENTA", "NUMAR", "SUMA RATA", "ZI", "MODALITATE DE PLATA"], content: `# Contract de imprumut de bani intre persoane fizice
+
+## Cand se foloseste
+
+Pentru a documenta un imprumut de bani intre doua persoane fizice (de exemplu rude, prieteni), cu sau fara dobanda, stabilind clar suma, termenul de restituire si consecintele intarzierii. Un contract scris, chiar simplu, este esential pentru a putea dovedi imprumutul si pentru a putea cere in instanta restituirea, daca este necesar.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Imprumutator: [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+Imprumutat: [NUME], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+### 2. Obiectul contractului
+
+Imprumutatorul imprumuta imprumutatului suma de [SUMA] [MONEDA], pe care imprumutatul o primeste si se obliga sa o restituie in conditiile prezentului contract.
+
+### 3. Predarea sumei
+
+Suma se preda la data semnarii prezentului contract, prin [TRANSFER BANCAR/NUMERAR], fapt confirmat de ambele parti prin semnarea prezentului document / prin chitanta separata.
+
+### 4. Dobanda
+
+Imprumutul este [CU TITLU GRATUIT, FARA DOBANDA / CU DOBANDA DE [PROCENT]% PE AN], calculata [MODALITATE DE CALCUL], platibila [LUNAR/LA SCADENTA, ALATURI DE SUMA IMPRUMUTATA].
+
+### 5. Termenul de restituire
+
+Imprumutatul se obliga sa restituie suma integral cel mai tarziu la data de [DATA SCADENTA] / in [NUMAR] rate lunare de [SUMA RATA] [MONEDA], cu scadenta in ziua [ZI] a fiecarei luni, prin [MODALITATE DE PLATA].
+
+### 6. Intarzierea la plata
+
+In cazul intarzierii platii, imprumutatul datoreaza penalitati de [PROCENT]% pentru fiecare zi de intarziere / dobanda legala penalizatoare, conform legii, calculata de la data scadentei si pana la data platii efective.
+
+### 7. Rambursarea anticipata
+
+Imprumutatul poate restitui suma imprumutata, integral sau partial, inainte de termen, fara penalitati suplimentare, daca partile nu convin altfel.
+
+### 8. Garantii (daca este cazul)
+
+[DESCRIE EVENTUALE GARANTII - GIRANT, BUN ADUS IN GARANTIE, ALTELE, SAU MENTIONEAZA "NU SE CONSTITUIE GARANTII"].
+
+### 9. Litigii
+
+Eventualele neintelegeri se vor solutiona pe cale amiabila; in caz contrar, partile se vor adresa instantelor competente.
+
+Semnaturi:
+
+Imprumutator: ____________________
+
+Imprumutat: ____________________
+
+## Checklist
+
+- [ ] Suma imprumutata si moneda sunt clar mentionate, in cifre si, ideal, in litere.
+- [ ] Este clar daca exista dobanda si cum se calculeaza.
+- [ ] Termenul de restituire (data fixa sau rate) este precis.
+- [ ] Consecintele intarzierii la plata sunt stabilite.
+- [ ] Modalitatea de predare a sumei poate fi dovedita (extras bancar, chitanta).
+- [ ] Pentru sume mari, ai luat in calcul autentificarea notariala, care permite si obtinerea unui titlu executoriu mai simplu.
+` },
+      { id: "recunoastere-de-datorie", title: "Recunoastere de datorie", fields: ["NUME DEBITOR", "CNP", "ADRESA", "CI/PASAPORT SERIE NUMAR", "NUME CREDITOR", "SUMA", "MONEDA", "DATA SCADENTA", "DATA"], content: `# Recunoastere de datorie
+
+## Cand se foloseste
+
+Pentru a documenta, ulterior, o datorie deja existenta intre doua persoane (de exemplu un imprumut acordat verbal, o suma neplatita pentru un bun sau serviciu), atunci cand nu a existat un contract scris la momentul respectiv. Recunoasterea de datorie semnata de debitor poate ajuta la dovedirea datoriei si poate sta la baza unei cereri de plata sau a unei actiuni in instanta.
+
+## Model
+
+Subsemnatul/Subsemnata [NUME DEBITOR], CNP [CNP], domiciliat(a) in [ADRESA], identificat(a) cu [CI/PASAPORT SERIE NUMAR],
+
+declar prin prezenta ca datorez lui [NUME CREDITOR], CNP [CNP], domiciliat in [ADRESA], suma de [SUMA] [MONEDA], reprezentand [DESCRIE ORIGINEA DATORIEI - DE EXEMPLU IMPRUMUT ACORDAT LA DATA DE..., CONTRAVALOARE BUNURI/SERVICII NEPLATITE, ALTELE].
+
+Recunosc aceasta datorie ca fiind certa, lichida si exigibila/care va deveni exigibila la data de [DATA SCADENTA].
+
+Ma oblig sa restitui suma mentionata mai sus astfel: [DESCRIE MODALITATEA - INTEGRAL LA DATA DE..., IN RATE DE...].
+
+Sunt de acord ca, in cazul neplatii la termenul mentionat, creditorul poate folosi prezenta recunoastere ca dovada a datoriei in orice demers, inclusiv in instanta.
+
+Data: [DATA]
+
+Semnatura debitor: ____________________
+
+## Checklist
+
+- [ ] Suma si originea datoriei sunt descrise clar si concret.
+- [ ] Termenul de plata (data sau rate) este precizat.
+- [ ] Documentul este semnat de debitor, in original.
+- [ ] Pastrezi si dovezi suplimentare ale datoriei (mesaje, transferuri, facturi), daca exista.
+- [ ] Pentru sume mari, considera autentificarea notariala a recunoasterii de datorie pentru o forta probatorie mai puternica.
+` },
+    ]
+  },
+  "locuinta": {
+    label: "Locuință",
+    icon: "🏡",
+    docs: [
+      { id: "acord-plata-utilitati", title: "Acord privind plata utilitatilor", fields: ["DATA", "NUME PROPRIETAR", "NUME CHIRIAS", "ADRESA", "PERIOADA", "ZI", "EMAIL/WHATSAPP/ALT CANAL", "INDEX"], content: `# Acord privind plata utilitatilor
+
+Incheiat astazi, [DATA], intre [NUME PROPRIETAR] si [NUME CHIRIAS], cu privire la imobilul situat in [ADRESA].
+
+Partile convin urmatoarele:
+
+- chiriasul suporta utilitatile aferente perioadei [PERIOADA];
+- plata se face pana la data de [ZI] a fiecarei luni;
+- dovada platii se transmite prin [EMAIL/WHATSAPP/ALT CANAL];
+- regularizarile se suporta de partea care a folosit efectiv imobilul in perioada aferenta consumului.
+
+Indexuri initiale:
+
+- electricitate: [INDEX];
+- gaze: [INDEX];
+- apa: [INDEX].
+
+Proprietar: ____________________
+
+Chirias: ____________________
+
+` },
+      { id: "act-aditional-prelungire-inchiriere", title: "Act aditional prelungire contract inchiriere", fields: ["DATA", "NUME PROPRIETAR", "NUME CHIRIAS", "NUMAR", "DATA NOUA", "SUMA", "MONEDA"], content: `# Act aditional prelungire contract inchiriere
+
+Incheiat astazi, [DATA], intre [NUME PROPRIETAR] si [NUME CHIRIAS], parti ale contractului de inchiriere nr. [NUMAR] din [DATA].
+
+Partile convin prelungirea duratei contractului pana la data de [DATA NOUA].
+
+Chiria ramane [SUMA] [MONEDA] pe luna / se modifica la [SUMA] [MONEDA] pe luna, incepand cu data de [DATA].
+
+Celelalte clauze ale contractului raman neschimbate.
+
+Proprietar: ____________________
+
+Chirias: ____________________
+
+## Checklist
+
+- [ ] Contractul initial este identificat clar.
+- [ ] Noua durata este precisa.
+- [ ] Chiria si garantia sunt confirmate.
+
+` },
+      { id: "cerere-restituire-garantie-inchiriere", title: "Cerere restituire garantie inchiriere", fields: ["NUME PROPRIETAR", "NUME CHIRIAS", "ADRESA", "SUMA", "MONEDA", "DATA", "NUMAR", "DATA PREDARE", "IBAN", "MOD PLATA"], content: `# Cerere restituire garantie inchiriere
+
+Catre: [NUME PROPRIETAR]
+
+Subsemnatul/Subsemnata [NUME CHIRIAS], fost chirias al imobilului situat in [ADRESA], solicit restituirea garantiei in valoare de [SUMA] [MONEDA], achitata la data de [DATA], conform contractului de inchiriere nr. [NUMAR].
+
+Imobilul a fost predat la data de [DATA PREDARE], conform procesului-verbal anexat.
+
+Va rog sa efectuati plata in contul [IBAN] sau prin [MOD PLATA], pana la data de [DATA].
+
+Anexez:
+
+- copie contract;
+- dovada achitarii garantiei;
+- proces-verbal de predare-primire;
+- dovada platii utilitatilor, daca exista.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "contract-comodat-locuinta", title: "Contract de comodat locuinta", fields: ["DATA", "LOCALITATE", "NUME", "CNP", "ADRESA", "ADRESA COMPLETA", "SCOP", "PERIOADA"], content: `# Contract de comodat locuinta
+
+## Cand se foloseste
+
+Pentru transmiterea folosintei gratuite a unei locuinte sau camere. Nu se foloseste cand exista chirie sau alta plata mascata.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+Comodant: [NUME], CNP [CNP], domiciliat in [ADRESA].
+
+Comodatar: [NUME], CNP [CNP], domiciliat in [ADRESA].
+
+Comodantul da spre folosinta gratuita comodatarului imobilul situat in [ADRESA COMPLETA], pentru scopul [SCOP], pe perioada [PERIOADA].
+
+Comodatarul se obliga sa foloseasca imobilul cu diligenta, sa suporte cheltuielile de folosinta curenta, sa nu transmita folosinta catre terti fara acord scris si sa restituie imobilul la termen.
+
+La predare se incheie proces-verbal cu starea imobilului, indexuri, chei si bunuri.
+
+Litigiile se solutioneaza pe cale amiabila, iar in lipsa acordului de instanta competenta.
+
+Semnaturi:
+
+Comodant: ____________________
+
+Comodatar: ____________________
+
+## Checklist
+
+- [ ] Este clar ca folosinta este gratuita.
+- [ ] Sunt trecute perioada si scopul.
+- [ ] Exista proces-verbal de predare.
+- [ ] Sunt verificate actele de proprietate sau dreptul de folosinta.
+
+` },
+      { id: "contract-inchiriere-locuinta", title: "Contract de inchiriere locuinta", fields: ["DATA", "LOCALITATE", "NUME PROPRIETAR", "CNP", "ADRESA", "CI/PASAPORT", "NUME CHIRIAS", "ADRESA COMPLETA", "DESCRIERE", "ANEXE/DEPENDINTE", "DATA INCEPUT", "DATA SFARSIT", "SUMA", "MONEDA", "ZI", "TRANSFER/CASH", "NUMAR"], content: `# Contract de inchiriere locuinta
+
+## Cand se foloseste
+
+Pentru inchirierea unei locuinte intre proprietar si chirias. Verifica obligatiile fiscale si forma necesara la data semnarii.
+
+## Model
+
+Incheiat astazi, [DATA], in [LOCALITATE].
+
+### 1. Partile
+
+Proprietar: [NUME PROPRIETAR], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+Chirias: [NUME CHIRIAS], CNP [CNP], domiciliat in [ADRESA], identificat cu [CI/PASAPORT].
+
+### 2. Obiectul contractului
+
+Proprietarul inchiriaza chiriasului locuinta situata in [ADRESA COMPLETA], compusa din [DESCRIERE], impreuna cu dreptul de folosinta asupra [ANEXE/DEPENDINTE].
+
+### 3. Durata
+
+Contractul se incheie pe perioada [DATA INCEPUT] - [DATA SFARSIT]. Prelungirea se poate face prin act aditional semnat de parti.
+
+### 4. Chiria si garantia
+
+Chiria este de [SUMA] [MONEDA] pe luna si se plateste pana la data de [ZI] a fiecarei luni prin [TRANSFER/CASH].
+
+Garantia este de [SUMA] [MONEDA] si acopera eventuale datorii, daune sau obligatii neindeplinite, conform procesului-verbal de predare-primire.
+
+### 5. Cheltuieli
+
+Chiriasul suporta utilitatile si cheltuielile de intretinere aferente perioadei de folosinta, daca partile nu convin altfel in scris.
+
+### 6. Obligatiile proprietarului
+
+Proprietarul preda locuinta in stare corespunzatoare folosintei, asigura linistita folosinta si remediaza problemele care tin de structura sau instalatii, daca nu au fost cauzate de chirias.
+
+### 7. Obligatiile chiriasului
+
+Chiriasul foloseste locuinta cu prudenta, plateste chiria si utilitatile la termen, nu subinchiriaza fara acord scris si restituie locuinta la incetarea contractului.
+
+### 8. Incetarea contractului
+
+Contractul inceteaza la termen, prin acordul partilor sau prin notificare scrisa cu [NUMAR] zile inainte, in conditiile agreate de parti.
+
+### 9. Anexe
+
+- Proces-verbal de predare-primire;
+- Copii acte identitate;
+- Inventar bunuri;
+- Fotografii la predare, daca exista.
+
+Semnaturi:
+
+Proprietar: ____________________
+
+Chirias: ____________________
+
+## Checklist
+
+- [ ] Adresa este completa.
+- [ ] Sumele si termenele sunt clare.
+- [ ] Exista inventar si poze la predare.
+- [ ] Este verificata obligatia de inregistrare fiscala.
+- [ ] Clauzele de incetare sunt clare.
+
+` },
+      { id: "inventar-bunuri-locuinta", title: "Inventar bunuri locuinta", fields: ["NUMAR", "DATA", "ADRESA", "BUN", "CANTITATE", "STARE", "OBSERVATII"], content: `# Inventar bunuri locuinta
+
+Anexa la contractul nr. [NUMAR] din [DATA], pentru imobilul situat in [ADRESA].
+
+| Nr. | Bun | Cantitate | Stare | Observatii |
+| --- | --- | --- | --- | --- |
+| 1 | [BUN] | [CANTITATE] | [STARE] | [OBSERVATII] |
+
+Partile confirma ca bunurile de mai sus au fost predate la data de [DATA].
+
+Proprietar: ____________________
+
+Chirias/Primitor: ____________________
+
+## Recomandare
+
+Adauga fotografii datate si pastreaza dovada transmiterii lor catre cealalta parte.
+
+` },
+      { id: "notificare-majorare-chirie", title: "Notificare majorare chirie", fields: ["NUME CHIRIAS", "NUME PROPRIETAR", "ADRESA", "SUMA VECHE", "MONEDA", "SUMA NOUA", "DATA", "CLAUZA CONTRACTUALA/ACORDUL PARTILOR"], content: `# Notificare majorare chirie
+
+Catre: [NUME CHIRIAS]
+
+Subsemnatul/Subsemnata [NUME PROPRIETAR], in calitate de proprietar/locator, va notific propunerea de modificare a chiriei pentru imobilul situat in [ADRESA], de la [SUMA VECHE] [MONEDA] la [SUMA NOUA] [MONEDA], incepand cu data de [DATA].
+
+Modificarea se face conform [CLAUZA CONTRACTUALA/ACORDUL PARTILOR].
+
+Va rog sa imi comunicati acordul sau observatiile dumneavoastra pana la data de [DATA].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Atentie
+
+Daca majorarea nu este prevazuta in contract, este recomandat acordul scris al ambelor parti prin act aditional.
+
+` },
+      { id: "notificare-reziliere-inchiriere-chirias", title: "Notificare reziliere inchiriere - chirias", fields: ["NUME PROPRIETAR", "NUME CHIRIAS", "NUMAR", "DATA", "ADRESA", "DATA INCETARE", "DATA PREDARE"], content: `# Notificare reziliere inchiriere - chirias
+
+Catre: [NUME PROPRIETAR]
+
+Subsemnatul/Subsemnata [NUME CHIRIAS], in calitate de chirias, va notific intentia de incetare a contractului de inchiriere nr. [NUMAR] din [DATA], pentru imobilul situat in [ADRESA], incepand cu data de [DATA INCETARE].
+
+Voi preda imobilul la data de [DATA PREDARE], impreuna cu cheile si bunurile primite, prin proces-verbal.
+
+Va rog sa stabilim modalitatea de verificare a imobilului si restituire a garantiei.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Termenul de preaviz respecta contractul.
+- [ ] Exista dovada transmiterii notificarii.
+- [ ] Utilitatile sunt pregatite pentru regularizare.
+
+` },
+      { id: "notificare-reziliere-inchiriere-proprietar", title: "Notificare reziliere inchiriere - proprietar", fields: ["NUME CHIRIAS", "NUME PROPRIETAR", "NUMAR", "DATA", "ADRESA", "DATA INCETARE", "MOTIV"], content: `# Notificare reziliere inchiriere - proprietar
+
+## Cand se foloseste
+
+Pentru notificarea chiriasului privind incetarea contractului de inchiriere, conform contractului si legii aplicabile.
+
+Catre: [NUME CHIRIAS]
+
+Subsemnatul/Subsemnata [NUME PROPRIETAR], in calitate de proprietar/locator, va notific incetarea contractului de inchiriere nr. [NUMAR] din [DATA], privind imobilul situat in [ADRESA], incepand cu data de [DATA INCETARE].
+
+Motivul notificarii: [MOTIV].
+
+Va rog sa predati imobilul pana la data mentionata, impreuna cu cheile, accesoriile si bunurile primite, prin proces-verbal de predare-primire.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Termenul de notificare respecta contractul.
+- [ ] Motivul este formulat clar.
+- [ ] Exista dovada comunicarii.
+- [ ] Este pregatit procesul-verbal de predare.
+
+` },
+      { id: "proces-verbal-predare-primire", title: "Proces-verbal de predare-primire locuinta", fields: ["DATA", "NUME PREDATOR", "NUME PRIMITOR", "ADRESA", "DESCRIERE", "INDEX", "NUMAR", "ALTE ACCESORII", "BUN", "STARE", "OBSERVATII"], content: `# Proces-verbal de predare-primire locuinta
+
+Incheiat astazi, [DATA], intre [NUME PREDATOR] si [NUME PRIMITOR], pentru locuinta situata in [ADRESA].
+
+## Stare generala
+
+Locuinta se preda in urmatoarea stare: [DESCRIERE].
+
+## Indexuri
+
+- Energie electrica: [INDEX]
+- Gaze: [INDEX]
+- Apa rece: [INDEX]
+- Apa calda: [INDEX]
+- Alte contoare: [INDEX]
+
+## Chei si accesorii
+
+- [NUMAR] chei acces;
+- [NUMAR] chei cutie postala;
+- [ALTE ACCESORII].
+
+## Bunuri predate
+
+| Bun | Stare | Observatii |
+| --- | --- | --- |
+| [BUN] | [STARE] | [OBSERVATII] |
+
+Predator: ____________________
+
+Primitor: ____________________
+
+` },
+    ]
+  },
+  "munca": {
+    label: "Muncă",
+    icon: "👔",
+    docs: [
+      { id: "cerere-adeverinta-salariat", title: "Cerere adeverinta salariat", fields: ["DENUMIRE ANGAJATOR", "NUME", "CNP", "FUNCTIE", "SCOP", "DATA", "FIZIC/ELECTRONIC"], content: `# Cerere adeverinta salariat
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], CNP [CNP], angajat(a) in functia de [FUNCTIE], va rog sa imi eliberati o adeverinta care sa ateste calitatea de salariat si, dupa caz, veniturile realizate, necesara pentru [SCOP].
+
+Solicit ca adeverinta sa fie eliberata pana la data de [DATA], in format [FIZIC/ELECTRONIC].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-concediu-fara-plata", title: "Cerere concediu fara plata", fields: ["DENUMIRE ANGAJATOR", "NUME", "FUNCTIE", "DATA INCEPUT", "DATA SFARSIT", "MOTIV", "DATA"], content: `# Cerere concediu fara plata
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], angajat(a) in functia de [FUNCTIE], solicit acordarea concediului fara plata in perioada [DATA INCEPUT] - [DATA SFARSIT], pentru [MOTIV].
+
+Inteleg ca aprobarea se face conform legii, contractului si regulilor interne aplicabile.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-concediu-odihna", title: "Cerere concediu de odihna", fields: ["DENUMIRE ANGAJATOR", "NUME", "FUNCTIE", "DEPARTAMENT", "DATA INCEPUT", "DATA SFARSIT", "NUMAR", "TELEFON/EMAIL", "DATA"], content: `# Cerere concediu de odihna
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], angajat(a) in functia de [FUNCTIE], in cadrul [DEPARTAMENT], va rog sa aprobati efectuarea concediului de odihna in perioada [DATA INCEPUT] - [DATA SFARSIT], reprezentand [NUMAR] zile lucratoare.
+
+Date de contact pe perioada concediului, daca este necesar: [TELEFON/EMAIL].
+
+Data: [DATA]
+
+Semnatura salariat: ____________________
+
+Aprobat,
+
+Reprezentant angajator: ____________________
+
+## Checklist
+
+- [ ] Perioada corespunde planificarii interne.
+- [ ] Numarul de zile este corect.
+- [ ] Cererea este depusa prin canalul intern agreat.
+
+` },
+      { id: "cerere-eliberare-copie-contract-munca", title: "Cerere eliberare copie contract individual de munca", fields: ["DENUMIRE ANGAJATOR", "NUME", "CNP", "FUNCTIE", "EMAIL/RIDICARE PERSONALA", "DATA"], content: `# Cerere eliberare copie contract individual de munca
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], CNP [CNP], angajat(a) / fost(a) angajat(a) in functia de [FUNCTIE], solicit eliberarea unei copii a contractului individual de munca si a actelor aditionale aferente.
+
+Solicit transmiterea documentelor prin [EMAIL/RIDICARE PERSONALA], pana la data de [DATA].
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-incetare-contract-munca-acord", title: "Cerere incetare contract individual de munca prin acord", fields: ["DENUMIRE ANGAJATOR", "NUME", "FUNCTIE", "NUMAR", "DATA", "DATA INCETARE"], content: `# Cerere incetare contract individual de munca prin acord
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], angajat(a) in functia de [FUNCTIE], solicit incetarea contractului individual de munca nr. [NUMAR] din [DATA], prin acordul partilor, incepand cu data de [DATA INCETARE].
+
+Va rog sa imi comunicati raspunsul in scris.
+
+Data: [DATA]
+
+Semnatura salariat: ____________________
+
+## Atentie
+
+Incetarea prin acord necesita acordul ambelor parti. Daca angajatorul nu accepta, verifica procedura aplicabila pentru demisie sau alte forme de incetare.
+
+` },
+      { id: "cerere-program-flexibil", title: "Cerere program flexibil", fields: ["DENUMIRE ANGAJATOR", "NUME", "FUNCTIE", "PERIOADA", "INTERVAL", "MOTIV", "DATA"], content: `# Cerere program flexibil
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], angajat(a) in functia de [FUNCTIE], solicit aprobarea unui program flexibil in perioada [PERIOADA], dupa urmatorul interval propus: [INTERVAL].
+
+Motivul solicitarii: [MOTIV].
+
+Ma oblig sa respect obiectivele, termenele si procedurile interne aplicabile.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "cerere-telemunca", title: "Cerere desfasurare activitate in regim de telemunca", fields: ["DENUMIRE ANGAJATOR", "NUME", "FUNCTIE", "PERIOADA", "ADRESA/LOCALITATE", "MOTIV", "DATA"], content: `# Cerere desfasurare activitate in regim de telemunca
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], angajat(a) in functia de [FUNCTIE], solicit aprobarea desfasurarii activitatii in regim de telemunca pentru perioada [PERIOADA], din locatia [ADRESA/LOCALITATE].
+
+Motivul solicitarii: [MOTIV].
+
+Declar ca pot asigura conditiile necesare pentru desfasurarea activitatii si respectarea politicilor interne.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Exista acordul angajatorului.
+- [ ] Sunt clare zilele si locatia.
+- [ ] Sunt respectate politicile de securitate a datelor.
+
+` },
+      { id: "demisie-cu-preaviz", title: "Demisie cu preaviz", fields: ["DENUMIRE ANGAJATOR", "NUME", "FUNCTIE", "DATA"], content: `# Demisie cu preaviz
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], angajat(a) in functia de [FUNCTIE], va aduc la cunostinta demisia mea din functia detinuta, cu respectarea termenului de preaviz aplicabil.
+
+Solicit ca ultima zi de lucru sa fie [DATA], daca termenul de preaviz se calculeaza conform contractului individual de munca si regulamentelor aplicabile.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Termenul de preaviz este verificat in contract.
+- [ ] Cererea are numar de inregistrare sau dovada transmiterii.
+- [ ] Predarea echipamentelor este planificata.
+
+` },
+      { id: "demisie-fara-preaviz", title: "Demisie fara preaviz", fields: ["DENUMIRE ANGAJATOR", "NUME", "FUNCTIE", "NUMAR", "DATA", "MOTIV"], content: `# Demisie fara preaviz
+
+## Atentie
+
+Foloseste acest model doar dupa ce verifici daca exista temei legal sau contractual pentru incetare fara preaviz. In caz de conflict, cere ajutor specializat.
+
+Catre: [DENUMIRE ANGAJATOR]
+
+Subsemnatul/Subsemnata [NUME], angajat(a) in functia de [FUNCTIE], va notific incetarea contractului individual de munca nr. [NUMAR] din [DATA], prin demisie fara preaviz, incepand cu data de [DATA].
+
+Motivul invocat: [MOTIV].
+
+Va rog sa efectuati formalitatile de incetare si sa imi comunicati documentele aferente.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "foaie-pontaj-simpla", title: "Foaie de pontaj simpla", fields: ["LUNA", "NUME", "FUNCTIE", "DATA", "ORA", "DURATA", "ORE", "OBSERVATII", "TOTAL"], content: `# Foaie de pontaj simpla
+
+Luna: [LUNA]
+
+Angajat: [NUME]
+
+Functie: [FUNCTIE]
+
+| Data | Ora inceput | Ora sfarsit | Pauza | Ore lucrate | Observatii |
+| --- | --- | --- | --- | --- | --- |
+| [DATA] | [ORA] | [ORA] | [DURATA] | [ORE] | [OBSERVATII] |
+
+Total ore: [TOTAL]
+
+Angajat: ____________________
+
+Responsabil: ____________________
+
+` },
+      { id: "sesizare-itm", title: "Sesizare catre ITM", fields: ["JUDET", "NUME", "ADRESA", "EMAIL", "TELEFON", "DENUMIRE", "CUI", "EMAIL/ADRESA", "DOCUMENT 1", "DOCUMENT 2", "DATA"], content: `# Sesizare catre ITM
+
+## Atentie
+
+Verifica intai canalul oficial al inspectoratului teritorial de munca relevant. Nu include date personale ale altor persoane fara motiv.
+
+Catre: Inspectoratul Teritorial de Munca [JUDET]
+
+Subsemnatul/Subsemnata [NUME], domiciliat(a) in [ADRESA], e-mail [EMAIL], telefon [TELEFON], formulez prezenta sesizare privind angajatorul [DENUMIRE], CUI [CUI], cu sediul in [ADRESA].
+
+Descrierea situatiei:
+
+[DESCRIERE FAPTE, DATE, PERSOANE IMPLICATE, DOCUMENTE]
+
+Solicit verificarea situatiei si comunicarea raspunsului la [EMAIL/ADRESA].
+
+Anexez:
+
+- [DOCUMENT 1]
+- [DOCUMENT 2]
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+    ]
+  },
+  "succesiuni": {
+    label: "Succesiuni",
+    icon: "⚖️",
+    docs: [
+      { id: "acord-iesire-din-indiviziune", title: "Acord de iesire din indiviziune (partaj voluntar) intre mostenitori", fields: ["DATA", "COPROPRIETAR 1 - NUME", "CNP", "ADRESA", "COPROPRIETAR 2 - NUME", "ADAUGA RANDURI PENTRU FIECARE COPROPRIETAR", "NUME DEFUNCT", "DATA DECESULUI", "BUN 1 - DESCRIERE COMPLETA SI VALOARE ESTIMATA", "BUN 2 - DESCRIERE COMPLETA SI VALOARE ESTIMATA", "ADAUGA TOATE BUNURILE RELEVANTE", "COPROPRIETAR 1", "BUNURI ATRIBUITE", "COPROPRIETAR 2", "ADAUGA PENTRU FIECARE PARTE", "COPROPRIETAR X", "COPROPRIETAR Y", "SUMA", "MONEDA", "TERMEN", "MODALITATE DE PLATA"], content: `# Acord de iesire din indiviziune (partaj voluntar) intre mostenitori
+
+## Cand se foloseste
+
+Pentru impartirea bunurilor ramase in coproprietate (indiviziune) intre mostenitori, prin buna invoiala, fara proces in instanta. Daca masa succesorala include imobile, partajul voluntar trebuie incheiat, de regula, prin act notarial pentru a fi valabil si pentru a permite intabularea in cartea funciara. Acest model este un punct de pornire pentru negociere, nu un act notarial final.
+
+## Model
+
+Incheiat astazi, [DATA], intre:
+
+### 1. Partile
+
+[COPROPRIETAR 1 - NUME], CNP [CNP], domiciliat in [ADRESA];
+
+[COPROPRIETAR 2 - NUME], CNP [CNP], domiciliat in [ADRESA];
+
+[ADAUGA RANDURI PENTRU FIECARE COPROPRIETAR]
+
+denumiti in continuare "Partile", in calitate de mostenitori ai defunctului/defunctei [NUME DEFUNCT], decedat(a) la data de [DATA DECESULUI], aflati in indiviziune asupra bunurilor descrise mai jos.
+
+### 2. Bunurile aflate in indiviziune
+
+Partile recunosc ca se afla in indiviziune asupra urmatoarelor bunuri:
+
+- [BUN 1 - DESCRIERE COMPLETA SI VALOARE ESTIMATA];
+- [BUN 2 - DESCRIERE COMPLETA SI VALOARE ESTIMATA];
+- [ADAUGA TOATE BUNURILE RELEVANTE].
+
+### 3. Modul de impartire
+
+Partile convin de comun acord urmatorul mod de impartire a bunurilor mentionate:
+
+- [COPROPRIETAR 1] primeste in exclusivitate: [BUNURI ATRIBUITE];
+- [COPROPRIETAR 2] primeste in exclusivitate: [BUNURI ATRIBUITE];
+- [ADAUGA PENTRU FIECARE PARTE].
+
+### 4. Sulte si compensatii
+
+Pentru echilibrarea valorilor atribuite, [COPROPRIETAR X] va plati catre [COPROPRIETAR Y] suma de [SUMA] [MONEDA], cu titlu de sulta, in termen de [TERMEN], prin [MODALITATE DE PLATA].
+
+### 5. Efectele partajului
+
+Partile declara ca, dupa executarea prezentului acord, nu mai au niciun fel de pretentii unele fata de celelalte cu privire la bunurile mentionate, sub rezerva formalizarii partajului prin act notarial, in cazul imobilelor.
+
+### 6. Mentiuni finale
+
+Prezentul acord constituie un cadru de negociere intre parti si nu produce, prin el insusi, transfer de proprietate asupra imobilelor. Transferul efectiv al imobilelor se va realiza prin act de partaj notarial sau hotarare judecatoreasca, conform legii.
+
+Semnaturi:
+
+[COPROPRIETAR 1]: ____________________
+
+[COPROPRIETAR 2]: ____________________
+
+## Checklist
+
+- [ ] Toti coproprietarii/mostenitorii sunt mentionati si au semnat.
+- [ ] Bunurile sunt descrise suficient de precis (pentru imobile: adresa, numar cadastral/carte funciara, daca exista).
+- [ ] Valorile atribuite fiecarei parti sunt cat mai echilibrate sau exista sulte clar calculate.
+- [ ] Stii ca, pentru imobile, e necesar un act de partaj notarial sau o hotarare judecatoreasca pentru intabulare.
+- [ ] Ai verificat eventualele datorii ale defunctului care ar putea afecta masa partajabila.
+` },
+      { id: "cerere-dezbatere-succesiune-notar", title: "Cerere de dezbatere a succesiunii la notar", fields: ["NUME NOTAR/BIROU NOTARIAL", "NUME COMPLET", "CNP", "ADRESA", "CI/PASAPORT SERIE NUMAR", "GRAD DE RUDENIE/CALITATE", "NUME DEFUNCT", "DATA DECESULUI", "LOCUL DECESULUI", "ULTIMUL DOMICILIU AL DEFUNCTULUI", "DATA"], content: `# Cerere de dezbatere a succesiunii la notar
+
+## Cand se foloseste
+
+Pentru a initia procedura succesorala notariala in fata unui notar public, de regula cel din circumscriptia ultimului domiciliu al defunctului. Notarul verifica registrul succesiunilor (PIVET) si poate stabili competenta in mod diferit; aceasta cerere este un punct de plecare, notarul iti va indica exact ce documente sunt necesare in cazul tau.
+
+## Model
+
+Catre: Biroul Notarului Public [NUME NOTAR/BIROU NOTARIAL]
+
+Subsemnatul/Subsemnata [NUME COMPLET], CNP [CNP], domiciliat(a) in [ADRESA], identificat(a) cu [CI/PASAPORT SERIE NUMAR], in calitate de [GRAD DE RUDENIE/CALITATE] al/a defunctului/defunctei [NUME DEFUNCT], decedat(a) la data de [DATA DECESULUI] in [LOCUL DECESULUI], cu ultimul domiciliu in [ULTIMUL DOMICILIU AL DEFUNCTULUI],
+
+solicit deschiderea procedurii succesorale notariale si dezbaterea succesiunii ramase de pe urma defunctului/defunctei mentionat(a) mai sus.
+
+Anexez prezentei cereri:
+
+- Certificat de deces (copie/original conform cerintei notarului);
+- Acte de stare civila care dovedesc rudenia/calitatea (certificat nastere, certificat casatorie, daca este cazul);
+- Acte de identitate ale solicitantului;
+- [ALTE DOCUMENTE - extras CF, talon auto, extrase de cont, daca sunt disponibile].
+
+Mentionez ca am cunostinta despre existenta urmatorilor alti posibili mostenitori: [NUME, daca exista, altfel "nu am cunostinta de alti mostenitori"].
+
+Va rog sa imi comunicati documentele suplimentare necesare si termenul stabilit pentru dezbaterea succesiunii.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Ai identificat notarul competent (de regula, cel din raza ultimului domiciliu al defunctului).
+- [ ] Ai certificatul de deces si actele de stare civila care dovedesc rudenia.
+- [ ] Ai o lista, chiar provizorie, a bunurilor cunoscute ale defunctului.
+- [ ] Ai mentionat toti mostenitorii cunoscuti, pentru a evita complicatii ulterioare.
+- [ ] Esti constient(a) de termenul de 1 an pentru optiunea succesorala (acceptare/renuntare).
+` },
+      { id: "declaratie-acceptare-succesiune", title: "Declaratie de acceptare a succesiunii", fields: ["NUME COMPLET", "CNP", "ADRESA", "CI/PASAPORT SERIE NUMAR", "GRAD DE RUDENIE - SOT/COPIL/PARINTE/ALTA RUDA", "NUME DEFUNCT", "DATA DECESULUI", "LOCUL DECESULUI", "ULTIMUL DOMICILIU AL DEFUNCTULUI", "DATA"], content: `# Declaratie de acceptare a succesiunii
+
+## Cand se foloseste
+
+Pentru a declara, expres si in scris, acceptarea calitatii de mostenitor al unei persoane decedate. Acceptarea poate fi expresa (printr-un act precum acesta) sau tacita (prin fapte care arata intentia de a accepta, precum folosirea bunurilor). Declaratia formala se da de regula la notarul care instrumenteaza dosarul succesoral sau, daca este cazul, la instanta. Termenul de optiune succesorala este de 1 an de la data decesului, daca legea nu prevede altfel.
+
+## Model
+
+Subsemnatul/Subsemnata [NUME COMPLET], CNP [CNP], domiciliat(a) in [ADRESA], identificat(a) cu [CI/PASAPORT SERIE NUMAR], in calitate de [GRAD DE RUDENIE - SOT/COPIL/PARINTE/ALTA RUDA] al/a defunctului/defunctei [NUME DEFUNCT], decedat(a) la data de [DATA DECESULUI] in [LOCUL DECESULUI], cu ultimul domiciliu in [ULTIMUL DOMICILIU AL DEFUNCTULUI],
+
+declar prin prezenta ca accept succesiunea lasata de defunctul/defuncta mentionat(a) mai sus, in conditiile si in limitele prevazute de lege.
+
+Declar de asemenea ca:
+
+- Am cunostinta de existenta urmatorilor alti posibili mostenitori: [NUME SI CALITATE, daca exista, altfel "nu am cunostinta de alti mostenitori"];
+- Masa succesorala cunoscuta cuprinde: [DESCRIERE SUMARA BUNURI - IMOBILE, CONTURI, AUTO, ALTELE];
+- Inteleg ca raspund pentru datoriile succesiunii in limita activului primit, daca am acceptat succesiunea sub beneficiu de inventar, sau integral, daca am acceptat-o pur si simplu, conform regulilor aplicabile.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Ai verificat termenul de 1 an de la deces pentru exercitarea optiunii succesorale.
+- [ ] Sunt mentionati corect ceilalti mostenitori cunoscuti, pentru a evita contestatii ulterioare.
+- [ ] Te-ai informat despre eventualele datorii ale defunctului inainte de acceptare (acceptarea poate atrage raspunderea pentru datorii).
+- [ ] Stii ca declaratia formala se da, de regula, in fata unui notar public, ca parte a dosarului succesoral.
+- [ ] Ai actele de stare civila relevante (certificat de deces, certificat de nastere/casatorie) pregatite pentru notar.
+` },
+      { id: "declaratie-renuntare-succesiune", title: "Declaratie de renuntare la succesiune", fields: ["NUME COMPLET", "CNP", "ADRESA", "CI/PASAPORT SERIE NUMAR", "GRAD DE RUDENIE", "NUME DEFUNCT", "DATA DECESULUI", "LOCUL DECESULUI", "DATA"], content: `# Declaratie de renuntare la succesiune
+
+## Cand se foloseste
+
+Pentru a renunta, expres si in scris, la calitatea de mostenitor al unei persoane decedate, de regula atunci cand datoriile succesiunii sunt mai mari decat activul sau din alte motive personale. Renuntarea este un act grav, ireversibil in majoritatea situatiilor, si trebuie facuta in termenul legal de optiune succesorala (1 an de la data decesului, daca legea nu prevede altfel). Renuntarea se declara, de regula, la notarul public.
+
+## Model
+
+Subsemnatul/Subsemnata [NUME COMPLET], CNP [CNP], domiciliat(a) in [ADRESA], identificat(a) cu [CI/PASAPORT SERIE NUMAR], in calitate de [GRAD DE RUDENIE] al/a defunctului/defunctei [NUME DEFUNCT], decedat(a) la data de [DATA DECESULUI] in [LOCUL DECESULUI],
+
+declar prin prezenta ca renunt in mod expres, total si necondiționat la succesiunea lasata de defunctul/defuncta mentionat(a) mai sus.
+
+Declar ca am inteles ca, prin aceasta renuntare:
+
+- Voi fi considerat(a) ca nu am avut niciodata calitatea de mostenitor in aceasta succesiune;
+- Cota mea succesorala va profita celorlalti mostenitori, conform regulilor legale de devolutiune;
+- Renuntarea este, de regula, irevocabila dupa exprimare, cu exceptiile prevazute de lege.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Ai verificat termenul de 1 an de la deces pentru exercitarea optiunii succesorale.
+- [ ] Ai luat in calcul caracterul ireversibil al renuntarii in majoritatea cazurilor.
+- [ ] Ai evaluat activul si pasivul succesiunii inainte de a decide renuntarea (poti cere notarului un inventar).
+- [ ] Stii catre cine se redistribuie cota ta dupa renuntare.
+- [ ] Declaratia se da, de regula, in fata unui notar public; verifica procedura locala.
+` },
+      { id: "testament-olograf", title: "Testament olograf", fields: ["NUME COMPLET", "CNP", "DATA NASTERII", "LOCUL NASTERII", "ADRESA COMPLETA", "BUN 1 - DESCRIERE COMPLETA", "NUME BENEFICIAR 1", "GRAD DE RUDENIE/CALITATE", "BUN 2 - DESCRIERE COMPLETA", "NUME BENEFICIAR 2", "NUME BENEFICIAR/BENEFICIARI", "NUME", "LOCALITATE"], content: `# Testament olograf
+
+## Cand se foloseste
+
+Pentru a dispune de bunuri pentru cazul decesului. Testamentul olograf trebuie scris integral de mana, datat si semnat de testator, fara ajutorul altei persoane si fara editare pe calculator. Nu inlocuieste sfatul unui notar, mai ales daca exista mostenitori rezervatari (copii, sot supravietuitor, parinti in unele cazuri) care au dreptul la o cota minima protejata prin lege, indiferent de continutul testamentului.
+
+## Model
+
+Eu, subsemnatul/subsemnata [NUME COMPLET], CNP [CNP], nascut(a) la data de [DATA NASTERII] in [LOCUL NASTERII], domiciliat(a) in [ADRESA COMPLETA], fiind in deplinatatea facultatilor mintale si actionand de buna voie, fara nicio constrangere, redactez prezentul testament olograf, prin care dispun urmatoarele pentru cazul decesului meu:
+
+### 1. Revocarea testamentelor anterioare
+
+Revoc expres orice testament sau dispozitie testamentara intocmita de mine anterior datei prezentului testament.
+
+### 2. Legate si dispozitii
+
+Las urmatoarele bunuri persoanelor de mai jos:
+
+- [BUN 1 - DESCRIERE COMPLETA] catre [NUME BENEFICIAR 1], [GRAD DE RUDENIE/CALITATE];
+- [BUN 2 - DESCRIERE COMPLETA] catre [NUME BENEFICIAR 2], [GRAD DE RUDENIE/CALITATE];
+- Restul bunurilor mele, mobile si imobile, prezente si viitoare, catre [NUME BENEFICIAR/BENEFICIARI].
+
+### 3. Executor testamentar (optional)
+
+Numesc in calitate de executor testamentar pe [NUME], avand atributia de a asigura executarea intocmai a prezentelor dispozitii.
+
+### 4. Mentiune privind mostenitorii rezervatari
+
+Sunt constient(a) de existenta dispozitiilor legale privind rezerva succesorala si am intocmit prezentul testament cu respectarea acestora, in limita cunostintelor mele.
+
+Intocmit in intregime de mana mea, astazi, [DATA COMPLETA - ZI, LUNA, AN], in [LOCALITATE].
+
+Semnatura: ____________________
+
+## Checklist
+
+- [ ] Tot textul este scris de mana, integral, de testator (nu pe calculator, nu dictat altei persoane).
+- [ ] Data este completa si reala (zi, luna, an).
+- [ ] Semnatura este olografa, la final.
+- [ ] Sunt identificati clar beneficiarii (nume complet, grad de rudenie).
+- [ ] Bunurile sunt descrise suficient de precis pentru a fi identificabile.
+- [ ] Ai luat in calcul rezerva succesorala a mostenitorilor rezervatari, daca exista.
+- [ ] Ai discutat cu un notar despre depunerea testamentului in Registrul National Notarial de Evidenta a Liberalitatilor (RNNEL), pentru siguranta si opozabilitate.
+- [ ] Pastrezi originalul intr-un loc sigur si ai informat o persoana de incredere despre existenta lui.
+` },
+    ]
+  },
+  "vanzare-cumparare": {
+    label: "Vânzare-Cumpărare",
+    icon: "🤝",
+    docs: [
+      { id: "acord-restituire-avans", title: "Acord restituire avans", fields: ["DATA", "PRIMITOR AVANS", "PLATITOR AVANS", "DATA PLATA", "SUMA", "MONEDA", "SCOP", "MOD PLATA", "EXCEPTII"], content: `# Acord restituire avans
+
+Incheiat astazi, [DATA], intre [PRIMITOR AVANS] si [PLATITOR AVANS].
+
+Partile confirma ca la data de [DATA PLATA] a fost achitat avansul in suma de [SUMA] [MONEDA], pentru [SCOP].
+
+Partile convin restituirea avansului pana la data de [DATA], prin [MOD PLATA].
+
+Dupa restituire, partile declara ca nu mai au pretentii reciproce legate de acest avans, cu exceptia: [EXCEPTII].
+
+Semnaturi:
+
+Primitor avans: ____________________
+
+Platitor avans: ____________________
+
+` },
+      { id: "chitanta-simpla", title: "Chitanta simpla", fields: ["NUME PRIMITOR", "CNP", "NUME PLATITOR", "SUMA", "MONEDA", "SCOP PLATA", "DATA", "CASH/TRANSFER/ALT MOD"], content: `# Chitanta simpla
+
+Subsemnatul/Subsemnata [NUME PRIMITOR], CNP [CNP], declar ca am primit de la [NUME PLATITOR], CNP [CNP], suma de [SUMA] [MONEDA], reprezentand [SCOP PLATA].
+
+Plata a fost efectuata la data de [DATA], prin [CASH/TRANSFER/ALT MOD].
+
+Data: [DATA]
+
+Semnatura primitor: ____________________
+
+## Atentie
+
+Pentru plati intre profesionisti, plati mari sau situatii fiscale, verifica regulile aplicabile privind plafoanele, factura, chitanta fiscala si documentele contabile.
+
+` },
+      { id: "contract-vanzare-cumparare-bun-mobil", title: "Contract de vanzare-cumparare bun mobil", fields: ["DATA", "NUME", "CNP/CUI", "ADRESA", "DESCRIERE BUN", "SERIE", "STARE", "SUMA", "MONEDA", "MOD PLATA", "LISTA", "EXCEPTII"], content: `# Contract de vanzare-cumparare bun mobil
+
+## Cand se foloseste
+
+Pentru bunuri mobile simple. Pentru autoturisme, imobile, bunuri in leasing, bunuri cu regim special sau sume importante, verifica formularul si procedura aplicabile.
+
+## Model
+
+Incheiat astazi, [DATA], intre:
+
+Vanzator: [NUME], CNP/CUI [CNP/CUI], domiciliu/sediu [ADRESA].
+
+Cumparator: [NUME], CNP/CUI [CNP/CUI], domiciliu/sediu [ADRESA].
+
+Vanzatorul vinde, iar cumparatorul cumpara urmatorul bun: [DESCRIERE BUN], serie/numar identificare [SERIE], stare [STARE].
+
+Pretul este [SUMA] [MONEDA] si se plateste prin [MOD PLATA] la data de [DATA].
+
+Bunul se preda la data de [DATA], impreuna cu urmatoarele accesorii/documente: [LISTA].
+
+Vanzatorul declara ca bunul ii apartine si ca, dupa cunostinta sa, nu este grevat de sarcini, litigii sau drepturi ale tertilor, cu exceptia celor mentionate aici: [EXCEPTII].
+
+Semnaturi:
+
+Vanzator: ____________________
+
+Cumparator: ____________________
+
+## Checklist
+
+- [ ] Bunul este identificat clar.
+- [ ] Pretul si plata sunt dovedibile.
+- [ ] Exista proces-verbal de predare, daca este util.
+- [ ] Sunt verificate eventuale restrictii speciale pentru bun.
+
+` },
+      { id: "declaratie-predare-suma", title: "Declaratie predare suma de bani", fields: ["NUME PREDATOR", "CNP", "NUME PRIMITOR", "SUMA", "MONEDA", "SCOP", "DATA", "CASH/TRANSFER/ALT MOD"], content: `# Declaratie predare suma de bani
+
+Subsemnatul/Subsemnata [NUME PREDATOR], CNP [CNP], declar ca am predat catre [NUME PRIMITOR], CNP [CNP], suma de [SUMA] [MONEDA], reprezentand [SCOP].
+
+Predarea sumei a avut loc la data de [DATA], prin [CASH/TRANSFER/ALT MOD].
+
+Prezenta declaratie este semnata in doua exemplare.
+
+Predator: ____________________
+
+Primitor: ____________________
+
+## Atentie
+
+Pentru sume mari sau tranzactii comerciale, verifica plafoanele, obligatiile fiscale si documentele contabile necesare.
+
+` },
+      { id: "notificare-rezolutiune-contract", title: "Notificare rezolutiune contract", fields: ["PARTEA NOTIFICATA", "NUME", "CALITATE", "NUMAR", "DATA", "OBIECT", "MOTIV"], content: `# Notificare rezolutiune contract
+
+## Atentie
+
+Rezolutiunea poate avea consecinte juridice importante. Verifica contractul si cere ajutor juridic daca exista conflict.
+
+Catre: [PARTEA NOTIFICATA]
+
+Subsemnatul/Subsemnata [NUME], in calitate de [CALITATE], va notific rezolutiunea contractului nr. [NUMAR] din [DATA], avand ca obiect [OBIECT], pentru urmatorul motiv:
+
+[MOTIV]
+
+Solicit restituirea prestatiilor / predarea bunului / plata sumelor datorate pana la data de [DATA], conform contractului si legii aplicabile.
+
+Data: [DATA]
+
+Semnatura: ____________________
+
+` },
+      { id: "proces-verbal-predare-bun-mobil", title: "Proces-verbal predare-primire bun mobil", fields: ["DATA", "VANZATOR/PREDATOR", "CUMPARATOR/PRIMITOR", "DESCRIERE BUN", "SERIE", "STARE", "ACCESORIU/DOCUMENT"], content: `# Proces-verbal predare-primire bun mobil
+
+Incheiat astazi, [DATA], intre [VANZATOR/PREDATOR] si [CUMPARATOR/PRIMITOR].
+
+Bun predat: [DESCRIERE BUN]
+
+Serie/identificator: [SERIE]
+
+Stare la predare: [STARE]
+
+Accesorii/documente predate:
+
+- [ACCESORIU/DOCUMENT]
+
+Predator: ____________________
+
+Primitor: ____________________
+
+` },
+      { id: "promisiune-vanzare-cumparare-bun-mobil", title: "Promisiune vanzare-cumparare bun mobil", fields: ["NUME", "CNP/CUI", "DATA", "DESCRIERE", "SUMA", "MONEDA", "MOD PLATA", "PARTII", "CONSECINTE"], content: `# Promisiune vanzare-cumparare bun mobil
+
+Promitent vanzator: [NUME], CNP/CUI [CNP/CUI].
+
+Promitent cumparator: [NUME], CNP/CUI [CNP/CUI].
+
+Partile convin ca pana la data de [DATA] vor incheia contractul de vanzare-cumparare pentru bunul [DESCRIERE], la pretul de [SUMA] [MONEDA].
+
+Avansul achitat este [SUMA] [MONEDA], prin [MOD PLATA].
+
+Daca vanzarea nu se incheie din culpa [PARTII], partile convin: [CONSECINTE].
+
+Data: [DATA]
+
+Vanzator: ____________________
+
+Cumparator: ____________________
+
+` },
+    ]
+  },
+};
+
+// ── STATE ──
+let activeCategory = 'all';
+let selectedDoc = null;
+let searchQuery = '';
+
+// ── INIT ──
+function init() {
+  renderCategories();
+  renderDocs();
+}
+
+// ── CATEGORIES ──
+function renderCategories() {
+  const list = document.getElementById('cat-list');
+  const allCount = Object.values(TEMPLATES).reduce((s, c) => s + c.docs.length, 0);
+
+  list.innerHTML = `
+    <li class="cat-item ${activeCategory === 'all' ? 'active' : ''}" onclick="setCategory('all')">
+      <span class="icon">📂</span> Toate <span class="count">${allCount}</span>
+    </li>
+    ${Object.entries(TEMPLATES).map(([id, cat]) => `
+      <li class="cat-item ${activeCategory === id ? 'active' : ''}" onclick="setCategory('${id}')">
+        <span class="icon">${cat.icon}</span> ${cat.label} <span class="count">${cat.docs.length}</span>
+      </li>
+    `).join('')}
+  `;
+}
+
+function setCategory(id) {
+  activeCategory = id;
+  selectedDoc = null;
+  document.getElementById('generator').style.display = 'none';
+  renderCategories();
+  renderDocs();
+}
+
+// ── SEARCH ──
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  activeCategory = 'all';
+  selectedDoc = null;
+  document.getElementById('generator').style.display = 'none';
+  renderCategories();
+  renderDocs();
+});
+
+function getFilteredDocs() {
+  let all = [];
+  for (const [catId, cat] of Object.entries(TEMPLATES)) {
+    if (activeCategory !== 'all' && activeCategory !== catId) continue;
+    for (const doc of cat.docs) {
+      all.push({ ...doc, catId, catLabel: cat.label, catIcon: cat.icon });
+    }
+  }
+  if (!searchQuery) return all;
+  return all.filter(d =>
+    d.title.toLowerCase().includes(searchQuery) ||
+    d.id.toLowerCase().includes(searchQuery) ||
+    d.catLabel.toLowerCase().includes(searchQuery) ||
+    d.fields.some(f => f.toLowerCase().includes(searchQuery))
+  );
+}
+
+// ── DOC LIST ──
+function renderDocs() {
+  const docs = getFilteredDocs();
+  document.getElementById('search-count').textContent = `${docs.length} document${docs.length !== 1 ? 'e' : ''}`;
+
+  const container = document.getElementById('doc-list');
+
+  if (docs.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">🔍</div>
+        <h3>Niciun document găsit</h3>
+        <p>Încearcă alt termen de căutare.</p>
+      </div>`;
+    return;
+  }
+
+  if (activeCategory !== 'all' || searchQuery) {
+    // Single flat grid
+    const label = activeCategory !== 'all' ? TEMPLATES[activeCategory]?.label : `Rezultate pentru "${searchQuery}"`;
+    container.innerHTML = `
+      <div class="section-heading">
+        <h2>${label}</h2>
+        <div class="line"></div>
+      </div>
+      <div class="doc-grid">${docs.map(d => docCard(d)).join('')}</div>`;
+  } else {
+    // Grouped by category
+    let html = '';
+    for (const [catId, cat] of Object.entries(TEMPLATES)) {
+      html += `
+        <div class="section-heading">
+          <h2>${cat.icon} ${cat.label}</h2>
+          <div class="line"></div>
+        </div>
+        <div class="doc-grid">${cat.docs.map(d => docCard({...d, catId, catLabel: cat.label})).join('')}</div>`;
+    }
+    container.innerHTML = html;
+  }
+}
+
+function docCard(d) {
+  const isSelected = selectedDoc && selectedDoc.id === d.id && selectedDoc.catId === d.catId;
+  const tags = d.fields.slice(0, 3).map(f => `<span class="doc-card-tag">${f}</span>`).join('');
+  const more = d.fields.length > 3 ? `<span class="doc-card-tag">+${d.fields.length - 3}</span>` : '';
+  return `
+    <div class="doc-card ${isSelected ? 'selected' : ''} animate-in"
+         onclick="selectDoc('${d.catId}', '${d.id}')"
+         title="${d.title}">
+      <div class="doc-card-cat">${d.catLabel || ''}</div>
+      <div class="doc-card-title">${d.title}</div>
+      <div class="doc-card-fields">${tags}${more}</div>
+    </div>`;
+}
+
+// ── SELECT DOC ──
+function selectDoc(catId, docId) {
+  const cat = TEMPLATES[catId];
+  const doc = cat.docs.find(d => d.id === docId);
+  if (!doc) return;
+  selectedDoc = { ...doc, catId, catLabel: cat.label };
+  renderDocs();
+  renderGenerator();
+  setTimeout(() => document.getElementById('generator').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+
+// ── GENERATOR ──
+function renderGenerator() {
+  const d = selectedDoc;
+  const gen = document.getElementById('generator');
+  gen.style.display = 'block';
+
+  gen.innerHTML = `
+    <div class="gen-header">
+      <div class="gen-header-text">
+        <h3>${d.title}</h3>
+        <p>${d.catLabel} · ${d.fields.length} câmpuri de completat</p>
+      </div>
+      <button class="btn-close" onclick="closeGenerator()" title="Închide">✕</button>
+    </div>
+    <div class="gen-body">
+      <div class="warn-box">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:#c8973a">
+          <path d="m10.29 3.86-8.49 14.69A2 2 0 0 0 3.49 21h17a2 2 0 0 0 1.71-3l-8.49-14.69a2 2 0 0 0-3.44.55z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span>Acesta este un model educațional și un punct de pornire — nu constituie consultanță juridică. 
+        Verifică mereu cu un avocat, notar sau specialist înainte de utilizare.</span>
+      </div>
+
+      ${d.fields.length > 0 ? `
+        <div class="fields-grid" id="fields-grid">
+          ${d.fields.map(f => `
+            <div class="field-group">
+              <label for="f_${f.replace(/[^a-z0-9]/gi,'_')}">${f}</label>
+              <input type="text" 
+                     id="f_${f.replace(/[^a-z0-9]/gi,'_')}" 
+                     data-field="${f}"
+                     placeholder="${getPlaceholder(f)}"
+                     oninput="updatePreview()">
+            </div>
+          `).join('')}
+        </div>
+      ` : '<p style="color:var(--ink-mute);font-size:13px;margin-bottom:20px;">Acest document nu are câmpuri variabile.</p>'}
+
+      <div class="gen-actions">
+        <button class="btn btn-primary" onclick="downloadDoc('md')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Descarcă .md
+        </button>
+        <button class="btn btn-secondary" onclick="downloadDoc('txt')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Descarcă .txt
+        </button>
+        <button class="btn btn-ghost" onclick="copyToClipboard()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Copiază text
+        </button>
+        <button class="btn btn-ghost" onclick="clearFields()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="M3 6h18M19 6l-1 14H6L5 6M8 6V4h8v2"/>
+          </svg>
+          Șterge câmpuri
+        </button>
+      </div>
+
+      <div id="preview-section" style="display:none">
+        <div class="preview-header">
+          <h4>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            Previzualizare document
+          </h4>
+          <div class="preview-actions">
+            <button class="btn btn-ghost" style="padding:6px 12px;font-size:12px" onclick="togglePreview()">Ascunde</button>
+          </div>
+        </div>
+        <div id="preview-content"></div>
+      </div>
+      
+      <button class="btn btn-ghost" onclick="togglePreview()" id="preview-toggle-btn" 
+              style="margin-top:16px;font-size:13px;padding:8px 14px;">
+        👁 Previzualizează documentul
+      </button>
+    </div>
+  `;
+
+  updatePreview();
+}
+
+function getPlaceholder(field) {
+  const map = {
+    'DATA': 'ex: 20.06.2026', 'LOCALITATE': 'ex: București', 'NUME': 'ex: Popescu Ion',
+    'CNP': 'ex: 1234567890123', 'ADRESA': 'ex: Str. Unirii nr. 1',
+    'SUMA': 'ex: 1000', 'MONEDA': 'ex: RON', 'DATA INCEPUT': 'ex: 01.07.2026',
+    'DATA SFARSIT': 'ex: 30.06.2027', 'FUNCTIE': 'ex: Inginer', 'EMAIL': 'ex: email@exemplu.ro',
+    'TELEFON': 'ex: 07XX XXX XXX', 'NR. INREGISTRARE': 'ex: J40/1234/2026',
+    'CUI': 'ex: RO12345678', 'BANCA': 'ex: BT', 'IBAN': 'ex: RO49AAAA1B31007593840000',
+  };
+  return map[field] || `completează ${field.toLowerCase()}`;
+}
+
+let previewVisible = false;
+
+function togglePreview() {
+  previewVisible = !previewVisible;
+  const section = document.getElementById('preview-section');
+  const btn = document.getElementById('preview-toggle-btn');
+  if (section) section.style.display = previewVisible ? 'block' : 'none';
+  if (btn) btn.textContent = previewVisible ? '🙈 Ascunde previzualizarea' : '👁 Previzualizează documentul';
+  if (previewVisible) updatePreview();
+}
+
+function getGeneratedContent() {
+  if (!selectedDoc) return '';
+  let content = selectedDoc.content;
+  const inputs = document.querySelectorAll('[data-field]');
+  inputs.forEach(inp => {
+    if (inp.value.trim()) {
+      content = content.split(`[${inp.dataset.field}]`).join(inp.value.trim());
+    }
+  });
+  return content;
+}
+
+function updatePreview() {
+  const el = document.getElementById('preview-content');
+  if (!el || !previewVisible) return;
+  let content = getGeneratedContent();
+  // Highlight unfilled fields
+  content = content.replace(/\[([A-ZĂÂÎȘȚ][A-ZĂÂÎȘȚ0-9 /\-\.]*)\]/g, 
+    '<span class="unfilled">[$1]</span>');
+  el.innerHTML = content;
+}
+
+function downloadDoc(fmt) {
+  let content = getGeneratedContent();
+  if (fmt === 'txt') {
+    content = content.replace(/^#{1,6}\s+/gm, '');
+    content = content.replace(/\*\*(.*?)\*\*/g, '$1');
+    content = content.replace(/\*(.*?)\*/g, '$1');
+    content = content.replace(/^[-*]\s+/gm, '• ');
+  }
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${selectedDoc.id}.${fmt}`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function copyToClipboard() {
+  const content = getGeneratedContent();
+  navigator.clipboard.writeText(content).then(() => {
+    const btn = event.target.closest('.btn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Copiat!';
+    btn.style.color = 'var(--success)';
+    setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 2000);
+  });
+}
+
+function clearFields() {
+  document.querySelectorAll('[data-field]').forEach(inp => inp.value = '');
+  updatePreview();
+}
+
+function closeGenerator() {
+  selectedDoc = null;
+  document.getElementById('generator').style.display = 'none';
+  renderDocs();
+}
+
+init();
+</script>
+</body>
+</html>

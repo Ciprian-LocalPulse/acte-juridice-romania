@@ -1,0 +1,10 @@
+name = "ActeJuridiceRomania"
+uuid = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+authors = ["Ciprian Stefan Plesca"]
+version = "1.0.0"
+
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+
+[compat]
+julia = "1.6"

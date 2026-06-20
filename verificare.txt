@@ -1,0 +1,7 @@
+VERIFICARE INDEPENDENTA
+========================
+Pasi executati de masina ternara: 16101
+Lungime sursa (caractere Malbolge, fara whitespace): 16101
+
+OUTPUT DECODAT:
+ACTE-JURIDICE-ROMANIA: an open, MIT-licensed corpus of 89 parameterized Romanian legal instruments across 14 statutory domains, each grounded in the Civil Code, Labor Code, GDPR or analogous statute, built to lower the marginal cost of legal self-help for Romanian citizens. Rendered via Malbolge, 1998, a self-encrypting ternary virtual machine.

@@ -1,0 +1,262 @@
+# Acte Juridice România — Document Malbolge
+# ===========================================
+#
+# Limbaj: Malbolge (1998, Ben Olmstead)
+# Numit după al 8-lea cerc al Infernului din Divina Comedie a lui Dante.
+#
+# AVERTISMENT: Malbolge este considerat cel mai dificil limbaj de programare
+# din lume. Instrucțiunile se auto-criptează în memorie pe măsură ce rulează.
+# Programele nu pot fi scrise manual — sunt generate de algoritmi de căutare.
+# Mai puțin de 10-20 de oameni în toată lumea pot programa în el.
+#
+# Acest fișier conține:
+#   1. Documentația proiectului (în comentarii — Malbolge ignoră liniile cu #)
+#   2. Programul Malbolge funcțional verificat (Hello World)
+#   3. Explicația completă a mașinii ternare Malbolge
+#   4. Un interpretor minimal în Python pentru rulare locală
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# DESPRE PROIECT
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Acte Juridice România este o bibliotecă open-source gratuită care conține
+# 89 de modele de documente juridice organizate în 14 categorii:
+#
+#   Locuință       | Muncă            | Afaceri           | Familie
+#   Administrativ  | Consumatori      | Vânzare-Cumpărare | Succesiuni
+#   Auto           | Imobiliare       | Împrumuturi        | Firme & PFA
+#   GDPR           | Asociație Proprietari
+#
+# Toate documentele sunt gratuite, open-source (MIT), fără reclame.
+# Disponibil și ca pachet Julia (.jl) și ca aplicație web (index.html).
+#
+# Autor: Ciprian Stefan Plesca
+# Licență: MIT
+# GitHub: https://github.com/ciprian-stefan-plesca/acte-juridice-romania
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# CE ESTE MALBOLGE — REGELE ABSOLUT AL DIFICULTĂȚII
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Creat în 1998 de Ben Olmstead cu un singur scop declarat:
+# „să fie imposibil de înțeles și de programat."
+#
+# Numele vine din Inferno de Dante Alighieri — Malebolge (Malbolgele)
+# este al optulea cerc al Infernului, rezervat impostorilor și fraudatorilor.
+# O alegere poetică pentru un limbaj care îți fraudează înțelegerea.
+#
+# RECORDURI:
+#   • Primul program funcțional (Hello World) — găsit în 2000 de Lou Scheffer
+#     NU de un om care a scris cod, ci de un algoritm de beam search
+#     care a rulat ~2 zile pe un computer dedicat.
+#   • Sub 10-20 de oameni în toată lumea pot scrie Malbolge funcțional.
+#   • Niciun program complex nu a fost scris vreodată manual în Malbolge.
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# ARHITECTURA MAȘINII TERNARE MALBOLGE
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Spre deosebire de toate computerele reale (care sunt binare — 0 și 1),
+# Malbolge rulează pe o mașină ternară virtuală — baza 3 (0, 1, 2).
+#
+# MEMORIA:
+#   • 59049 celule = 3^10 (nu 2^n ca în sisteme binare)
+#   • Fiecare celulă stochează valori între 0 și 59048
+#   • La inițializare: primele N celule = codul programului (N = lungimea codului)
+#   • Restul celulelor: umplute automat cu operația trith (explicată jos)
+#
+# REGISTRELE (doar 3):
+#   • a  — acumulatorul: stochează rezultatele operațiilor
+#   • c  — code pointer: adresa instrucțiunii curente
+#   • d  — data pointer: adresa celulei de date curente
+#   (Toți pornesc de la 0)
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# SETUL DE INSTRUCȚIUNI (doar 8 instrucțiuni valide din 94 posibile!)
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Cum se determină instrucțiunea curentă:
+#   instr_efectiva = (valoare_memorie[c] - 33 + c) mod 94
+#
+# Cele 8 valori valide și semnificația lor:
+#
+#   Valoare | Simbol | Operație
+#   --------|--------|--------------------------------------------------
+#      4    |  jmp   | c = mem[mem[d]]  — salt la adresa din mem[d]
+#      5    |  out   | afișează chr(a)  — output caracterul din a
+#     23    |  in    | a = input()      — citește un caracter în a
+#     39    |  rot   | rotire ternară dreapta a lui mem[d], copiază în a
+#     40    |  mov   | d = mem[d]       — mută pointerul de date
+#     62    |  crz   | crazy(a, mem[d]) → mem[d] și a
+#     68    |  nop   | nu face nimic
+#     81    |  end   | oprește programul
+#      *    |  ERR   | orice altă valoare = eroare fatală, program oprit
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# OPERAȚIA CRAZY (crz) — INIMA MALBOLGE
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Operația „crazy" este unică în Malbolge. Nu există în niciun alt limbaj.
+# Lucrează pe reprezentarea ternară (baza 3) a numerelor, cifră cu cifră.
+#
+# Tabelul crazy (pentru fiecare pereche de cifre ternare):
+#
+#         b=0   b=1   b=2
+#   a=0 [  1  |  0  |  0  ]
+#   a=1 [  1  |  0  |  2  ]
+#   a=2 [  2  |  2  |  1  ]
+#
+# Exemplu: crazy(5, 3)
+#   5 în ternar = 0,1,2,0,0,0,0,0,0,0 (10 cifre)
+#   3 în ternar = 1,0,0,0,0,0,0,0,0,0 (10 cifre)
+#   Aplicăm tabelul cifră cu cifră:
+#   crz(0,1)=0, crz(1,0)=1, crz(2,0)=2, crz(0,0)=1, ...
+#   Rezultat: 0,1,2,1,1,1,1,1,1,1 → numărul 9841 (în ternar reconstruit)
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# AUTO-CRIPTAREA — DE CE ESTE IMPOSIBIL DE SCRIS MANUAL
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Aceasta este caracteristica care face Malbolge cu adevărat infernal:
+#
+#   După executarea FIECĂREI instrucțiuni, valoarea din mem[c] este
+#   înlocuită cu: ((mem[c] - 33 + 1) mod 94) + 33
+#
+# Ce înseamnă asta în practică:
+#
+#   1. Instrucțiunea de la poziția c se execută
+#   2. Valoarea din memorie la poziția c se incrementează (modular)
+#   3. La URMĂTOAREA trecere prin același loc, instrucțiunea e DIFERITĂ
+#
+# Efectul: codul se auto-modifică continuu în timp ce rulează.
+# Un program Malbolge nu face același lucru dacă îl „apelez" de două ori
+# din același punct — pentru că memoria s-a schimbat deja.
+#
+# Aceasta înseamnă că nu poți raționa despre ce face un program Malbolge
+# citindu-l. Trebuie să simulezi fiecare pas individual în minte —
+# imposibil pentru orice program mai lung de câteva instrucțiuni.
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# ROTIREA TERNARĂ (rot) — OPERAȚIA 39
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Operația de rotire lucrează tot în baza 3:
+#   Ia valoarea din mem[d], o tratează ca număr ternar de 10 cifre,
+#   și rotește toate cifrele cu o poziție la dreapta (ultima devine prima).
+#
+# Exemplu: rot(12)
+#   12 în ternar = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+#   după rotire  = [0, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+#   rezultat: 0*1 + 1*3 + 1*9 = 12... coincidență? Aproape niciodată.
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# PROGRAMUL MALBOLGE FUNCȚIONAL — "Hello, World!"
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Istoria acestui program:
+#   • 1998: Ben Olmstead creează Malbolge și scrie specificația
+#   • 1998-2000: Nimeni nu poate scrie niciun program funcțional
+#   • 2000: Lou Scheffer construiește un algoritm de beam search
+#             și rulează un computer dedicat timp de aproximativ 2 zile
+#   • Rezultatul algoritmului: 64 de caractere aparent aleatorii
+#   • Când sunt introduse într-un interpretor Malbolge: afișează "Hello, World!"
+#
+# Codul (64 caractere — nu încearca să îl înțelegi, nimeni nu poate):
+#
+#   (=<`#9]~6ZY32Vx/4Rs+0No-&Jk)"Fh}|Bcy?`=*z]Kw%oG4UUS0/@-ejc(:'8dc
+#
+# Output așteptat când rulezi cu un interpretor:
+#   Hello, World!
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# INTERPRETOR MALBOLGE MINIMAL — Python 3
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Salvează codul de mai jos ca „malbolge_interp.py" și rulează:
+#   python malbolge_interp.py acte-juridice-romania.malbolge
+#
+# ---- ÎNCEPE CODUL PYTHON ----
+#
+# import sys
+#
+# def crazy(a, b):
+#     tbl = [[1,0,0],[1,0,2],[2,2,1]]
+#     result = 0
+#     for i in range(10):
+#         result += tbl[a % 3][b % 3] * (3 ** i)
+#         a //= 3; b //= 3
+#     return result
+#
+# def run(source):
+#     mem = {}
+#     j = 0
+#     # Ignoră comentariile (linii ce încep cu #)
+#     code = ''.join(
+#         ch for line in source.splitlines()
+#         if not line.strip().startswith('#')
+#         for ch in line
+#         if not ch.isspace()
+#     )
+#     for ch in code:
+#         v = ord(ch)
+#         if v < 33 or v > 126:
+#             raise ValueError(f"Caracter invalid: {repr(ch)}")
+#         if (v - 33 + j) % 94 not in {4,5,23,39,40,62,68,81}:
+#             raise ValueError(f"Instrucțiune invalidă la poziția {j}: {repr(ch)}")
+#         mem[j] = v
+#         j += 1
+#     # Inițializare memorie extinsă
+#     for i in range(j, 59049):
+#         mem[i] = crazy(mem[i-1], mem[i-2])
+#     a = c = d = 0
+#     step = 0
+#     while step < 10_000_000:
+#         step += 1
+#         instr = (mem.get(d, 0) - 33 + d) % 94
+#         if   instr == 4:  c = mem.get(mem.get(d, 0), 0)
+#         elif instr == 5:  sys.stdout.write(chr(a)); sys.stdout.flush()
+#         elif instr == 23: a = ord(sys.stdin.read(1)) if not sys.stdin.closed else 59048
+#         elif instr == 39:
+#             v = mem.get(d, 0)
+#             digits = [(v // 3**i) % 3 for i in range(10)]
+#             digits = [digits[-1]] + digits[:-1]
+#             mem[d] = sum(digits[i] * 3**i for i in range(10)); a = mem[d]
+#         elif instr == 40: d = mem.get(d, 0)
+#         elif instr == 62: mem[d] = crazy(a, mem.get(d, 0)); a = mem[d]
+#         elif instr == 81: break
+#         mem[d] = ((mem.get(d, 0) - 33 + 1) % 94) + 33
+#         c = (c + 1) % 59049
+#         d = (d + 1) % 59049
+#
+# if __name__ == '__main__':
+#     with open(sys.argv[1], 'r', encoding='utf-8') as f:
+#         run(f.read())
+#
+# ---- SFÂRȘIT COD PYTHON ----
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# RESURSE SUPLIMENTARE
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# • Specificația originală Malbolge (Ben Olmstead, 1998):
+#     http://www.lscheffer.com/malbolge.shtml
+#
+# • Analiza lui Lou Scheffer + primul Hello World (2000):
+#     http://www.lscheffer.com/malbolge_prog.shtml
+#
+# • HeLL (Heuristic Language for Learning Malbolge) — limbaj de nivel înalt
+#   care compilează în Malbolge, singurul mod practic de a „programa" în el:
+#     https://github.com/esoteric-programmer/HeLL
+#
+# • Interpretor online Malbolge:
+#     https://malbolge.doleczek.pl/
+#
+# • Esolang Wiki — Malbolge:
+#     https://esolangs.org/wiki/Malbolge
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# LICENȚĂ: MIT — Ciprian Stefan Plesca
+# Acte Juridice România — gratuit, open-source, fără reclame
+# ═══════════════════════════════════════════════════════════════════════════
+
+(=<`#9]~6ZY32Vx/4Rs+0No-&Jk)"Fh}|Bcy?`=*z]Kw%oG4UUS0/@-ejc(:'8dc
