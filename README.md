@@ -7,7 +7,7 @@
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/licenta-MIT-111827?style=for-the-badge&logo=opensourceinitiative&logoColor=white"></a>
   <a href="./docs/surse-oficiale.md"><img alt="Surse oficiale" src="https://img.shields.io/badge/surse-oficiale-0f766e?style=for-the-badge&logo=checkmarx&logoColor=white"></a>
-  <a href="./templates/INDEX.md"><img alt="64 modele" src="https://img.shields.io/badge/64-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
+  <a href="./templates/INDEX.md"><img alt="89 modele" src="https://img.shields.io/badge/64-modele%20gratuite-2563eb?style=for-the-badge&logo=readme&logoColor=white"></a>
   <a href="./DONATE.md"><img alt="Sustine proiectul" src="https://img.shields.io/badge/sustine-cercetarea-7c3aed?style=for-the-badge&logo=buymeacoffee&logoColor=white"></a>
 </p>
 
@@ -95,15 +95,8 @@ Total: **89 de modele de documente**, plus ghiduri, surse oficiale, checklist-ur
 
 Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și organizarea documentelor:
 
-<p align="center">
-  <a href="./DONATE.md">
-    <img src="https://img.shields.io/badge/Doneaza%20pentru%20cercetare-111827?style=for-the-badge&logo=githubsponsors&logoColor=white">
-  </a>
-
-  <a href="https://paypal.me/agentflowenterprise">
-    <img src="https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white">
-  </a>
-</p>
+[![Doneaza](https://img.shields.io/badge/Doneaza%20pentru%20cercetare-111827?style=for-the-badge&logo=githubsponsors&logoColor=white)](./DONATE.md)
+[![PayPal](https://img.shields.io/badge/PayPal-agentflowenterprise-003087?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/agentflowenterprise)
 
 ---
 
@@ -153,15 +146,13 @@ Dacă repository-ul te-a ajutat, poți susține cercetarea, actualizarea și org
 ## ₿ Crypto
 
 **Bitcoin**
-bc1qf3yy0w8z37rwavxpu38wem3yffpanw7wzj32qj
-
+`bc1qf3yy0w8z37rwavxpu38wem3yffpanw7wzj32qj`
 
 **Ethereum**
-0x27d9a6a5b8507e6031bb044319410da96222d402
-
+`0x27d9a6a5b8507e6031bb044319410da96222d402`
 
 **PayPal**
-https://paypal.me/agentflowenterprise
+[https://paypal.me/agentflowenterprise](https://paypal.me/agentflowenterprise)
 
 ---
 
